@@ -1,0 +1,15 @@
+1483356591658	Extract local variable 'file'
+1483357126371	Convert local variable 'localOutputStream' to field
+1483372236535	Extract local variable 'item'
+1483373534778	Extract local variable 'length'
+1483378033959	Extract local variable 'mappingService'
+1483450639692	Extract local variable 'parentNode'
+1483451644882	Extract local variable 'parentNode'
+1483527959587	Delete elements
+1483527970613	Copy files
+1483530358817	Copy compilation unit
+1483531479910	Copy method
+1483633217179	Delete element
+1483729072319	Rename resource 'MainSchema.xml'
+1483729088889	Rename resource 'MainSchema.xsd'
+1483729304117	Extract local variable 'childNodes'

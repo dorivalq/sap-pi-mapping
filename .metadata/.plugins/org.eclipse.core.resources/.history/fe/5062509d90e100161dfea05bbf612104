@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+          <!-- XML Schema Generated from XML Document on Mon Jan 23 2017 15:21:30 GMT-0200 (Horário brasileiro de verão) -->
+          <!-- with XmlGrid.net Free Online Service http://xmlgrid.net -->
+       <xs:element name="rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO">
+              <xs:complexType>
+                     <xs:sequence>
+                            <xs:element name="ID" type="xs:int"></xs:element>
+                            <xs:element name="XML">
+                                   <xs:complexType>
+                                          <xs:sequence>
+                                                 <xs:element name="import">
+                                                        <xs:complexType>
+                                                               <xs:sequence>
+                                                                      <xs:element name="version" type="xs:int">
+                                                                             <xs:complexType>
+                                                                                    <xs:attribute name="date" type="xs:date"></xs:attribute>
+                                                                                </xs:complexType>
+                                                                         </xs:element>
+                                                                      <xs:element name="group-list">
+                                                                             <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                           <xs:element name="group">
+                                                                                                  <xs:complexType>
+                                                                                                         <xs:sequence>
+                                                                                                                <xs:element name="metering-point-list">
+                                                                                                                       <xs:complexType>
+                                                                                                                              <xs:sequence>
+                                                                                                                                     <xs:element name="metering-point">
+                                                                                                                                            <xs:complexType>
+                                                                                                                                                   <xs:sequence>
+                                                                                                                                                          <xs:element name="exchange">
+                                                                                                                                                                 <xs:complexType>
+                                                                                                                                                                        <xs:sequence>
+                                                                                                                                                                               <xs:element name="group">
+                                                                                                                                                                                      <xs:complexType>
+                                                                                                                                                                                             <xs:sequence>
+                                                                                                                                                                                                    <xs:element name="device">
+                                                                                                                                                                                                           <xs:complexType>
+                                                                                                                                                                                                                  <xs:sequence>
+                                                                                                                                                                                                                         <xs:element name="assignment">
+                                                                                                                                                                                                                                <xs:complexType>
+                                                                                                                                                                                                                                       <xs:attribute name="ident1" type="xs:string"></xs:attribute>
+                                                                                                                                                                                                                                       <xs:attribute name="ident2" type="xs:int"></xs:attribute>
+                                                                                                                                                                                                                                       <xs:attribute name="ident3" type="xs:int"></xs:attribute>
+                                                                                                                                                                                                                                       <xs:attribute name="ident4" type="xs:string"></xs:attribute>
+                                                                                                                                                                                                                                   </xs:complexType>
+                                                                                                                                                                                                                            </xs:element>
+                                                                                                                                                                                                                         <xs:element name="identification">
+                                                                                                                                                                                                                                <xs:complexType>
+                                                                                                                                                                                                                                       <xs:attribute name="ident1" type="xs:int"></xs:attribute>
+                                                                                                                                                                                                                                       <xs:attribute name="ident3" type="xs:string"></xs:attribute>
+                                                                                                                                                                                                                                       <xs:attribute name="ident4" type="xs:int"></xs:attribute>
+                                                                                                                                                                                                                                       <xs:attribute name="uident1" type="xs:int"></xs:attribute>
+                                                                                                                                                                                                                                   </xs:complexType>
+                                                                                                                                                                                                                            </xs:element>
+                                                                                                                                                                                                                         <xs:element name="trans-device">
+                                                                                                                                                                                                                                <xs:complexType>
+                                                                                                                                                                                                                                       <xs:sequence>
+                                                                                                                                                                                                                                              <xs:element name="communication">
+                                                                                                                                                                                                                                                     <xs:complexType>
+                                                                                                                                                                                                                                                            <xs:attribute name="target-phone-number" type="xs:string"></xs:attribute>
+                                                                                                                                                                                                                                                        </xs:complexType>
+                                                                                                                                                                                                                                                 </xs:element>
+                                                                                                                                                                                                                                          </xs:sequence>
+                                                                                                                                                                                                                                   </xs:complexType>
+                                                                                                                                                                                                                            </xs:element>
+                                                                                                                                                                                                                         <xs:element name="datachannel-list">
+                                                                                                                                                                                                                                <xs:complexType>
+                                                                                                                                                                                                                                       <xs:sequence>
+                                                                                                                                                                                                                                              <xs:element name="datachannel" maxOccurs="unbounded">
+                                                                                                                                                                                                                                                     <xs:complexType>
+                                                                                                                                                                                                                                                            <xs:sequence>
+                                                                                                                                                                                                                                                                   <xs:element name="identification">
+                                                                                                                                                                                                                                                                          <xs:complexType>
+                                                                                                                                                                                                                                                                                 <xs:attribute name="ident1" type="xs:int"></xs:attribute>
+                                                                                                                                                                                                                                                                             </xs:complexType>
+                                                                                                                                                                                                                                                                      </xs:element>
+                                                                                                                                                                                                                                                               </xs:sequence>
+                                                                                                                                                                                                                                                            <xs:attribute name="obis-id-code" type="xs:string"></xs:attribute>
+                                                                                                                                                                                                                                                        </xs:complexType>
+                                                                                                                                                                                                                                                 </xs:element>
+                                                                                                                                                                                                                                          </xs:sequence>
+                                                                                                                                                                                                                                   </xs:complexType>
+                                                                                                                                                                                                                            </xs:element>
+                                                                                                                                                                                                                     </xs:sequence>
+                                                                                                                                                                                                                  <xs:attribute name="nr" type="xs:int"></xs:attribute>
+                                                                                                                                                                                                              </xs:complexType>
+                                                                                                                                                                                                       </xs:element>
+                                                                                                                                                                                                </xs:sequence>
+                                                                                                                                                                                             <xs:attribute name="type" type="xs:string"></xs:attribute>
+                                                                                                                                                                                             <xs:attribute name="name" type="xs:string"></xs:attribute>
+                                                                                                                                                                                         </xs:complexType>
+                                                                                                                                                                                  </xs:element>
+                                                                                                                                                                           </xs:sequence>
+                                                                                                                                                                        <xs:attribute name="date" type="xs:dateTime"></xs:attribute>
+                                                                                                                                                                        <xs:attribute name="type" type="xs:string"></xs:attribute>
+                                                                                                                                                                    </xs:complexType>
+                                                                                                                                                             </xs:element>
+                                                                                                                                                      </xs:sequence>
+                                                                                                                                                   <xs:attribute name="name" type="xs:int"></xs:attribute>
+                                                                                                                                                   <xs:attribute name="nr" type="xs:int"></xs:attribute>
+                                                                                                                                               </xs:complexType>
+                                                                                                                                        </xs:element>
+                                                                                                                                 </xs:sequence>
+                                                                                                                          </xs:complexType>
+                                                                                                                   </xs:element>
+                                                                                                            </xs:sequence>
+                                                                                                         <xs:attribute name="type" type="xs:string"></xs:attribute>
+                                                                                                         <xs:attribute name="name" type="xs:string"></xs:attribute>
+                                                                                                     </xs:complexType>
+                                                                                              </xs:element>
+                                                                                       </xs:sequence>
+                                                                                </xs:complexType>
+                                                                         </xs:element>
+                                                                  </xs:sequence>
+                                                               <xs:attribute name="name" type="xs:string"></xs:attribute>
+                                                           </xs:complexType>
+                                                    </xs:element>
+                                             </xs:sequence>
+                                      </xs:complexType>
+                               </xs:element>
+                            <xs:element name="FILENAME" type="xs:string"></xs:element>
+                        </xs:sequence>
+                     <xs:attribute name="xmlns:rfc" type="xs:string"></xs:attribute>
+                 </xs:complexType>
+          </xs:element>
+   </xs:schema>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:ami="http://www.emeter.com/energyip/amiinterface" 
+	>
+	<!-- XML Schema Generated from XML Document on Wed Jan 18 2017 14:31:40 
+		GMT-0200 (Horário brasileiro de verão) -->
+	<!-- with XmlGrid.net Free Online Service http://xmlgrid.net -->
+	<xs:element name="ami:MeterReadsRequestMessage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ami:header">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ami:verb" type="xs:string"></xs:element>
+							<xs:element name="ami:noun" type="xs:string"></xs:element>
+							<xs:element name="ami:revision" type="xs:int"></xs:element>
+							<xs:element name="ami:dateTime" type="xs:string"></xs:element>
+							<xs:element name="ami:source" type="xs:string"></xs:element>
+							<xs:element name="ami:messageID" type="xs:int"></xs:element>
+							<xs:element name="ami:asyncReplyTo" type="xs:string"></xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ami:payload">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ami:startTime" type="xs:string"></xs:element>
+							<xs:element name="ami:endTime" type="xs:string"></xs:element>
+							<xs:element name="ami:versionTime" type="xs:string"></xs:element>
+							<xs:element name="ami:Meter">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ami:mRID" type="xs:int"></xs:element>
+										<xs:element name="ami:idType" type="xs:string"></xs:element>
+										<xs:element name="ami:pathName" type="xs:string"></xs:element>
+										<xs:element name="ami:modelNumber" type="xs:string"></xs:element>
+										<xs:element name="ami:serialNumber" type="xs:int"></xs:element>
+										<xs:element name="ami:serviceType" type="xs:string"></xs:element>
+										<xs:element name="ami:electricMeter"></xs:element>
+										<xs:element name="ami:numDigits" type="xs:int"></xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ami:retrieveRegisterReads" type="xs:string"></xs:element>
+							<xs:element name="ami:retrieveIntervalReads" type="xs:string"></xs:element>
+							<xs:element name="ami:demandReset" type="xs:string"></xs:element>
+							<xs:element name="ami:retrieveEvents" type="xs:string"></xs:element>
+							<xs:element name="ami:executeStartTime" type="xs:string"></xs:element>
+							<xs:element name="ami:executeExpireTime" type="xs:string"></xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="xmlns:ami" type="xs:string"></xs:attribute>
+			<xs:attribute name="xmlns:soapenv" type="xs:string"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

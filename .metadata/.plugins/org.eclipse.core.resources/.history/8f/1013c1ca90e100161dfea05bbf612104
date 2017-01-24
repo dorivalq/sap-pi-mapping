@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.emeter.com/energyip/amiinterface"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.emeter.com/energyip/amiinterface">
+	<xsd:element name="MeterAssetAddRequestMessage">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="header" type="MessageHeader" form="qualified" />
+				<xsd:element name="payload" type="MeterAddRequestPayload"
+					minOccurs="0" form="qualified" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="WaterMeter">
+		<xsd:sequence>
+			<xsd:element name="inletDiameter" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="outletDiameter" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="operatingPressure" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="flowRange" type="xsd:string"
+				minOccurs="0" form="qualified" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MeterChangeRequestPayload">
+		<xsd:sequence>
+			<xsd:element name="meterAsset" type="MeterAsset" form="qualified" />
+			<xsd:element name="comFunction" type="ComFunction" form="qualified" />
+			<xsd:element name="serviceDeliveryPoint" type="ServiceDeliveryPoint"
+				form="qualified" />
+			<xsd:element name="serviceLocation" type="ServiceLocation"
+				form="qualified" />
+			<xsd:element name="customerAccount" type="CustomerAccount"
+				form="qualified" />
+			<xsd:element name="provisioningGroup" type="ProvisioningGroup"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="collectionGroup" type="CollectionGroup"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="broadcastGroup" type="BroadcastGroup"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="executeStartTime" type="xsd:dateTime"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="executeExpireTime" type="xsd:dateTime"
+				minOccurs="0" form="qualified" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Asset">
+		<xsd:annotation>
+			<xsd:documentation>A tangible resource of the utility, like equipment
+				like
+				Meter, ComFunction etc. This is the parent class for
+				asset sub
+				classes.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="IdentifiedObject">
+				<xsd:sequence>
+					<xsd:element name="manufacturer" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Manufacturer name</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="modelNumber" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Manufacturer&apos;s model number.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="manufacturedDate" type="xsd:dateTime"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Data asset was manufactured.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="serialNumber" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Serial number of asset.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="lotNumber" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation><![CDATA[Even for the same model and version
+								number, many assets are manufactured in
+								lots. The lotNumber identifies the
+								specific lot for this asset.]]></xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="testDate" type="xsd:dateTime"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>The date and time this asset was last
+								tested .
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceLocation">
+		<xsd:complexContent>
+			<xsd:extension base="ErpAddress">
+				<xsd:sequence>
+					<xsd:element name="nearestIntersection" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>The names of streets at the nearest
+								intersection to work area.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="subdivision" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Name, identifier, or description of the
+								subdivision, if applicable, in which
+								work is to occur.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="lot" type="xsd:string" minOccurs="0"
+						form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Name, identifier, or description of the
+								lot, if
+								applicable, in which work is to
+								occur.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="block" type="xsd:string" minOccurs="0"
+						form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Name, identifier, or description of the
+								block,
+								if applicable, in which work is
+								to occur.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="locationType" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>The type of location: geographical,
+								functional
+								accounting, other.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="locationCode" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>A codified representation of the
+								location.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="latitude" type="xsd:string"
+						minOccurs="0" form="qualified" />
+					<xsd:element name="longitude" type="xsd:string"
+						minOccurs="0" form="qualified" />
+					<xsd:element name="locationAccuracy" type="xsd:string"
+						minOccurs="0" form="qualified" />
+					<xsd:element name="locationAccuracyUnits" type="xsd:string"
+						minOccurs="0" form="qualified" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeterAddRequestPayload">
+		<xsd:complexContent>
+			<xsd:extension base="MeterChangeRequestPayload" />
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MessageHeader">
+		<xsd:annotation>
+			<xsd:documentation>Message header containing descriptive information
+				about the message.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[General information regarding the message payload.
+					These fields are used to provide application context. The fields
+					are not intended to be a complete list of properties used by
+					middleware for message management.]]></xsd:documentation>
+			</xsd:annotation>
+			<xsd:element name="verb" minOccurs="0" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[This enumerated list of verbs that can be used to
+						form message types in compliance with the IEC 61968 standard.
+						get - Meter Data Request
+						reply - Meter Data Response
+						create - Send Meter Data
+						created - Optional confirmation of receipt of Meter Data]]></xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="cancel" />
+						<xsd:enumeration value="canceled" />
+						<xsd:enumeration value="change" />
+						<xsd:enumeration value="changed" />
+						<xsd:enumeration value="create" />
+						<xsd:enumeration value="created" />
+						<xsd:enumeration value="close" />
+						<xsd:enumeration value="closed" />
+						<xsd:enumeration value="delete" />
+						<xsd:enumeration value="deleted" />
+						<xsd:enumeration value="get" />
+						<xsd:enumeration value="show" />
+						<xsd:enumeration value="request" />
+						<xsd:enumeration value="reply" />
+						<xsd:enumeration value="ack" />
+						<xsd:enumeration value="subscribe" />
+						<xsd:enumeration value="unsubscribe" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="noun" type="xsd:string" minOccurs="0"
+				form="qualified">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[The Noun of the Control Area identifies the main
+						subject of the message type, typically a real world object defined
+						in the CIM.
+						Intended usage - MeterData]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="revision" type="xsd:string" minOccurs="0"
+				default="1" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Revision level of the message type.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dateTime" type="xsd:dateTime"
+				minOccurs="0" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[Application level relevant time and date for when
+						this instance of the message type was produced. This is not
+						intended to be used by middleware for message management.]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="source" type="xsd:string" minOccurs="0"
+				form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Source system. May be used for invocation
+						context
+						authorization
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="messageID" type="xsd:string"
+				minOccurs="0" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Unique message ID to be used for correlating
+						replies and tracking messages
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="asyncReplyTo" type="xsd:string"
+				minOccurs="0" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>If reply is expected to be async then the
+						proptocol specific address where reply needs to be sent
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceDeliveryPoint">
+		<xsd:complexContent>
+			<xsd:extension base="IdentifiedObject">
+				<xsd:sequence>
+					<xsd:element name="serviceType" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Service type: Gas, Water, Electric.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="lifeSupport" type="xsd:boolean"
+						minOccurs="0" form="qualified" />
+					<xsd:element name="readRoute" type="IdentifiedObject"
+						minOccurs="0" form="qualified" />
+					<xsd:element name="readSequence" type="xsd:string"
+						minOccurs="0" form="qualified" />
+					<xsd:element name="averageDailyUsage" type="xsd:double"
+						minOccurs="0" form="qualified" />
+					<xsd:element name="locationCode" type="xsd:string"
+						form="qualified" />
+					<xsd:element name="serviceDeliveryRemarks" type="xsd:string"
+						form="qualified" />
+					<xsd:element name="latitude" type="xsd:double" form="qualified" />
+					<xsd:element name="longitude" type="xsd:double" form="qualified" />
+					<xsd:element name="locationAccuracy" type="xsd:string"
+						minOccurs="0" form="qualified" />
+					<xsd:element name="locationAccuracyUnits" type="xsd:string"
+						minOccurs="0" form="qualified" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BroadcastGroup">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" form="qualified" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ComFunction">
+		<xsd:complexContent>
+			<xsd:extension base="Asset">
+				<xsd:sequence>
+					<xsd:element name="amrAddress" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation><![CDATA[The communication ID number (e.g. serial
+								number, IP address, telephone number,
+								etc.) of the AMR module which serves
+								this meter.]]></xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="amrSystem" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>The metering system responsible for
+								communications to the meter.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CollectionGroup">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" form="qualified" />
+			<xsd:element name="readfrequency" type="xsd:string" form="qualified" />
+			<xsd:element name="readwindowstarttime" type="xsd:time"
+				form="qualified" />
+			<xsd:element name="readwindowendtime" type="xsd:time"
+				form="qualified" />
+			<xsd:element name="deliveryfrequency" type="xsd:string"
+				form="qualified" />
+			<xsd:element name="deliverywindowstarttime" type="xsd:time"
+				form="qualified" />
+			<xsd:element name="deliverywindowendtime" type="xsd:time"
+				form="qualified" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="IdentifiedObject">
+		<xsd:sequence>
+			<xsd:element name="mRID" type="xsd:string" minOccurs="0"
+				form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Object instance identifier</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="idType" type="xsd:string" minOccurs="0"
+				form="qualified">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[Type of identifier. For e.g. for a Meter this
+						can be METER_BADGE_ID or METER_UDC_ASSET_ID. For
+						a meter communicaiton module this can be
+						METER_COMMUNICATION_MODULE_NETWORK_ID]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="pathName" type="xsd:string" minOccurs="0"
+				form="qualified">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[The namespace within which the id is defined.
+						Multiple tokens in the namespace can be
+						separated by the forward slash character. The
+						interpretation of namespace tokens is dependent
+						on the type of identifier. For e.g. for
+						METER_UDC_ASSET_ID namespace will be populated
+						with the organisationCode (utility id)]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CustomerAccount">
+		<xsd:complexContent>
+			<xsd:extension base="IdentifiedObject">
+				<xsd:sequence>
+					<xsd:element name="billingCycle" type="xsd:string"
+						form="qualified">
+						<xsd:annotation>
+							<xsd:documentation><![CDATA[Billing cycle identifies cycle day on
+								which the related Customer Account will
+								normally be billed. It is used in
+								determining when to produce the billing
+								statement for the Customer Account.]]></xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ElectricMeter">
+		<xsd:sequence>
+			<xsd:element name="aepCode" type="xsd:string" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="form" type="xsd:string" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="base" type="xsd:string" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="voltageRating" type="xsd:string"
+				minOccurs="0" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>The service voltage at which the meter is
+						designed to operate. Typical voltage ratings in
+						North America are
+						120, 240, 277 or 480V.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currentRating" type="xsd:string"
+				minOccurs="0" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>The current class of the meter. Typical current
+						classes in North America are 10, 20, 100, 200,
+						or 320 Amps.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="frequencyRating" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="numPhases" type="xsd:string"
+				minOccurs="0" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>The number of phases for this service point.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="numWires" type="xsd:string" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="kh" type="xsd:string" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="registerRatio" type="xsd:string"
+				minOccurs="0" form="qualified" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErpAddress">
+		<xsd:complexContent>
+			<xsd:extension base="IdentifiedObject">
+				<xsd:sequence>
+					<xsd:element name="streetNumber" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>The designator of the specific location
+								on the
+								street.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="streetName" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>The name of the street.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="streetSuffix" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Suffix to the street name. For examle,
+								North,
+								South, East, West.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="streetPrefix" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Prefix to the street name. For examle,
+								North,
+								South, East, West.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="streetType" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Type of street. Examples include:
+								street,
+								circle, boulevard, avenue, road,
+								drive, etc.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="poBox" type="xsd:string" minOccurs="0"
+						form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>The post office box.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="suiteNumber" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>The number of the apartment or suite.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="addressGeneral" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Additional address information, for
+								example a
+								mailstop.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="city" type="xsd:string" minOccurs="0"
+						form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Name of city.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="stateOrProvince" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Name of the state or province.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="country" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Name of the country.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="postalCode" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Postal code for the address.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProvisioningGroup">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" form="qualified" />
+			<xsd:element name="fuseSize" type="xsd:double" form="qualified" />
+			<xsd:element name="readingType" type="ReadingType"
+				minOccurs="0" maxOccurs="unbounded" form="qualified" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GasMeter">
+		<xsd:sequence>
+			<xsd:element name="operatingPressure" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="flowRange" type="xsd:string"
+				minOccurs="0" form="qualified" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReadingType">
+		<xsd:sequence>
+			<xsd:element name="mRID" type="xsd:string" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="measurementType" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="touBinNumber" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="unit" type="xsd:string" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="touCode" type="xsd:string" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="channelNumber" type="xsd:int"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="logicalChannelNumber" type="xsd:int"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="aggregateTimePeriod" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="intervalLength" type="xsd:int"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="readSequence" type="xsd:string"
+				minOccurs="0" form="qualified" />
+			<xsd:element name="precision" type="xsd:int" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="scale" type="xsd:int" minOccurs="0"
+				form="qualified" />
+			<xsd:element name="direction" type="xsd:string"
+				minOccurs="0" form="qualified" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MeterAsset">
+		<xsd:complexContent>
+			<xsd:extension base="Asset">
+				<xsd:sequence>
+					<xsd:element name="serviceType" type="xsd:string" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Gas, Water or Electric</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:choice>
+						<xsd:element name="electricMeter" type="ElectricMeter"
+							minOccurs="0" form="qualified" />
+						<xsd:element name="waterMeter" type="WaterMeter"
+							minOccurs="0" form="qualified" />
+						<xsd:element name="gasMeter" type="GasMeter"
+							minOccurs="0" form="qualified" />
+					</xsd:choice>
+					<xsd:element name="numDigits" type="xsd:integer"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation><![CDATA[The number of dials on the meter
+								register for an electromechanical meter;
+								for an electronic meter, the number of
+								digits on the meter display.]]></xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="typeMeter" type="xsd:string"
+						minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>diaphram, rotary or pulse</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

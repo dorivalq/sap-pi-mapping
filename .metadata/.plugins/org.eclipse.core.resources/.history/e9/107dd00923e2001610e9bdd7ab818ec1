@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO
+	xmlns:rfc="urn:sap-com:document:sap:rfc:functions">
+	<ID> 15612 </ID>
+	<XML>
+		<import name="master-data-transfer">
+			<version date="2017-01-17">1.0</version>
+			<group-list>
+				<group type="customer" name="Grupo01">
+					<metering-point-list>
+						<metering-point name="109681388" nr="109681388">
+							<exchange date="2016-12-22T16:10:00-03:00" type="meter-mounting">
+								<group type="device" name="Grupo01">
+									<device nr="40147642">
+										<assignment ident1="Template_SL7000-3E" ident2="40147642"
+											ident3="109681388" ident4="add" />
+										<identification ident1="15612" ident3=""
+											ident4="7008439291" uident1="109681388" />
+										<trans-device>
+											<communication target-phone-number="IP:10.42.41.44:2181" />
+										</trans-device>
+										<datachannel-list>
+											<datachannel obis-id-code="1-1">
+												<identification ident1="1" />
+											</datachannel>
+											<datachannel obis-id-code="1-19:19.7.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-1:1.9.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-2">
+												<identification ident1="2" />
+											</datachannel>
+											<datachannel obis-id-code="1-20:20.7.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-21:21.7.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-22:22.7.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-23:23.7.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-24:24.7.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-2:2.9.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-30:30.7.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-3:3.9.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-4">
+												<identification ident1="4" />
+											</datachannel>
+											<datachannel obis-id-code="1-4:4.9.1">
+												<identification ident1="40147642" />
+											</datachannel>
+											<datachannel obis-id-code="1-5">
+												<identification ident1="5" />
+											</datachannel>
+											<datachannel obis-id-code="1-6">
+												<identification ident1="6" />
+											</datachannel>
+										</datachannel-list>
+									</device>
+								</group>
+							</exchange>
+						</metering-point>
+					</metering-point-list>
+				</group>
+			</group-list>
+		</import>
+	</XML>
+	<FILENAME> SI_PROVISIONAMENTO_SYNC_OUT </FILENAME>
+</rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO>

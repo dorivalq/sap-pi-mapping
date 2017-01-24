@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="D:/desenv/CPFL/Workspace/JCO/sapjco3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/PI-Library"/>
+	<classpathentry kind="lib" path="D:/desenv/CPFL/Workspace/Libs Halsen/libraries java PI 7.0/aii_map_api.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

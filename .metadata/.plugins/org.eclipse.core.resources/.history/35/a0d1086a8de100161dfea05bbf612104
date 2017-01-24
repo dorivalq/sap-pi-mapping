@@ -1,0 +1,719 @@
+package br.com.cpfl.mapping;
+
+import static javax.naming.Context.URL_PKG_PREFIXES;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import com.sap.aii.mapping.api.StreamTransformation;
+import com.sap.aii.mapping.api.StreamTransformationException;
+import com.sap.conn.jco.JCoFunction;
+import com.sap.conn.jco.JCoParameterList;
+import com.sap.conn.jco.JCoTable;
+
+import br.com.cpfl.daoejb.MappingPODataAccessRemote;
+import br.com.cpfl.daoejb.entidades.CpflZCcsXiT001;
+import br.com.cpfl.daoejb.entidades.CpflZProvGrupo;
+import br.com.cpfl.daoejb.entidades.CpflZmodelObisc;
+import br.com.cpfl.mapping.jaxb.ComFunction;
+import br.com.cpfl.mapping.jaxb.MessageHeader;
+import br.com.cpfl.mapping.jaxb.MeterAsset;
+import br.com.cpfl.mapping.jaxb.ServiceDeliveryPoint;
+
+/**
+ * Implementação em Java do programa Abap Z_MDM_XI_ZFA_PROVISIONAMENTO_U
+ * 
+ * @author Dorival Querino da Silva
+ * 
+ *         - 7 de dez de 2016 - CSC
+ * 
+ */
+
+public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
+
+	private static final String CONSULTAR_MODELO_TODOS = "consultarModeloTodos";
+	private static final String CONSULTAR_Z_PROV_GROUP = "consultarZProvGroup";
+	private static final String CONSULTAR_CCS_XI = "consultarCcsXi";
+
+	class ZProvGroup {
+		String name;
+		String sequencial;
+	}
+
+	private ZProvGroup wZProvGroup;
+
+//	class FsMeterAsset {
+//		String mRid;
+//		String modelNumber;
+//		String serialNumber;
+//		String parameter/* Model */;
+//	}
+//
+//	private FsMeterAsset wMeterAsset;
+	private MeterAsset wMeterAsset;
+	
+//	class FsServiceDeliverypoint {
+//		String mRid;
+//		String parameter;
+//	}
+//
+//	FsServiceDeliverypoint wServiceDeleiveryPoint;
+	ServiceDeliveryPoint wServiceDeleiveryPoint;
+
+	private MessageHeader wHeader;
+	private MessageHeader tHeader;
+	private Map map;
+	XPathFactory xpathFactory = XPathFactory.newInstance();
+	private Node wNode = null;
+	private String wNodeName;
+	private String wNodeValue;
+	private String fieldNname;
+	private String wCodCcee;
+	private String wFile;
+	private String wSemMidia;
+	private Object ejbObj;
+	private Short wSequencial;
+	private String wsSequencial;
+	private String wPrefix;
+	private String wDsk;
+	private String wType;
+	private String wInv;
+	private String wIdent1;
+	////////////////////////
+	private String lEqunr;
+
+	class WaRfcOpt {
+		String text;
+	}
+
+	WaRfcOpt waRfcOpt;
+	List<WaRfcOpt> TRfcOpt;
+
+	class TRfcFields {
+		String fieldName;
+		Long offSet;
+		Long length;
+		String type;
+	}
+
+	TRfcFields waRfcFields;
+	List<TRfcFields> tRfcFields;
+
+	CpflZCcsXiT001 wZCcsXit001;
+	private boolean lModeloEloAbnt;
+
+//	class FsComfunction {
+//		String mRid;
+//		String amrAddress;
+//		String pathName;
+//		String parameter;
+//	}
+
+//	List<FsComfunction> tComfunction = new ArrayList<ZMdmXiZfaProvisionamentoA.FsComfunction>();
+//	FsComfunction wComfunction;
+	List<ComFunction> tComfunction = new ArrayList<ComFunction>();
+	ComFunction wComfunction;
+	@Override
+	public void setParameter(Map map) {
+		if (map == null) {
+			map = new HashMap();
+		}
+	}
+
+	@Override
+	public void execute(InputStream inputStream, OutputStream outputStream) throws StreamTransformationException {
+		String empSubNodeName = null;
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder documentBuilder = factory.newDocumentBuilder();
+			Document document = documentBuilder.parse(inputStream);
+//			String fs = null;
+			String wFieldName = null;
+			String wTableName = null;
+			String fsTable = null;
+			String wDateTime = null;
+			String wModel = null;
+			String wcParameter = null;
+//			NodeList empNodeCollection = document.getElementsByTagName("MeterAssetUpdateRequestMessage");
+//			for (int i = 0; i < empNodeCollection.getLength(); i++) {
+//				Node empNode = empNodeCollection.item(i);
+//				NodeList empNodeList = empNode.getChildNodes();
+//				for (int i2 = 0; i2 < empNodeList.getLength(); i2++) {
+//					Node empSubNode = empNodeCollection.item(i);
+//					empSubNodeName = empSubNode.getNodeName();
+//					NodeList empSubNodeList = empSubNode.getChildNodes();
+//					for (int j = 0; j < empSubNodeList.getLength(); j++) {
+//						Node empSubNode2 = empSubNodeList.item(i);
+//						NodeList empSubNodeList2 = empSubNode2.getChildNodes();
+//						int wIndex = j;// w_index = sy-index - 1.
+//						String empSubNodeName2 = empSubNode2.getNodeName();
+//						wNode = empNodeCollection.item(wIndex);
+//						if (wNode != null && empSubNodeList.getLength() > 1) {
+//							for (int k = 0; k < empSubNodeList2.getLength(); k++) {
+//								Node empSubNode3 = empSubNodeList2.item(0);
+//								String empSubNodeName3 = empSubNode.getNodeName();
+//								NodeList empSubNodeList3 = empSubNode3.getChildNodes();
+//								wIndex = k;// FIXME: ???
+//								wNodeName = empSubNode3.getNodeName();
+//								wNodeValue = empSubNode3.getNodeValue();
+//								fieldNname = "fs_" + empSubNodeName2 + "_" + wNodeName;
+//								// ASSIGN (w_fieldname) TO <fs>.
+//								// IF sy-subrc EQ 0.
+//								// MOVE w_node_value TO <fs>.
+//								// ENDIF.
+//								if (fieldNname != null) {
+//									fs = wNodeValue;
+//								}
+//							} // end loop
+//							wFieldName = "fs_" + empSubNodeName2;
+//							fs = wFieldName;
+//							wTableName = "t_" + empSubNodeName2;
+//							fsTable = wTableName;
+//							if (empSubNodeName2 != null) {
+//								fsTable = fsTable + fs;
+//							} else {
+//								wIndex = j - 1;
+//								wNode = empSubNodeList.item(wIndex);
+//								wNodeValue = wNode.getNodeValue();
+//								wFieldName = "fs_" + empSubNodeName + "-" + wNodeName;
+//								fs = wNodeValue;
+//							} // enf if
+//						} // end if
+//					} // end loop
+//					if (!empSubNodeName.equals("payload")) {
+//						break;
+//					}
+//					wFieldName = "fs_" + empSubNodeName;
+//					fs = wFieldName;
+//					wTableName = "t_" + empSubNodeName;
+//					fsTable = wTableName;
+//					if (wTableName != null) {
+//						fsTable.concat(fs);
+//					}
+//				} // end loop
+//			} // end loop
+			
+			DocumentBuilderFactory factory2 = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder2 = factory2.newDocumentBuilder();
+			Document oDocument = builder2.newDocument();
+
+			String wData = new SimpleDateFormat("yyyy-mm-dd").format(new Date());
+
+			// IF NOT t_header[] IS INITIAL.
+			// READ TABLE t_header INDEX 1 INTO w_header.
+			// ENDIF.
+			// IF NOT t_meterasset[] IS INITIAL.
+			// READ TABLE t_meterasset INDEX 1 INTO w_meterasset.
+			// ENDIF.
+			// IF NOT t_servicedeliverypoint[] IS INITIAL.
+			// READ TABLE t_servicedeliverypoint INDEX 1 INTO
+			// w_servicedeliverypoint.
+			// ENDIF.
+			// IF NOT t_comfunction[] IS INITIAL.
+			// READ TABLE t_comfunction INDEX 1 INTO w_comfunction.
+			// ENDIF.
+			// TODO: ACHAR NOME DO NODE
+			Element nodeQueTemCode = (Element) document.getElementsByTagName("nodeQueContem Program Code").item(0);
+			String wProgramCode = nodeQueTemCode.getAttribute("attName");// TODO:
+																			// atributeName
+
+			Element invertedMeter = (Element) document.getElementsByTagName("InvertedMeter");
+			wInv = invertedMeter.getAttribute("InveMeterAttr");
+
+			wZCcsXit001 = executarMetodoRemoto(CONSULTAR_CCS_XI);
+
+			Map<String, String> importParamMap = new HashMap<String, String>();
+
+			JCoFunction function = FunctionUtil.executeCalls(wZCcsXit001, "ZCCSGLEF0088", importParamMap);
+			JCoParameterList jcoParamList = function.getChangingParameterList();
+			Date wTimeCcs = jcoParamList.getTime(0);
+			Date wDateCcs = jcoParamList.getDate(1);
+			// TODO: Verificar o formato Date Time
+
+			if (wDateCcs != null) {
+				wDateTime = new SimpleDateFormat("yyyy-mm-dd").format(wDateCcs);
+				// CONCATENATE w_dateTime 'T00:00:00-03:00' INTO w_dateTime.
+				// "GCapra-07.11.2014-in2803**"
+				wDateTime = wDateTime + "T" + new SimpleDateFormat("hh:mi:ss").format(wTimeCcs) + "-03:00";
+			} else {
+				wDateTime = wData + "T00:00:00-03:00";
+			}
+
+			// FIXME: Var w_meterasset-modelnumber nao nunca é populado no Abap
+			wModel = wMeterAsset.getModelNumber();
+
+			// FIXME: w_servicedeliverypoint-parameter nunca é populado no Abap
+			wcParameter = wServiceDeleiveryPoint. parameter;
+			if (wcParameter != null) {
+				wCodCcee = wcParameter.substring(7, 14);
+			}
+
+			// FIXME: Var w_servicedeliverypoint nunca é populado no Abap
+			wFile = "CPFL_PROV_" + wServiceDeleiveryPoint.mRid;
+
+			// *Delete
+			Element elementImport = oDocument.createElement("import");
+			elementImport.setAttribute("name", "master-data-transfer");
+			oDocument.appendChild(elementImport);
+
+			Element version = oDocument.createElement("version");
+			version.setAttribute("date", wData);
+			version.setNodeValue("1.0");
+			elementImport.appendChild(version);
+			// zProvGroupm
+
+			Element grouplist = oDocument.createElement("group-list");
+			// TODO: Import.append(goupList)
+
+			Element groupElement = oDocument.createElement("group");
+			groupElement.setAttribute("type", "customer");
+			elementImport.appendChild(grouplist);
+
+			wZProvGroup.name = "GRUPO";
+
+			Element mediaTypeEl = (Element) document.getElementsByTagName("//TODO:contem 'Media Type'").item(0);
+			if (mediaTypeEl != null || !"".equals(mediaTypeEl)) {
+				wSemMidia = mediaTypeEl.getAttribute("TODO: contem 'SEM MEDIA'");// TODO:
+			}
+			if (wSemMidia != null) {
+				if ("SEM MIDIA".equals(wSemMidia)) {
+					// SELECT SINGLE sequencial INTO w_sequencial FROM
+					// zprov_grupo WHERE name EQ 'GRUPO'.
+					CpflZProvGrupo grupo = this.executarMetodoRemoto(CONSULTAR_Z_PROV_GROUP);
+					wSequencial = grupo.getSequencial();
+					wSequencial++;
+					wZProvGroup.sequencial = "Grupo0" + wSequencial;
+					// FIXME: MODIFY zprov_grupo FROM w_zprov_grupo. --o q isso
+					// faz, grava no banco?
+				} else {
+					wZProvGroup.sequencial = "GrupoDSK";
+					wsSequencial = "GrupoDSK";
+					wPrefix = "DISCO";
+					wDsk = "X";
+				}
+			} else {
+				wZProvGroup.sequencial = "GrupoDSK";
+				wsSequencial = "GrupoDSK";
+				wPrefix = "DISCO";
+			}
+
+			// criar atributo "name";
+			groupElement.setAttribute("name", wsSequencial);
+			grouplist.appendChild(groupElement);
+
+			Element meterPointList = oDocument.createElement("metering-point-list");
+			groupElement.appendChild(meterPointList);
+
+			Element meteringPoint = oDocument.createElement("metering-point");
+			meteringPoint.setAttribute("name", "");
+			meteringPoint.setAttribute("nr", wMeterAsset.mRid);
+
+			meterPointList.appendChild(meteringPoint);
+
+			Element exchange = oDocument.createElement("exchange");
+			exchange.setAttribute("date", wDateTime);
+
+			wType = "meter-dismantling";
+			exchange.setAttribute("type", wType);
+
+			meteringPoint.appendChild(exchange);
+
+			groupElement = oDocument.createElement("group");
+			groupElement.setAttribute("type", "device");
+			groupElement.setAttribute("name", wsSequencial);
+
+			exchange.appendChild(groupElement);
+
+			Element device = oDocument.createElement("device");
+			device.setAttribute("nr", wMeterAsset.serialNumber);
+			groupElement.appendChild(device);
+
+			if ("Y".equals(wInv)) {
+				wIdent1 = "Template_" + wModel + "_Inv";
+			} else {
+				wIdent1 = "Template_" + wModel;
+			}
+
+			if (wDsk != null) {
+				wIdent1 = wIdent1 + "Dsk";
+			}
+
+			Element assignment = oDocument.createElement("assignment");
+			assignment.setAttribute("ident1", wIdent1);
+			assignment.setAttribute("ident2", wMeterAsset.serialNumber);
+			assignment.setAttribute("ident3", wMeterAsset.mRid);
+			assignment.setAttribute("ident4", "update_delete");
+
+			device.appendChild(assignment);
+
+			Element identification = oDocument.createElement("identification");
+			identification.setAttribute("ident1", wHeader.getMessageID());
+			identification.setAttribute("ident3", wCodCcee);
+			identification.setAttribute("ident4", wServiceDeleiveryPoint.mRid);
+			identification.setAttribute("uident1", wMeterAsset.mRid);
+
+			device.appendChild(identification);
+
+			Element transDevice = oDocument.createElement("trans-device");
+			device.appendChild(transDevice);
+
+			Element communication = oDocument.createElement("communication");
+
+			if (wPrefix != null) {
+				communication.setAttribute("target-prefix", wPrefix);
+			}
+
+			// DATA DECLARATIONS
+			// * PN - 07.05.2015 - Inc.#3659 - Inicio
+			// DATA: l_ip_orig TYPE string,
+			// l_model_orig TYPE string.
+			// l_ip_orig = w_comfunction-mrid.
+			// l_model_orig = w_model.
+			String lIpOrig = wComfunction.mRid;
+			String lModelOrig = wModel;
+			// * PN - 07.05.2015 - Inc.#3659 - Fim
+			// FIELD-SYMBOLS <fs_rfc_data> LIKE LINE OF t_rfc_data.
+
+			lEqunr = wMeterAsset.mRid;
+			char[] leqArray = lEqunr.toCharArray();
+			Arrays.fill(leqArray, lEqunr.length(), 18, '0');
+			lEqunr = leqArray.toString();
+
+			waRfcOpt.text = "EQUNR = '" + lEqunr + "'";
+
+			TRfcOpt.add(waRfcOpt);
+
+			waRfcFields.fieldName = "HERST";
+			waRfcFields.offSet = 202L;
+			waRfcFields.length = 30L;
+			waRfcFields.type = "C";
+			tRfcFields.add(waRfcFields);
+
+			waRfcFields.fieldName = "TYPBZ";
+			waRfcFields.offSet = 295L;
+			waRfcFields.length = 20L;
+			waRfcFields.type = "C";
+			tRfcFields.add(waRfcFields);
+			importParamMap = new HashMap<String, String>();
+			importParamMap.put("query_table", "EQUI");
+
+			function = FunctionUtil.executeCalls(wZCcsXit001, "RFC_READ_TABLE", importParamMap);
+			JCoTable table = function.getTableParameterList().getTable("EQUI");
+			// TODO: Validar table.
+			table.firstRow();
+			for (int i = 0; i < table.getNumRows(); i++) {
+				table.setRow(i);
+				System.out.println(
+						table.getString("DATA") + '\t' + table.getString("FIELDS") + '\t' + table.getString("OPTIONS"));
+			}
+			table.firstRow();
+			String lCcsFabricante = null;
+			String lCcsModelo = null;
+			// TODO: VALIDAR LOOP
+			// LOOP AT t_rfc_data ASSIGNING <fs_rfc_data>.
+			for (int i = 0; i < table.getNumRows(); i++) {
+				// l_ccs_fabricante = <fs_rfc_data>-wa(30).
+				// l_ccs_modelo = <fs_rfc_data>-wa+30(20).
+				lCcsFabricante = table.getString("wa");
+				lCcsModelo = table.getString("wa").substring(30, 50);
+			}
+
+			// ini - Valida Fabricante = ELO
+			if (lCcsFabricante.contains("ELO")) {
+				lModeloEloAbnt = true;
+			}
+
+			Element lParamList = oDocument.createElement("param-list");
+
+			Element lParamTypeChannel = oDocument.createElement("param");
+			lParamTypeChannel.setAttribute("type", "UCR_CHANNEL");
+
+			String lVlUcrChannel = "1";
+			String lVlPwd = "senha1";
+			String lVlUser = "usuario1";
+
+			Element lParamText = oDocument.createElement(lVlUcrChannel);
+			lParamTypeChannel.appendChild(lParamText);
+
+			Element lParamTypeIpAddr = oDocument.createElement("param");
+			lParamTypeIpAddr.setAttribute("type", "UCR_IP_ADR");
+
+			lParamText = oDocument.createElement(lIpOrig);
+			lParamTypeIpAddr.appendChild(lParamText);
+
+			Element lParamTypePwd = oDocument.createElement("param");
+			lParamTypePwd.setAttribute("type", "PWD");
+			lParamTypePwd.appendChild(lParamTypePwd);
+
+			lParamText = oDocument.createElement(lVlPwd);
+			lParamTypePwd.appendChild(lParamText);
+
+			Element lParamTypeUser = oDocument.createElement("param");
+			lParamTypeUser.setAttribute("type", "USER");
+
+			lParamList.appendChild(lParamTypeChannel);
+			lParamList.appendChild(lParamTypeIpAddr);
+			lParamList.appendChild(lParamTypePwd);
+			lParamList.appendChild(lParamTypeUser);
+
+			wComfunction.mRid = "IP:" + wComfunction.mRid;
+
+			if (lModeloEloAbnt) {
+				communication.setAttribute("target-phone-number", "");
+				communication.appendChild(lParamList);
+			} else {
+				// envia IP:X.X.X.X
+				communication.setAttribute("target-phone-number", wComfunction.mRid);
+			}
+			// * PN - 07.05.2015 - Inc.#3659 - Fim
+
+			transDevice.appendChild(communication);
+
+			Element dataChannelList = oDocument.createElement("datachannel-list");
+			device.appendChild(dataChannelList);
+
+			List<CpflZmodelObisc> listaModelo = executarMetodoRemoto(CONSULTAR_MODELO_TODOS);
+			Comparator<CpflZmodelObisc> comp = new Comparator<CpflZmodelObisc>() {
+				@Override
+				public int compare(CpflZmodelObisc o1, CpflZmodelObisc o2) {
+					return o1.getId().getObiscode().compareTo(o2.getId().getObiscode());
+				}
+			};
+			Collections.sort(listaModelo, comp);
+			Set<CpflZmodelObisc> listaModeloUnic = new HashSet<CpflZmodelObisc>();
+			listaModeloUnic.addAll(listaModelo);
+			String wObiscode;
+			for (CpflZmodelObisc wZModelObiscAux : listaModeloUnic) {
+				wObiscode = wZModelObiscAux.getId().getObiscode();
+				Element dataChannel = oDocument.createElement("datachannel");
+				dataChannel.setAttribute("obis-id-code", wObiscode);
+
+				identification = oDocument.createElement("identification");
+				identification.setAttribute("ident1", wObiscode);// canal
+				dataChannel.appendChild(identification);
+
+				dataChannelList.appendChild(dataChannel);
+			}
+
+			// * Update
+
+			importParamMap = new HashMap<String, String>();
+			function = FunctionUtil.executeCalls(wZCcsXit001, "GUID_CREATE", importParamMap);
+			String lGuid = function.getExportParameterList().getString("EV_GUID_22");
+			// create output stream
+			String sysDatum = new SimpleDateFormat("yyyy-mm-dd_hhmmss").format(new Date());
+			String pathname = "/interf/gle/provisionamento/out/PROV_" + wServiceDeleiveryPoint.mRid + "_" + sysDatum
+					+ "_" + lGuid + ".xml";
+			TransformerFactory tf1 = TransformerFactory.newInstance();
+			Source source = new DOMSource(oDocument);
+			Transformer transformer0 = tf1.newTransformer(source);
+			FileOutputStream output0 = new FileOutputStream(new File(pathname));
+			Result outputStream0 = new StreamResult(output0);
+			transformer0.transform(source, outputStream0);
+
+			// * PN - 07.05.2015 - Inc.#3659 - Inicio
+			if (lModeloEloAbnt) {
+				Node oldChild = oDocument.getElementsByTagName("param-list").item(0);
+				oDocument.getParentNode().removeChild(oldChild);
+			}
+			// * PN - 07.05.2015 - Inc.#3659 - Fim
+			Document doc2 = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+			Element createdEl = doc2.createElementNS("urn:sap-com:document:sap:rfc:functions",
+					"rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO");
+			Node created = doc2.appendChild(createdEl);
+			Node idNode = doc2.createElement("ID");
+			idNode.setNodeValue(wHeader.getMessageID());
+			created.appendChild(idNode);
+			Node xmlNode = doc2.createElement("XML");
+			Node conteudoOriginal = oDocument.importNode(oDocument.getFirstChild(), true);
+			xmlNode.appendChild(conteudoOriginal);
+
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			Source sourceNew = new DOMSource(doc2);
+			Result resultNew = new StreamResult(outputStream);
+			transformer.transform(sourceNew, resultNew);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new StreamTransformationException("Falha ao efetuar o mapping", e);
+
+		}
+
+	}
+
+	/**
+	 * Metodo para buscar modelo com tratativa para o problema de class cast
+	 * causado por diferença de classLoader
+	 * 
+	 * @param paramModelo
+	 * @return Lista com os CcsXi (ZCCSXIT001) encontrados no BD
+	 */
+	public <T> T executarMetodoRemoto(String metodo) throws Exception {
+
+		Properties props = getProperties();
+
+		// FIXME: Fazer cache, ver de instancia ou de classe, nao sera chamada
+		// de outra classe
+		Class<?> remoteInterface = getService(props);
+
+		Method method = remoteInterface.getMethod(metodo);
+
+		T tipoRetorno = (T) method.invoke(ejbObj);
+
+		// CpflZCcsXiT001 ccsXi = (CpflZCcsXiT001) result;
+		return tipoRetorno;
+	}
+
+	private Class<?> getService(Properties props) throws Exception {
+		InitialContext ctx = new InitialContext(props);
+		ejbObj = ctx.lookup(PIMessages.getString("ejbclient.remote_url"));
+		Class<?> remoteInterface;
+		ClassLoader classLoader = ejbObj.getClass().getClassLoader();
+		remoteInterface = classLoader.loadClass(MappingPODataAccessRemote.class.getCanonicalName());
+		return remoteInterface;
+	}
+
+	private Properties getProperties() {
+		Properties props = new Properties();
+
+		props.put(Context.INITIAL_CONTEXT_FACTORY,
+
+				PIMessages.getString("ejbclient.context"));
+		props.put(Context.PROVIDER_URL, PIMessages.getString("ejbclient.host_port"));
+
+		props.put(URL_PKG_PREFIXES, PIMessages.getString("ejbclient.pkg_prefix"));
+		return props;
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		// HashMap<String, String> importParamMap = new HashMap<String,
+		// String>();
+		// importParamMap.put("EV_GUID_22", value)
+		// JCoFunction function = FunctionUtil.executeCalls("ABAP_AS",
+		// "GUID_CREATE", importParamMap);
+		// String guid =
+		// function.getExportParameterList().getString("EV_GUID_22");
+		System.out.println("--------------------------->>>>>>>: " + System.getProperty("user.name"));
+		///////////////////////////////////////////
+		// List<CpflZmodelObisc> listaModelo = new
+		/////////////////////////////////////////// ZMdmXiZfaProvisionamentoA().executarMetodoRemoto(CONSULTAR_MODELO_TODOS);
+		// System.out.println(listaModelo);
+		// System.out.println(listaModelo.size());
+		////////////////////////////////////////////
+
+		// CpflZCcsXiT001 ccsXi = new
+		// ZMdmXiZfaProvisionamentoA().consultarCcsXi();
+		//
+		// System.out.println(ccsXi);//Ok
+		//////////////////////////////////////////
+		HashMap<String, String> importParamMap = new HashMap<String, String>();
+		//
+		FunctionUtil functionHelper = new FunctionUtil();
+		// JCoParameterList parameterList = jcoMain.executeCalls("ABAP_AS",
+		// "STFC_CONNECTION", importParamMap);
+		// JCoParameterList parameterList =
+		// functionHelper.executeCalls("CCS_160_IDOC", "ZCCSGLEF0088",
+		// importParamMap);
+		CpflZCcsXiT001 wZCcsXit001 = new ZMdmXiZfaProvisionamentoA().executarMetodoRemoto(CONSULTAR_CCS_XI);
+		JCoFunction function = FunctionUtil.executeCalls(wZCcsXit001, "ZCCSGLEF0088", importParamMap);
+		//
+		JCoParameterList parameterList = function.getChangingParameterList();
+		Date wTimeCcs = parameterList.getTime(0);
+		Date wDateCcs = parameterList.getDate(1);
+
+		System.out.println(parameterList.getDate(0));// ("ZAB_TIME"));
+		System.out.println(parameterList.getDate(1));// ("DATA"));
+		System.out.println(parameterList.getChar(3));
+		System.out.println(parameterList.getString(4));
+		// System.out.println("---------------");
+		///////////////////////////////////////////////////
+		System.out.println("-----------------------------------");
+		String xml0 = "<add job=\"351\"><tag>foobar</tag><tag>foobar2</tag></add>";
+		Document myDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+				.parse(new InputSource(new StringReader(xml0)));
+
+		Document doc2 = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+		Node child = doc2.appendChild(
+				doc2.createElementNS("urn:sap-com:document:sap:rfc:functions", "rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO"));
+		Node newChild = doc2.importNode(myDocument.getFirstChild(), true);
+		child.appendChild(newChild);
+
+		// Element el = (Element)
+		// doc2.getElementsByTagName("rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO").item(0);
+		// el.setAttribute("xmlns:PREFIX", "http://example/namespace");
+
+		// Element element =
+		// myDocument.createElementNS("http://www.imsglobal.org/xsd/ims_qtiasiv1p2","project");
+		// Node refChild = myDocument.getElementsByTagName("tag").item(0);
+		// myDocument.createAttributeNS(namespaceURI, qualifiedName)
+		// insertBefore(element, refChild ) ;
+
+		Source xmlSource = new DOMSource(doc2);
+		StringWriter writer = new StringWriter();
+		TransformerFactory.newInstance().newTransformer().transform(xmlSource, new StreamResult(writer));
+		System.out.println(writer);
+
+		// XPathFactory xpf = XPathFactory.newInstance();
+		// XPath xPath = xpf.newXPath();
+		// String xml = "<add
+		// job=\"351\"><tag>foobar</tag><tag>foobar2</tag></add>";
+		// InputSource source = new InputSource(new StringReader(xml ));
+		// String text =
+		// xPath.evaluate("//add[@job='351']/tag[position()=2]/text()", source
+		// );
+		// System.out.println(text+"-----------------------");
+		//
+		// source = new InputSource(new StringReader(xml ));
+		// NodeList nodeList= (NodeList) xPath.evaluate("//*[text()='foobar2']",
+		// source,XPathConstants. NODESET);
+		// for (int i = 0; i < nodeList.getLength(); i++) {
+		// Node item = nodeList.item(i);
+		//
+		// System.out.println(item==null?"":item.getNodeName());
+		// System.out.println(item==null?"":item.getTextContent());
+		// System.out.println(item==null?"":item.getFirstChild().getNodeValue());
+		// }
+		// Element el = (Element)new
+		// ZMdmXiZfaProvisionamentoA().getNodeByNodeValue("foobar2", new
+		// InputSource(new StringReader(xml)));
+		// System.out.println(el.getTextContent());
+	}
+
+}

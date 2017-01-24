@@ -1,0 +1,12 @@
+1484770346388	Move type 'MyBind' to new file
+1484822337997	Rename type 'header'
+1484827933625	Copy file
+1484839357521	Delete elements
+1484843930856	Extract method 'extracted'
+1484853107249	Extract local variable 'indexOf'
+1484853123149	Extract local variable 'indexOf'
+1484854225568	Extract local variable 'string'
+1484854380953	Extract local variable 'str'
+1484915713265	Delete element
+1484916848151	Delete elements
+1484916863249	Delete element

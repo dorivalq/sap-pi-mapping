@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;MMCcsXiAnnelRegistrarFatura.java&apos; to &apos;trata-falha/src/br.com.cpfl.mapping&apos;&#x0D;&#x0A;- Original project: &apos;sap-jco-connect&apos;&#x0D;&#x0A;- Destination element: &apos;trata-falha/src/br.com.cpfl.mapping&apos;&#x0D;&#x0A;- Original element: &apos;br.com.cpfl.util.MMCcsXiAnnelRegistrarFatura.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="=trata-falha/src&lt;br.com.cpfl.mapping" element1="/src&lt;br.com.cpfl.util{MMCcsXiAnnelRegistrarFatura.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1482493921402" units="1" version="1.0"/>
+</session>

@@ -1,0 +1,225 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 04:26:21 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
+
+
+/**
+ * <p>Classe Java de communication-listType complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="communication-listType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="communication" maxOccurs="6">
+ *           &lt;complexType>
+ *             &lt;simpleContent>
+ *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
+ *                 &lt;attribute name="type" use="required">
+ *                   &lt;simpleType>
+ *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                       &lt;enumeration value="phone"/>
+ *                       &lt;enumeration value="email"/>
+ *                       &lt;enumeration value="fax"/>
+ *                       &lt;enumeration value="modem"/>
+ *                     &lt;/restriction>
+ *                   &lt;/simpleType>
+ *                 &lt;/attribute>
+ *                 &lt;attribute name="nr">
+ *                   &lt;simpleType>
+ *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}unsignedShort">
+ *                       &lt;enumeration value="1"/>
+ *                       &lt;enumeration value="2"/>
+ *                     &lt;/restriction>
+ *                   &lt;/simpleType>
+ *                 &lt;/attribute>
+ *               &lt;/extension>
+ *             &lt;/simpleContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "communication-listType", propOrder = {
+    "communication"
+})
+public class CommunicationListType {
+
+    @XmlElement(required = true)
+    protected List<CommunicationListType.Communication> communication;
+
+    /**
+     * Gets the value of the communication property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the communication property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCommunication().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link CommunicationListType.Communication }
+     * 
+     * 
+     */
+    public List<CommunicationListType.Communication> getCommunication() {
+        if (communication == null) {
+            communication = new ArrayList<CommunicationListType.Communication>();
+        }
+        return this.communication;
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;simpleContent>
+     *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
+     *       &lt;attribute name="type" use="required">
+     *         &lt;simpleType>
+     *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *             &lt;enumeration value="phone"/>
+     *             &lt;enumeration value="email"/>
+     *             &lt;enumeration value="fax"/>
+     *             &lt;enumeration value="modem"/>
+     *           &lt;/restriction>
+     *         &lt;/simpleType>
+     *       &lt;/attribute>
+     *       &lt;attribute name="nr">
+     *         &lt;simpleType>
+     *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}unsignedShort">
+     *             &lt;enumeration value="1"/>
+     *             &lt;enumeration value="2"/>
+     *           &lt;/restriction>
+     *         &lt;/simpleType>
+     *       &lt;/attribute>
+     *     &lt;/extension>
+     *   &lt;/simpleContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "value"
+    })
+    public static class Communication {
+
+        @XmlValue
+        protected String value;
+        @XmlAttribute(name = "type", required = true)
+        protected String type;
+        @XmlAttribute(name = "nr")
+        protected Integer nr;
+
+        /**
+         * Obtém o valor da propriedade value.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getValue() {
+            return value;
+        }
+
+        /**
+         * Define o valor da propriedade value.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade type.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getType() {
+            return type;
+        }
+
+        /**
+         * Define o valor da propriedade type.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setType(String value) {
+            this.type = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade nr.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Integer }
+         *     
+         */
+        public Integer getNr() {
+            return nr;
+        }
+
+        /**
+         * Define o valor da propriedade nr.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Integer }
+         *     
+         */
+        public void setNr(Integer value) {
+            this.nr = value;
+        }
+
+    }
+
+}

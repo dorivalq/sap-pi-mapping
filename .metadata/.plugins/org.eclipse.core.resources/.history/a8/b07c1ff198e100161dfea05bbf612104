@@ -1,0 +1,243 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 03:34:59 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * <p>Classe Java de CollectionGroup complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="CollectionGroup">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
+ *         &lt;element name="readfrequency" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
+ *         &lt;element name="readwindowstarttime" type="{http://www.w3.org/2001/XMLSchema}time" form="qualified"/>
+ *         &lt;element name="readwindowendtime" type="{http://www.w3.org/2001/XMLSchema}time" form="qualified"/>
+ *         &lt;element name="deliveryfrequency" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
+ *         &lt;element name="deliverywindowstarttime" type="{http://www.w3.org/2001/XMLSchema}time" form="qualified"/>
+ *         &lt;element name="deliverywindowendtime" type="{http://www.w3.org/2001/XMLSchema}time" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "CollectionGroup", propOrder = {
+    "name",
+    "readfrequency",
+    "readwindowstarttime",
+    "readwindowendtime",
+    "deliveryfrequency",
+    "deliverywindowstarttime",
+    "deliverywindowendtime"
+})
+public class CollectionGroup {
+
+    @XmlElement(required = true)
+    protected String name;
+    @XmlElement(required = true)
+    protected String readfrequency;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "time")
+    protected XMLGregorianCalendar readwindowstarttime;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "time")
+    protected XMLGregorianCalendar readwindowendtime;
+    @XmlElement(required = true)
+    protected String deliveryfrequency;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "time")
+    protected XMLGregorianCalendar deliverywindowstarttime;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "time")
+    protected XMLGregorianCalendar deliverywindowendtime;
+
+    /**
+     * Obtém o valor da propriedade name.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Define o valor da propriedade name.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade readfrequency.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getReadfrequency() {
+        return readfrequency;
+    }
+
+    /**
+     * Define o valor da propriedade readfrequency.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setReadfrequency(String value) {
+        this.readfrequency = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade readwindowstarttime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getReadwindowstarttime() {
+        return readwindowstarttime;
+    }
+
+    /**
+     * Define o valor da propriedade readwindowstarttime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setReadwindowstarttime(XMLGregorianCalendar value) {
+        this.readwindowstarttime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade readwindowendtime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getReadwindowendtime() {
+        return readwindowendtime;
+    }
+
+    /**
+     * Define o valor da propriedade readwindowendtime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setReadwindowendtime(XMLGregorianCalendar value) {
+        this.readwindowendtime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade deliveryfrequency.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDeliveryfrequency() {
+        return deliveryfrequency;
+    }
+
+    /**
+     * Define o valor da propriedade deliveryfrequency.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDeliveryfrequency(String value) {
+        this.deliveryfrequency = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade deliverywindowstarttime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDeliverywindowstarttime() {
+        return deliverywindowstarttime;
+    }
+
+    /**
+     * Define o valor da propriedade deliverywindowstarttime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDeliverywindowstarttime(XMLGregorianCalendar value) {
+        this.deliverywindowstarttime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade deliverywindowendtime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDeliverywindowendtime() {
+        return deliverywindowendtime;
+    }
+
+    /**
+     * Define o valor da propriedade deliverywindowendtime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDeliverywindowendtime(XMLGregorianCalendar value) {
+        this.deliverywindowendtime = value;
+    }
+
+}

@@ -1,0 +1,183 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 03:27:41 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlRegistry;
+
+
+/**
+ * This object contains factory methods for each 
+ * Java content interface and Java element interface 
+ * generated in the br.com.cpfl.mapping.jaxb package. 
+ * <p>An ObjectFactory allows you to programatically 
+ * construct new instances of the Java representation 
+ * for XML content. The Java representation of XML 
+ * content can consist of schema derived interfaces 
+ * and classes representing the binding of schema 
+ * type definitions, element declarations and model 
+ * groups.  Factory methods for each of these are 
+ * provided in this class.
+ * 
+ */
+@XmlRegistry
+public class ObjectFactory {
+
+
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.cpfl.mapping.jaxb
+     * 
+     */
+    public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO createRfcZGLEMDMXIPIPROVISIONAMENTO() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML createRfcZGLEMDMXIPIPROVISIONAMENTOXML() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImport() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupList() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroup() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointList() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPoint() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchange() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroup() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroupDevice() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroupDeviceDatachannelList() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList.Datachannel }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList.Datachannel createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroupDeviceDatachannelListDatachannel() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList.Datachannel();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.TransDevice }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.TransDevice createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroupDeviceTransDevice() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.TransDevice();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.Version }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.Version createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportVersion() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.Version();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.Assignment }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.Assignment createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroupDeviceAssignment() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.Assignment();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.Identification }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.Identification createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroupDeviceIdentification() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.Identification();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList.Datachannel.Identification }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList.Datachannel.Identification createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroupDeviceDatachannelListDatachannelIdentification() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.DatachannelList.Datachannel.Identification();
+    }
+
+    /**
+     * Create an instance of {@link RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.TransDevice.Communication }
+     * 
+     */
+    public RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.TransDevice.Communication createRfcZGLEMDMXIPIPROVISIONAMENTOXMLImportGroupListGroupMeteringPointListMeteringPointExchangeGroupDeviceTransDeviceCommunication() {
+        return new RfcZGLEMDMXIPIPROVISIONAMENTO.XML.Import.GroupList.Group.MeteringPointList.MeteringPoint.Exchange.Group.Device.TransDevice.Communication();
+    }
+
+}

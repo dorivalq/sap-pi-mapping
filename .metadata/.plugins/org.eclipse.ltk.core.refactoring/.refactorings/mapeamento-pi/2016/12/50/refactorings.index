@@ -1,0 +1,12 @@
+1480941974908	Copy compilation unit
+1480942415599	Extract local variable 'attributes'
+1480959229657	Extract local variable 'split'
+1481046140902	Convert local variable 'nodeName3' to field
+1481046626365	Extract local variable 'nodeName'
+1481047087024	Convert local variable 'wNodeName' to field
+1481047101365	Convert local variable 'wNodeValue' to field
+1481047116321	Convert local variable 'wFieldName' to field
+1481109390767	Convert local variable 'w_fieldname' to field
+1481109687964	Convert local variable 'w_node_name' to field
+1481109763795	Convert local variable 'w_node' to field
+1481109871708	Convert local variable 'w_node_value' to field

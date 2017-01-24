@@ -1,0 +1,180 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 04:26:21 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import java.math.BigInteger;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+
+/**
+ * <p>Classe Java de addressType complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="addressType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;attribute name="country" type="{http://www.w3.org/2001/XMLSchema}language" />
+ *       &lt;attribute name="zipcode" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+ *       &lt;attribute name="town" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="street" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="house" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "addressType")
+public class AddressType {
+
+    @XmlAttribute(name = "country")
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "language")
+    protected String country;
+    @XmlAttribute(name = "zipcode")
+    @XmlSchemaType(name = "positiveInteger")
+    protected BigInteger zipcode;
+    @XmlAttribute(name = "town")
+    protected String town;
+    @XmlAttribute(name = "street")
+    protected String street;
+    @XmlAttribute(name = "house")
+    protected String house;
+
+    /**
+     * Obtém o valor da propriedade country.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * Define o valor da propriedade country.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCountry(String value) {
+        this.country = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade zipcode.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getZipcode() {
+        return zipcode;
+    }
+
+    /**
+     * Define o valor da propriedade zipcode.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setZipcode(BigInteger value) {
+        this.zipcode = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade town.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTown() {
+        return town;
+    }
+
+    /**
+     * Define o valor da propriedade town.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTown(String value) {
+        this.town = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade street.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStreet() {
+        return street;
+    }
+
+    /**
+     * Define o valor da propriedade street.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStreet(String value) {
+        this.street = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade house.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getHouse() {
+        return house;
+    }
+
+    /**
+     * Define o valor da propriedade house.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setHouse(String value) {
+        this.house = value;
+    }
+
+}

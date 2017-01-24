@@ -1,0 +1,29 @@
+
+**** Error file opened at 20161020 124651 Brasilia Summer Time Rel. 3.0.15 (2016-07-26) [721.713]
+Error:  >Thu Oct 20 12:46:51,721<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS ASHOST=192.168.35.15 SYSNR=20 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.35.15:3320' not reached
+TIME        Thu Oct 20 12:46:51 2016
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 192.168.35.15:3320
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20170110 144457 Brasilia Summer Time Rel. 3.0.15 (2016-07-26) [721.713]
+Error:  >Tue Jan 10 14:44:57,677<    >RfcGetException rc (7) message: Name or password is incorrect (repeat logon)
+<RfcGetException
+

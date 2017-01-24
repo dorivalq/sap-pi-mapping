@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import name="master-data-transfer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="mdtrans.xsd">
+  <version date="2001-01-01">0.0</version>
+  <status type="ok"/>
+  <group-list>
+    <group name="" type="customer">
+      <assignment ident1="" ident2="" ident3="" ident4="" ident5=""/>
+      <identification description="" ident1="" ident2="" ident3="" ident4="" uident1=""/>
+      <group name="" type="customer"/>
+      <metering-point-list>
+        <metering-point name="" nr="" state="active"/>
+      </metering-point-list>
+      <device-list>
+        <device ext-nr="" nr="" state="active">
+          <assignment ident1="" ident2="" ident3="" ident4="" ident5=""/>
+          <datachannel-list>
+            <datachannel obis-id-code="" obis-new="" state="active"/>
+          </datachannel-list>
+        </device>
+      </device-list>
+      <customer-list>
+        <customer nr="" state="active" type="">
+          <assignment ident1="" ident2="" ident3="" ident4="" ident5=""/>
+        </customer>
+      </customer-list>
+    </group>
+  </group-list>
+</import>

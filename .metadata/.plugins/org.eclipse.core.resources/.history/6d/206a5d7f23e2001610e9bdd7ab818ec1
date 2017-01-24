@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?><!-- Inbound Message -->
+<ami:MeterAssetAddRequestMessage
+	xmlns:ami='http://www.emeter.com/energyip/amiinterface' xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>
+	<ami:header>
+		<ami:verb>request</ami:verb>
+		<ami:noun>MeterAdd</ami:noun>
+		<ami:revision>1</ami:revision>
+		<ami:dateTime>2017-01-17T13:59:51.238-03:00</ami:dateTime>
+		<ami:source>EIP</ami:source>
+		<ami:messageID>15612</ami:messageID>
+	</ami:header>
+	<ami:payload>
+		<ami:meterAsset>
+			<ami:mRID>109681388</ami:mRID>
+			<ami:idType>METER_X_UDC_ASSET_ID</ami:idType>
+			<ami:pathName>CPFL</ami:pathName>
+			<ami:parameter>
+				<ami:name>Manufacturer</ami:name>
+				<ami:value>ITRON</ami:value>
+			</ami:parameter>
+			<ami:parameter>
+				<ami:name>InvertedMeter</ami:name>
+				<ami:value>N</ami:value>
+			</ami:parameter>
+			<ami:parameter>
+				<ami:name>dateMeterInstallation</ami:name>
+				<ami:value>2016-12-22T16:10:00</ami:value>
+			</ami:parameter>
+			<ami:parameter>
+				<ami:name>Model</ami:name>
+				<ami:value>SL7000-3E</ami:value>
+			</ami:parameter>
+			<ami:parameter>
+				<ami:name>Program Code</ami:name>
+				<ami:value>ZFA-PC1</ami:value>
+			</ami:parameter>
+			<ami:modelNumber>SL7000-3E</ami:modelNumber>
+			<ami:serialNumber>40147642</ami:serialNumber>
+			<ami:serviceType>Electric</ami:serviceType>
+			<ami:electricMeter />
+			<ami:numDigits>6</ami:numDigits>
+		</ami:meterAsset>
+		<ami:comFunction>
+			<ami:mRID>10.42.41.44:2181</ami:mRID>
+			<ami:idType>METER_COMMUNICATION_MODULE_X_NETWORK_ID</ami:idType>
+			<ami:pathName>UAA EIP</ami:pathName>
+			<ami:parameter>
+				<ami:name>Media Type</ami:name>
+				<ami:value>GPRS</ami:value>
+			</ami:parameter>
+		</ami:comFunction>
+		<ami:serviceDeliveryPoint>
+			<ami:mRID>7008439291</ami:mRID>
+			<ami:idType>SDP_X_UDC_ASSET_ID</ami:idType>
+			<ami:pathName>CPFL</ami:pathName>
+			<ami:serviceType>Electric</ami:serviceType>
+			<ami:serviceDeliveryRemarks>Medição Principal
+			</ami:serviceDeliveryRemarks>
+		</ami:serviceDeliveryPoint>
+		<ami:executeStartTime>2017-01-17T16:59:47.000Z</ami:executeStartTime>
+		<ami:executeExpireTime>2017-01-18T16:59:47.000Z
+		</ami:executeExpireTime>
+	</ami:payload>
+</ami:MeterAssetAddRequestMessage>

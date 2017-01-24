@@ -1,0 +1,546 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 04:25:19 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de group1 complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="group1">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="assignment" type="{}assignmentType" minOccurs="0"/>
+ *         &lt;element name="identification" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;extension base="{}identificationType">
+ *                 &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *               &lt;/extension>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="group" type="{}group1" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="metering-point-list" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="metering-point" type="{}metering-point" maxOccurs="unbounded"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="device-list" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="device" type="{}device" maxOccurs="unbounded"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="customer-list" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="customer" type="{}customer" maxOccurs="unbounded"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *       &lt;/sequence>
+ *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="type" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;enumeration value="customer"/>
+ *             &lt;enumeration value="device"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "group1", propOrder = {
+    "assignment",
+    "identification",
+    "group",
+    "meteringPointList",
+    "deviceList",
+    "customerList"
+})
+public class Group1 {
+
+    protected AssignmentType assignment;
+    protected Group1 .Identification identification;
+    protected List<Group1> group;
+    @XmlElement(name = "metering-point-list")
+    protected Group1 .MeteringPointList meteringPointList;
+    @XmlElement(name = "device-list")
+    protected Group1 .DeviceList deviceList;
+    @XmlElement(name = "customer-list")
+    protected Group1 .CustomerList customerList;
+    @XmlAttribute(name = "name")
+    protected String name;
+    @XmlAttribute(name = "type", required = true)
+    protected String type;
+
+    /**
+     * Obtém o valor da propriedade assignment.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AssignmentType }
+     *     
+     */
+    public AssignmentType getAssignment() {
+        return assignment;
+    }
+
+    /**
+     * Define o valor da propriedade assignment.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AssignmentType }
+     *     
+     */
+    public void setAssignment(AssignmentType value) {
+        this.assignment = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade identification.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Group1 .Identification }
+     *     
+     */
+    public Group1 .Identification getIdentification() {
+        return identification;
+    }
+
+    /**
+     * Define o valor da propriedade identification.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Group1 .Identification }
+     *     
+     */
+    public void setIdentification(Group1 .Identification value) {
+        this.identification = value;
+    }
+
+    /**
+     * Gets the value of the group property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the group property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getGroup().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Group1 }
+     * 
+     * 
+     */
+    public List<Group1> getGroup() {
+        if (group == null) {
+            group = new ArrayList<Group1>();
+        }
+        return this.group;
+    }
+
+    /**
+     * Obtém o valor da propriedade meteringPointList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Group1 .MeteringPointList }
+     *     
+     */
+    public Group1 .MeteringPointList getMeteringPointList() {
+        return meteringPointList;
+    }
+
+    /**
+     * Define o valor da propriedade meteringPointList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Group1 .MeteringPointList }
+     *     
+     */
+    public void setMeteringPointList(Group1 .MeteringPointList value) {
+        this.meteringPointList = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade deviceList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Group1 .DeviceList }
+     *     
+     */
+    public Group1 .DeviceList getDeviceList() {
+        return deviceList;
+    }
+
+    /**
+     * Define o valor da propriedade deviceList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Group1 .DeviceList }
+     *     
+     */
+    public void setDeviceList(Group1 .DeviceList value) {
+        this.deviceList = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade customerList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Group1 .CustomerList }
+     *     
+     */
+    public Group1 .CustomerList getCustomerList() {
+        return customerList;
+    }
+
+    /**
+     * Define o valor da propriedade customerList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Group1 .CustomerList }
+     *     
+     */
+    public void setCustomerList(Group1 .CustomerList value) {
+        this.customerList = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade name.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Define o valor da propriedade name.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade type.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Define o valor da propriedade type.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="customer" type="{}customer" maxOccurs="unbounded"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "customer"
+    })
+    public static class CustomerList {
+
+        @XmlElement(required = true)
+        protected List<Customer> customer;
+
+        /**
+         * Gets the value of the customer property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the customer property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getCustomer().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link Customer }
+         * 
+         * 
+         */
+        public List<Customer> getCustomer() {
+            if (customer == null) {
+                customer = new ArrayList<Customer>();
+            }
+            return this.customer;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="device" type="{}device" maxOccurs="unbounded"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "device"
+    })
+    public static class DeviceList {
+
+        @XmlElement(required = true)
+        protected List<Device> device;
+
+        /**
+         * Gets the value of the device property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the device property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getDevice().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link Device }
+         * 
+         * 
+         */
+        public List<Device> getDevice() {
+            if (device == null) {
+                device = new ArrayList<Device>();
+            }
+            return this.device;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;extension base="{}identificationType">
+     *       &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *     &lt;/extension>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Identification
+        extends IdentificationType
+    {
+
+        @XmlAttribute(name = "uident1")
+        protected String uident1;
+
+        /**
+         * Obtém o valor da propriedade uident1.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getUident1() {
+            return uident1;
+        }
+
+        /**
+         * Define o valor da propriedade uident1.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setUident1(String value) {
+            this.uident1 = value;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="metering-point" type="{}metering-point" maxOccurs="unbounded"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "meteringPoint"
+    })
+    public static class MeteringPointList {
+
+        @XmlElement(name = "metering-point", required = true)
+        protected List<MeteringPoint> meteringPoint;
+
+        /**
+         * Gets the value of the meteringPoint property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the meteringPoint property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getMeteringPoint().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link MeteringPoint }
+         * 
+         * 
+         */
+        public List<MeteringPoint> getMeteringPoint() {
+            if (meteringPoint == null) {
+                meteringPoint = new ArrayList<MeteringPoint>();
+            }
+            return this.meteringPoint;
+        }
+
+    }
+
+}

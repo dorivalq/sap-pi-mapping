@@ -1,0 +1,220 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 03:34:59 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * A tangible resource of the utility, like equipment
+ * 				like
+ * 				Meter, ComFunction etc. This is the parent class for
+ * 				asset sub
+ * 				classes.
+ * 			
+ * 
+ * <p>Classe Java de Asset complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="Asset">
+ *   &lt;complexContent>
+ *     &lt;extension base="{http://www.emeter.com/energyip/amiinterface}IdentifiedObject">
+ *       &lt;sequence>
+ *         &lt;element name="manufacturer" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="modelNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="manufacturedDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *         &lt;element name="serialNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="lotNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="testDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/extension>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Asset", propOrder = {
+    "manufacturer",
+    "modelNumber",
+    "manufacturedDate",
+    "serialNumber",
+    "lotNumber",
+    "testDate"
+})
+@XmlSeeAlso({
+    MeterAsset.class,
+    ComFunction.class
+})
+public class Asset
+    extends IdentifiedObject
+{
+
+    protected String manufacturer;
+    protected String modelNumber;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar manufacturedDate;
+    protected String serialNumber;
+    protected String lotNumber;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar testDate;
+
+    /**
+     * Obtém o valor da propriedade manufacturer.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    /**
+     * Define o valor da propriedade manufacturer.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setManufacturer(String value) {
+        this.manufacturer = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade modelNumber.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getModelNumber() {
+        return modelNumber;
+    }
+
+    /**
+     * Define o valor da propriedade modelNumber.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setModelNumber(String value) {
+        this.modelNumber = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade manufacturedDate.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getManufacturedDate() {
+        return manufacturedDate;
+    }
+
+    /**
+     * Define o valor da propriedade manufacturedDate.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setManufacturedDate(XMLGregorianCalendar value) {
+        this.manufacturedDate = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade serialNumber.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    /**
+     * Define o valor da propriedade serialNumber.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSerialNumber(String value) {
+        this.serialNumber = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade lotNumber.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLotNumber() {
+        return lotNumber;
+    }
+
+    /**
+     * Define o valor da propriedade lotNumber.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLotNumber(String value) {
+        this.lotNumber = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade testDate.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getTestDate() {
+        return testDate;
+    }
+
+    /**
+     * Define o valor da propriedade testDate.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setTestDate(XMLGregorianCalendar value) {
+        this.testDate = value;
+    }
+
+}

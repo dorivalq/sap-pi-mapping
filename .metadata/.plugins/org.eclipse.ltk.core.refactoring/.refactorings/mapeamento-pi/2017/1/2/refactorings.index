@@ -1,0 +1,26 @@
+1484047001756	Copy compilation unit
+1484047059941	Move compilation unit
+1484048169181	Copy compilation unit
+1484054961078	Extract local variable 'item'
+1484063546477	Extract local variable 'result2'
+1484069646362	Extract local variable 'keySet'
+1484070295956	Extract local variable 'exportParameterList'
+1484071081652	Extract local variable 'jcoMain'
+1484139649803	Rename type 'JCOMain'
+1484227317204	Extract method 'extracted'
+1484227410819	Extract method 'extracted'
+1484227824342	Extract constant 'CONSULTAR_CCS_XI'
+1484228150188	Convert local variable 'ejbObj' to field
+1484228749527	Extract constant 'CONSULTAR_Z_PROV_GROUP'
+1484237362017	Convert local variable 'wInv' to field
+1484246505028	Rename resource '2017-01-12_16-16-09.442-MSCONS_VL_01-Sender11111111111_01-Receiver111111111_20140526_FFEDTBDJQWNQRK.xml'
+1484246525603	Move file
+1484247597283	Copy file
+1484311738587	Copy compilation unit
+1484311754943	Delete element
+1484311761760	Copy compilation unit
+1484311790771	Rename type 'JCOFunctionHelper'
+1484315385536	Extract local variable 'importParamMap'
+1484323284812	Extract local variable 'destinationPropertiesFromUI'
+1484331419417	Extract constant 'CONSULTAR_MODELO_TODOS'
+1484333457779	Extract local variable 'pathname'

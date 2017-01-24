@@ -1,0 +1,209 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 03:34:59 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import java.math.BigInteger;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de MeterAsset complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="MeterAsset">
+ *   &lt;complexContent>
+ *     &lt;extension base="{http://www.emeter.com/energyip/amiinterface}Asset">
+ *       &lt;sequence>
+ *         &lt;element name="serviceType" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
+ *         &lt;choice>
+ *           &lt;element name="electricMeter" type="{http://www.emeter.com/energyip/amiinterface}ElectricMeter" minOccurs="0" form="qualified"/>
+ *           &lt;element name="waterMeter" type="{http://www.emeter.com/energyip/amiinterface}WaterMeter" minOccurs="0" form="qualified"/>
+ *           &lt;element name="gasMeter" type="{http://www.emeter.com/energyip/amiinterface}GasMeter" minOccurs="0" form="qualified"/>
+ *         &lt;/choice>
+ *         &lt;element name="numDigits" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0" form="qualified"/>
+ *         &lt;element name="typeMeter" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/extension>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "MeterAsset", propOrder = {
+    "serviceType",
+    "electricMeter",
+    "waterMeter",
+    "gasMeter",
+    "numDigits",
+    "typeMeter"
+})
+public class MeterAsset
+    extends Asset
+{
+
+    @XmlElement(required = true)
+    protected String serviceType;
+    protected ElectricMeter electricMeter;
+    protected WaterMeter waterMeter;
+    protected GasMeter gasMeter;
+    protected BigInteger numDigits;
+    protected String typeMeter;
+
+    /**
+     * Obtém o valor da propriedade serviceType.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    /**
+     * Define o valor da propriedade serviceType.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setServiceType(String value) {
+        this.serviceType = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade electricMeter.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElectricMeter }
+     *     
+     */
+    public ElectricMeter getElectricMeter() {
+        return electricMeter;
+    }
+
+    /**
+     * Define o valor da propriedade electricMeter.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElectricMeter }
+     *     
+     */
+    public void setElectricMeter(ElectricMeter value) {
+        this.electricMeter = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade waterMeter.
+     * 
+     * @return
+     *     possible object is
+     *     {@link WaterMeter }
+     *     
+     */
+    public WaterMeter getWaterMeter() {
+        return waterMeter;
+    }
+
+    /**
+     * Define o valor da propriedade waterMeter.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link WaterMeter }
+     *     
+     */
+    public void setWaterMeter(WaterMeter value) {
+        this.waterMeter = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade gasMeter.
+     * 
+     * @return
+     *     possible object is
+     *     {@link GasMeter }
+     *     
+     */
+    public GasMeter getGasMeter() {
+        return gasMeter;
+    }
+
+    /**
+     * Define o valor da propriedade gasMeter.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link GasMeter }
+     *     
+     */
+    public void setGasMeter(GasMeter value) {
+        this.gasMeter = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade numDigits.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getNumDigits() {
+        return numDigits;
+    }
+
+    /**
+     * Define o valor da propriedade numDigits.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setNumDigits(BigInteger value) {
+        this.numDigits = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade typeMeter.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTypeMeter() {
+        return typeMeter;
+    }
+
+    /**
+     * Define o valor da propriedade typeMeter.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTypeMeter(String value) {
+        this.typeMeter = value;
+    }
+
+}

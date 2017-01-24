@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="events_v2_entrada.xsd">
+  <meterid>meterid</meterid>
+  <sdp>sdp</sdp>
+  <message>message</message>
+  <logbookid>0</logbookid>
+  <startdatetime>2001-12-31T12:00:00</startdatetime>
+  <enddatetime>2001-12-31T12:00:00</enddatetime>
+  <datetime>2001-12-31T12:00:00</datetime>
+</event>

@@ -1,0 +1,1564 @@
+
+package br.com.cpfl.mapping.jaxb;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * <p>Classe Java de evaluation complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="evaluation">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="assignment" type="{}assignmentType"/>
+ *         &lt;element name="general" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="calc-till-now" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *                 &lt;attribute name="plus-n-day" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+ *                 &lt;attribute name="oppress-state">
+ *                   &lt;simpleType>
+ *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                     &lt;/restriction>
+ *                   &lt;/simpleType>
+ *                 &lt;/attribute>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="result-datachannel" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="identification" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="ident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="ident2" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="ident3" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="ident4" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                   &lt;element name="general" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;attribute name="integration-period" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+ *                           &lt;attribute name="unit" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="timezone" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="daychange" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="balancing">
+ *                             &lt;simpleType>
+ *                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                                 &lt;enumeration value="d"/>
+ *                                 &lt;enumeration value="dm"/>
+ *                                 &lt;enumeration value="dmy"/>
+ *                               &lt;/restriction>
+ *                             &lt;/simpleType>
+ *                           &lt;/attribute>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                 &lt;/sequence>
+ *                 &lt;attribute name="obis-id-code" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="measuring">
+ *                   &lt;simpleType>
+ *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                       &lt;enumeration value="primary"/>
+ *                       &lt;enumeration value="secondary"/>
+ *                     &lt;/restriction>
+ *                   &lt;/simpleType>
+ *                 &lt;/attribute>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="source-datachannel-list" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="source-datachannel" maxOccurs="unbounded">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="assignment">
+ *                               &lt;complexType>
+ *                                 &lt;complexContent>
+ *                                   &lt;extension base="{}assignmentType">
+ *                                     &lt;attribute name="search">
+ *                                       &lt;simpleType>
+ *                                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                                           &lt;enumeration value="all"/>
+ *                                           &lt;enumeration value="customer"/>
+ *                                         &lt;/restriction>
+ *                                       &lt;/simpleType>
+ *                                     &lt;/attribute>
+ *                                   &lt;/extension>
+ *                                 &lt;/complexContent>
+ *                               &lt;/complexType>
+ *                             &lt;/element>
+ *                           &lt;/sequence>
+ *                           &lt;attribute name="type">
+ *                             &lt;simpleType>
+ *                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                                 &lt;enumeration value="datachannel"/>
+ *                                 &lt;enumeration value="datachannel-link"/>
+ *                                 &lt;enumeration value="load-profile-calculation"/>
+ *                               &lt;/restriction>
+ *                             &lt;/simpleType>
+ *                           &lt;/attribute>
+ *                           &lt;attribute name="formula-nr" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="time-frame-list" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="time-frame" maxOccurs="unbounded">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;attribute name="date-from" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *                           &lt;attribute name="date-to" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *                           &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="person" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="editor" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="formula" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *       &lt;/sequence>
+ *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="type" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;enumeration value="load-profile-calculation"/>
+ *             &lt;enumeration value="datachannel-link"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "evaluation", propOrder = {
+    "assignment",
+    "general",
+    "resultDatachannel",
+    "sourceDatachannelList",
+    "timeFrameList"
+})
+public class Evaluation {
+
+    @XmlElement(required = true)
+    protected AssignmentType assignment;
+    protected Evaluation.General general;
+    @XmlElement(name = "result-datachannel")
+    protected Evaluation.ResultDatachannel resultDatachannel;
+    @XmlElement(name = "source-datachannel-list")
+    protected Evaluation.SourceDatachannelList sourceDatachannelList;
+    @XmlElement(name = "time-frame-list")
+    protected Evaluation.TimeFrameList timeFrameList;
+    @XmlAttribute(name = "name")
+    protected String name;
+    @XmlAttribute(name = "type", required = true)
+    protected String type;
+
+    /**
+     * Obtém o valor da propriedade assignment.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AssignmentType }
+     *     
+     */
+    public AssignmentType getAssignment() {
+        return assignment;
+    }
+
+    /**
+     * Define o valor da propriedade assignment.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AssignmentType }
+     *     
+     */
+    public void setAssignment(AssignmentType value) {
+        this.assignment = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade general.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Evaluation.General }
+     *     
+     */
+    public Evaluation.General getGeneral() {
+        return general;
+    }
+
+    /**
+     * Define o valor da propriedade general.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Evaluation.General }
+     *     
+     */
+    public void setGeneral(Evaluation.General value) {
+        this.general = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade resultDatachannel.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Evaluation.ResultDatachannel }
+     *     
+     */
+    public Evaluation.ResultDatachannel getResultDatachannel() {
+        return resultDatachannel;
+    }
+
+    /**
+     * Define o valor da propriedade resultDatachannel.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Evaluation.ResultDatachannel }
+     *     
+     */
+    public void setResultDatachannel(Evaluation.ResultDatachannel value) {
+        this.resultDatachannel = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade sourceDatachannelList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Evaluation.SourceDatachannelList }
+     *     
+     */
+    public Evaluation.SourceDatachannelList getSourceDatachannelList() {
+        return sourceDatachannelList;
+    }
+
+    /**
+     * Define o valor da propriedade sourceDatachannelList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Evaluation.SourceDatachannelList }
+     *     
+     */
+    public void setSourceDatachannelList(Evaluation.SourceDatachannelList value) {
+        this.sourceDatachannelList = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade timeFrameList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Evaluation.TimeFrameList }
+     *     
+     */
+    public Evaluation.TimeFrameList getTimeFrameList() {
+        return timeFrameList;
+    }
+
+    /**
+     * Define o valor da propriedade timeFrameList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Evaluation.TimeFrameList }
+     *     
+     */
+    public void setTimeFrameList(Evaluation.TimeFrameList value) {
+        this.timeFrameList = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade name.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Define o valor da propriedade name.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade type.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Define o valor da propriedade type.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="calc-till-now" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+     *       &lt;attribute name="plus-n-day" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+     *       &lt;attribute name="oppress-state">
+     *         &lt;simpleType>
+     *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *           &lt;/restriction>
+     *         &lt;/simpleType>
+     *       &lt;/attribute>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class General {
+
+        @XmlAttribute(name = "description")
+        protected String description;
+        @XmlAttribute(name = "calc-till-now")
+        protected Boolean calcTillNow;
+        @XmlAttribute(name = "plus-n-day")
+        @XmlSchemaType(name = "positiveInteger")
+        protected BigInteger plusNDay;
+        @XmlAttribute(name = "oppress-state")
+        protected String oppressState;
+
+        /**
+         * Obtém o valor da propriedade description.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDescription() {
+            return description;
+        }
+
+        /**
+         * Define o valor da propriedade description.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDescription(String value) {
+            this.description = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade calcTillNow.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Boolean }
+         *     
+         */
+        public Boolean isCalcTillNow() {
+            return calcTillNow;
+        }
+
+        /**
+         * Define o valor da propriedade calcTillNow.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Boolean }
+         *     
+         */
+        public void setCalcTillNow(Boolean value) {
+            this.calcTillNow = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade plusNDay.
+         * 
+         * @return
+         *     possible object is
+         *     {@link BigInteger }
+         *     
+         */
+        public BigInteger getPlusNDay() {
+            return plusNDay;
+        }
+
+        /**
+         * Define o valor da propriedade plusNDay.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link BigInteger }
+         *     
+         */
+        public void setPlusNDay(BigInteger value) {
+            this.plusNDay = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade oppressState.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getOppressState() {
+            return oppressState;
+        }
+
+        /**
+         * Define o valor da propriedade oppressState.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setOppressState(String value) {
+            this.oppressState = value;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="identification" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="ident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="ident2" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="ident3" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="ident4" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *         &lt;element name="general" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;attribute name="integration-period" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+     *                 &lt;attribute name="unit" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="timezone" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="daychange" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="balancing">
+     *                   &lt;simpleType>
+     *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *                       &lt;enumeration value="d"/>
+     *                       &lt;enumeration value="dm"/>
+     *                       &lt;enumeration value="dmy"/>
+     *                     &lt;/restriction>
+     *                   &lt;/simpleType>
+     *                 &lt;/attribute>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *       &lt;/sequence>
+     *       &lt;attribute name="obis-id-code" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="measuring">
+     *         &lt;simpleType>
+     *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *             &lt;enumeration value="primary"/>
+     *             &lt;enumeration value="secondary"/>
+     *           &lt;/restriction>
+     *         &lt;/simpleType>
+     *       &lt;/attribute>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "identification",
+        "general"
+    })
+    public static class ResultDatachannel {
+
+        protected Evaluation.ResultDatachannel.Identification identification;
+        protected Evaluation.ResultDatachannel.General general;
+        @XmlAttribute(name = "obis-id-code")
+        protected String obisIdCode;
+        @XmlAttribute(name = "measuring")
+        protected String measuring;
+
+        /**
+         * Obtém o valor da propriedade identification.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Evaluation.ResultDatachannel.Identification }
+         *     
+         */
+        public Evaluation.ResultDatachannel.Identification getIdentification() {
+            return identification;
+        }
+
+        /**
+         * Define o valor da propriedade identification.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Evaluation.ResultDatachannel.Identification }
+         *     
+         */
+        public void setIdentification(Evaluation.ResultDatachannel.Identification value) {
+            this.identification = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade general.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Evaluation.ResultDatachannel.General }
+         *     
+         */
+        public Evaluation.ResultDatachannel.General getGeneral() {
+            return general;
+        }
+
+        /**
+         * Define o valor da propriedade general.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Evaluation.ResultDatachannel.General }
+         *     
+         */
+        public void setGeneral(Evaluation.ResultDatachannel.General value) {
+            this.general = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade obisIdCode.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getObisIdCode() {
+            return obisIdCode;
+        }
+
+        /**
+         * Define o valor da propriedade obisIdCode.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setObisIdCode(String value) {
+            this.obisIdCode = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade measuring.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getMeasuring() {
+            return measuring;
+        }
+
+        /**
+         * Define o valor da propriedade measuring.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setMeasuring(String value) {
+            this.measuring = value;
+        }
+
+
+        /**
+         * <p>Classe Java de anonymous complex type.
+         * 
+         * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;attribute name="integration-period" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+         *       &lt;attribute name="unit" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="timezone" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="daychange" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="balancing">
+         *         &lt;simpleType>
+         *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+         *             &lt;enumeration value="d"/>
+         *             &lt;enumeration value="dm"/>
+         *             &lt;enumeration value="dmy"/>
+         *           &lt;/restriction>
+         *         &lt;/simpleType>
+         *       &lt;/attribute>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class General {
+
+            @XmlAttribute(name = "integration-period")
+            @XmlSchemaType(name = "positiveInteger")
+            protected BigInteger integrationPeriod;
+            @XmlAttribute(name = "unit")
+            protected String unit;
+            @XmlAttribute(name = "timezone")
+            protected String timezone;
+            @XmlAttribute(name = "daychange")
+            protected String daychange;
+            @XmlAttribute(name = "balancing")
+            protected String balancing;
+
+            /**
+             * Obtém o valor da propriedade integrationPeriod.
+             * 
+             * @return
+             *     possible object is
+             *     {@link BigInteger }
+             *     
+             */
+            public BigInteger getIntegrationPeriod() {
+                return integrationPeriod;
+            }
+
+            /**
+             * Define o valor da propriedade integrationPeriod.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link BigInteger }
+             *     
+             */
+            public void setIntegrationPeriod(BigInteger value) {
+                this.integrationPeriod = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade unit.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getUnit() {
+                return unit;
+            }
+
+            /**
+             * Define o valor da propriedade unit.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setUnit(String value) {
+                this.unit = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade timezone.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getTimezone() {
+                return timezone;
+            }
+
+            /**
+             * Define o valor da propriedade timezone.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setTimezone(String value) {
+                this.timezone = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade daychange.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getDaychange() {
+                return daychange;
+            }
+
+            /**
+             * Define o valor da propriedade daychange.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setDaychange(String value) {
+                this.daychange = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade balancing.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getBalancing() {
+                return balancing;
+            }
+
+            /**
+             * Define o valor da propriedade balancing.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setBalancing(String value) {
+                this.balancing = value;
+            }
+
+        }
+
+
+        /**
+         * <p>Classe Java de anonymous complex type.
+         * 
+         * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="ident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="ident2" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="ident3" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="ident4" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Identification {
+
+            @XmlAttribute(name = "uident1")
+            protected String uident1;
+            @XmlAttribute(name = "ident1")
+            protected String ident1;
+            @XmlAttribute(name = "ident2")
+            protected String ident2;
+            @XmlAttribute(name = "ident3")
+            protected String ident3;
+            @XmlAttribute(name = "ident4")
+            protected String ident4;
+
+            /**
+             * Obtém o valor da propriedade uident1.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getUident1() {
+                return uident1;
+            }
+
+            /**
+             * Define o valor da propriedade uident1.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setUident1(String value) {
+                this.uident1 = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade ident1.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getIdent1() {
+                return ident1;
+            }
+
+            /**
+             * Define o valor da propriedade ident1.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setIdent1(String value) {
+                this.ident1 = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade ident2.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getIdent2() {
+                return ident2;
+            }
+
+            /**
+             * Define o valor da propriedade ident2.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setIdent2(String value) {
+                this.ident2 = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade ident3.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getIdent3() {
+                return ident3;
+            }
+
+            /**
+             * Define o valor da propriedade ident3.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setIdent3(String value) {
+                this.ident3 = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade ident4.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getIdent4() {
+                return ident4;
+            }
+
+            /**
+             * Define o valor da propriedade ident4.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setIdent4(String value) {
+                this.ident4 = value;
+            }
+
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="source-datachannel" maxOccurs="unbounded">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="assignment">
+     *                     &lt;complexType>
+     *                       &lt;complexContent>
+     *                         &lt;extension base="{}assignmentType">
+     *                           &lt;attribute name="search">
+     *                             &lt;simpleType>
+     *                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *                                 &lt;enumeration value="all"/>
+     *                                 &lt;enumeration value="customer"/>
+     *                               &lt;/restriction>
+     *                             &lt;/simpleType>
+     *                           &lt;/attribute>
+     *                         &lt;/extension>
+     *                       &lt;/complexContent>
+     *                     &lt;/complexType>
+     *                   &lt;/element>
+     *                 &lt;/sequence>
+     *                 &lt;attribute name="type">
+     *                   &lt;simpleType>
+     *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *                       &lt;enumeration value="datachannel"/>
+     *                       &lt;enumeration value="datachannel-link"/>
+     *                       &lt;enumeration value="load-profile-calculation"/>
+     *                     &lt;/restriction>
+     *                   &lt;/simpleType>
+     *                 &lt;/attribute>
+     *                 &lt;attribute name="formula-nr" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "sourceDatachannel"
+    })
+    public static class SourceDatachannelList {
+
+        @XmlElement(name = "source-datachannel", required = true)
+        protected List<Evaluation.SourceDatachannelList.SourceDatachannel> sourceDatachannel;
+
+        /**
+         * Gets the value of the sourceDatachannel property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the sourceDatachannel property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getSourceDatachannel().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link Evaluation.SourceDatachannelList.SourceDatachannel }
+         * 
+         * 
+         */
+        public List<Evaluation.SourceDatachannelList.SourceDatachannel> getSourceDatachannel() {
+            if (sourceDatachannel == null) {
+                sourceDatachannel = new ArrayList<Evaluation.SourceDatachannelList.SourceDatachannel>();
+            }
+            return this.sourceDatachannel;
+        }
+
+
+        /**
+         * <p>Classe Java de anonymous complex type.
+         * 
+         * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;element name="assignment">
+         *           &lt;complexType>
+         *             &lt;complexContent>
+         *               &lt;extension base="{}assignmentType">
+         *                 &lt;attribute name="search">
+         *                   &lt;simpleType>
+         *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+         *                       &lt;enumeration value="all"/>
+         *                       &lt;enumeration value="customer"/>
+         *                     &lt;/restriction>
+         *                   &lt;/simpleType>
+         *                 &lt;/attribute>
+         *               &lt;/extension>
+         *             &lt;/complexContent>
+         *           &lt;/complexType>
+         *         &lt;/element>
+         *       &lt;/sequence>
+         *       &lt;attribute name="type">
+         *         &lt;simpleType>
+         *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+         *             &lt;enumeration value="datachannel"/>
+         *             &lt;enumeration value="datachannel-link"/>
+         *             &lt;enumeration value="load-profile-calculation"/>
+         *           &lt;/restriction>
+         *         &lt;/simpleType>
+         *       &lt;/attribute>
+         *       &lt;attribute name="formula-nr" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "assignment"
+        })
+        public static class SourceDatachannel {
+
+            @XmlElement(required = true)
+            protected Evaluation.SourceDatachannelList.SourceDatachannel.Assignment assignment;
+            @XmlAttribute(name = "type")
+            protected String type;
+            @XmlAttribute(name = "formula-nr")
+            @XmlSchemaType(name = "positiveInteger")
+            protected BigInteger formulaNr;
+
+            /**
+             * Obtém o valor da propriedade assignment.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Evaluation.SourceDatachannelList.SourceDatachannel.Assignment }
+             *     
+             */
+            public Evaluation.SourceDatachannelList.SourceDatachannel.Assignment getAssignment() {
+                return assignment;
+            }
+
+            /**
+             * Define o valor da propriedade assignment.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Evaluation.SourceDatachannelList.SourceDatachannel.Assignment }
+             *     
+             */
+            public void setAssignment(Evaluation.SourceDatachannelList.SourceDatachannel.Assignment value) {
+                this.assignment = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade type.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getType() {
+                return type;
+            }
+
+            /**
+             * Define o valor da propriedade type.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setType(String value) {
+                this.type = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade formulaNr.
+             * 
+             * @return
+             *     possible object is
+             *     {@link BigInteger }
+             *     
+             */
+            public BigInteger getFormulaNr() {
+                return formulaNr;
+            }
+
+            /**
+             * Define o valor da propriedade formulaNr.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link BigInteger }
+             *     
+             */
+            public void setFormulaNr(BigInteger value) {
+                this.formulaNr = value;
+            }
+
+
+            /**
+             * <p>Classe Java de anonymous complex type.
+             * 
+             * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+             * 
+             * <pre>
+             * &lt;complexType>
+             *   &lt;complexContent>
+             *     &lt;extension base="{}assignmentType">
+             *       &lt;attribute name="search">
+             *         &lt;simpleType>
+             *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+             *             &lt;enumeration value="all"/>
+             *             &lt;enumeration value="customer"/>
+             *           &lt;/restriction>
+             *         &lt;/simpleType>
+             *       &lt;/attribute>
+             *     &lt;/extension>
+             *   &lt;/complexContent>
+             * &lt;/complexType>
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "")
+            public static class Assignment
+                extends AssignmentType
+            {
+
+                @XmlAttribute(name = "search")
+                protected String search;
+
+                /**
+                 * Obtém o valor da propriedade search.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getSearch() {
+                    return search;
+                }
+
+                /**
+                 * Define o valor da propriedade search.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setSearch(String value) {
+                    this.search = value;
+                }
+
+            }
+
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="time-frame" maxOccurs="unbounded">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;attribute name="date-from" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+     *                 &lt;attribute name="date-to" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+     *                 &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="person" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="editor" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="formula" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "timeFrame"
+    })
+    public static class TimeFrameList {
+
+        @XmlElement(name = "time-frame", required = true)
+        protected List<Evaluation.TimeFrameList.TimeFrame> timeFrame;
+
+        /**
+         * Gets the value of the timeFrame property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the timeFrame property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getTimeFrame().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link Evaluation.TimeFrameList.TimeFrame }
+         * 
+         * 
+         */
+        public List<Evaluation.TimeFrameList.TimeFrame> getTimeFrame() {
+            if (timeFrame == null) {
+                timeFrame = new ArrayList<Evaluation.TimeFrameList.TimeFrame>();
+            }
+            return this.timeFrame;
+        }
+
+
+        /**
+         * <p>Classe Java de anonymous complex type.
+         * 
+         * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;attribute name="date-from" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+         *       &lt;attribute name="date-to" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+         *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="person" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="editor" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="formula" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class TimeFrame {
+
+            @XmlAttribute(name = "date-from")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar dateFrom;
+            @XmlAttribute(name = "date-to")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar dateTo;
+            @XmlAttribute(name = "name")
+            protected String name;
+            @XmlAttribute(name = "person")
+            protected String person;
+            @XmlAttribute(name = "editor")
+            protected String editor;
+            @XmlAttribute(name = "formula", required = true)
+            protected String formula;
+
+            /**
+             * Obtém o valor da propriedade dateFrom.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getDateFrom() {
+                return dateFrom;
+            }
+
+            /**
+             * Define o valor da propriedade dateFrom.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setDateFrom(XMLGregorianCalendar value) {
+                this.dateFrom = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade dateTo.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getDateTo() {
+                return dateTo;
+            }
+
+            /**
+             * Define o valor da propriedade dateTo.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setDateTo(XMLGregorianCalendar value) {
+                this.dateTo = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade name.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getName() {
+                return name;
+            }
+
+            /**
+             * Define o valor da propriedade name.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setName(String value) {
+                this.name = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade person.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getPerson() {
+                return person;
+            }
+
+            /**
+             * Define o valor da propriedade person.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setPerson(String value) {
+                this.person = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade editor.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getEditor() {
+                return editor;
+            }
+
+            /**
+             * Define o valor da propriedade editor.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setEditor(String value) {
+                this.editor = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade formula.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getFormula() {
+                return formula;
+            }
+
+            /**
+             * Define o valor da propriedade formula.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setFormula(String value) {
+                this.formula = value;
+            }
+
+        }
+
+    }
+
+}

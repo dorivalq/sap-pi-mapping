@@ -1,0 +1,16 @@
+1480507817713	Encapsulate field 'type'
+1480509265282	Copy compilation unit
+1480509306555	Delete element
+1480509529828	Rename type 'RegistradorSax'
+1480519988511	Delete element
+1480520067914	Delete element
+1480520345805	Rename resource 'UniversalAMIInterfaceTypes.xsd'
+1480520447402	Rename resource 'UniversalAMIInterfaceTypes-TF-Itens.xsd'
+1480520473335	Rename resource 'UniversalAMIInterfaceTypes-TF-Itens.xml'
+1480522118692	Move compilation unit
+1480522126097	Move compilation unit
+1480522138337	Move compilation unit
+1480522145418	Move compilation unit
+1480522885099	Copy file
+1480526480757	Extract local variable 'split'
+1480526974858	Extract local variable 'string'

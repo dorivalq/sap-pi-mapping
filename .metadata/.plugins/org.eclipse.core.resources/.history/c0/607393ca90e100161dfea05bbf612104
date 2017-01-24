@@ -1,0 +1,260 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 10:45:19 AM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * Message header containing descriptive information
+ * 				about the message.
+ * 			
+ * 
+ * <p>Classe Java de MessageHeader complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="MessageHeader">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="verb" minOccurs="0" form="qualified">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="cancel"/>
+ *               &lt;enumeration value="canceled"/>
+ *               &lt;enumeration value="change"/>
+ *               &lt;enumeration value="changed"/>
+ *               &lt;enumeration value="create"/>
+ *               &lt;enumeration value="created"/>
+ *               &lt;enumeration value="close"/>
+ *               &lt;enumeration value="closed"/>
+ *               &lt;enumeration value="delete"/>
+ *               &lt;enumeration value="deleted"/>
+ *               &lt;enumeration value="get"/>
+ *               &lt;enumeration value="show"/>
+ *               &lt;enumeration value="request"/>
+ *               &lt;enumeration value="reply"/>
+ *               &lt;enumeration value="ack"/>
+ *               &lt;enumeration value="subscribe"/>
+ *               &lt;enumeration value="unsubscribe"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
+ *         &lt;element name="noun" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="revision" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="dateTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *         &lt;element name="source" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="messageID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="asyncReplyTo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "MessageHeader", propOrder = {
+    "verb",
+    "noun",
+    "revision",
+    "dateTime",
+    "source",
+    "messageID",
+    "asyncReplyTo"
+})
+public class MessageHeader {
+
+    protected String verb;
+    protected String noun;
+    @XmlElement(defaultValue = "1")
+    protected String revision;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar dateTime;
+    protected String source;
+    protected String messageID;
+    protected String asyncReplyTo;
+
+    /**
+     * Obtém o valor da propriedade verb.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getVerb() {
+        return verb;
+    }
+
+    /**
+     * Define o valor da propriedade verb.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setVerb(String value) {
+        this.verb = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade noun.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNoun() {
+        return noun;
+    }
+
+    /**
+     * Define o valor da propriedade noun.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNoun(String value) {
+        this.noun = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade revision.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRevision() {
+        return revision;
+    }
+
+    /**
+     * Define o valor da propriedade revision.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRevision(String value) {
+        this.revision = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade dateTime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDateTime() {
+        return dateTime;
+    }
+
+    /**
+     * Define o valor da propriedade dateTime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDateTime(XMLGregorianCalendar value) {
+        this.dateTime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade source.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSource() {
+        return source;
+    }
+
+    /**
+     * Define o valor da propriedade source.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSource(String value) {
+        this.source = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade messageID.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMessageID() {
+        return messageID;
+    }
+
+    /**
+     * Define o valor da propriedade messageID.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMessageID(String value) {
+        this.messageID = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade asyncReplyTo.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAsyncReplyTo() {
+        return asyncReplyTo;
+    }
+
+    /**
+     * Define o valor da propriedade asyncReplyTo.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAsyncReplyTo(String value) {
+        this.asyncReplyTo = value;
+    }
+
+}

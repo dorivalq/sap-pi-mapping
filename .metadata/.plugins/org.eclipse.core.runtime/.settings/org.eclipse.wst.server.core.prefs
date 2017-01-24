@@ -1,0 +1,4 @@
+auto-publish=false
+eclipse.preferences.version=1
+module-start-timeout=300000
+runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="sapruntime" id-set\="true" location\=" " name\="Bibliotecas SAP" runtime-type-id\="sapruntime" timestamp\="0"/>\r\n  <runtime PROPERTY_EXEC_ENVIRONMENT\="J2SE-1.4" id\="JBoss 5.0 Runtime" location\="D\:/desenv/jboss-5.0.0.GA" name\="JBoss 5.0 Runtime" org.jboss.ide.eclipse.as.core.runtime.configurationLocation\="server" org.jboss.ide.eclipse.as.core.runtime.configurationName\="default" runtime-type-id\="org.jboss.ide.eclipse.as.runtime.50" timestamp\="0"/>\r\n</runtimes>\r\n

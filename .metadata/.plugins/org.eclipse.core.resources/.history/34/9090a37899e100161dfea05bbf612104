@@ -1,0 +1,182 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 04:26:21 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de identificationType complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="identificationType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="ident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="ident2" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="ident3" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="ident4" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "identificationType")
+@XmlSeeAlso({
+    br.com.cpfl.mapping.jaxb.Group2 .Identification.class,
+    br.com.cpfl.mapping.jaxb.Group1 .Identification.class,
+    br.com.cpfl.mapping.jaxb.Datachannel.Identification.class,
+    br.com.cpfl.mapping.jaxb.Datachannel.MeterDevice.Identification.class,
+    br.com.cpfl.mapping.jaxb.Device.Identification.class,
+    br.com.cpfl.mapping.jaxb.Customer.Identification.class
+})
+public class IdentificationType {
+
+    @XmlAttribute(name = "description")
+    protected String description;
+    @XmlAttribute(name = "ident1")
+    protected String ident1;
+    @XmlAttribute(name = "ident2")
+    protected String ident2;
+    @XmlAttribute(name = "ident3")
+    protected String ident3;
+    @XmlAttribute(name = "ident4")
+    protected String ident4;
+
+    /**
+     * Obtém o valor da propriedade description.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Define o valor da propriedade description.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade ident1.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent1() {
+        return ident1;
+    }
+
+    /**
+     * Define o valor da propriedade ident1.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent1(String value) {
+        this.ident1 = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade ident2.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent2() {
+        return ident2;
+    }
+
+    /**
+     * Define o valor da propriedade ident2.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent2(String value) {
+        this.ident2 = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade ident3.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent3() {
+        return ident3;
+    }
+
+    /**
+     * Define o valor da propriedade ident3.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent3(String value) {
+        this.ident3 = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade ident4.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent4() {
+        return ident4;
+    }
+
+    /**
+     * Define o valor da propriedade ident4.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent4(String value) {
+        this.ident4 = value;
+    }
+
+}

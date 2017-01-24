@@ -1,0 +1,790 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 04:25:19 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de datachannel complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="datachannel">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="assignment" type="{}assignmentType" minOccurs="0"/>
+ *         &lt;element name="identification" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;extension base="{}identificationType">
+ *                 &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *               &lt;/extension>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="constant" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;attribute name="transformer-factor-u" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="transformer-factor-i" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="pulse-constant" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="general-constant" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="meter-device" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="identification" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;extension base="{}identificationType">
+ *                           &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                         &lt;/extension>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                   &lt;element name="general" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;attribute name="password" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="address" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                 &lt;/sequence>
+ *                 &lt;attribute name="nr" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="ext-nr" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="data-list" type="{}data-list" minOccurs="0"/>
+ *       &lt;/sequence>
+ *       &lt;attribute name="obis-id-code" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;minLength value="3"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *       &lt;attribute name="state">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;enumeration value="active"/>
+ *             &lt;enumeration value="inactive"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *       &lt;attribute name="obis-new" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "datachannel", propOrder = {
+    "assignment",
+    "identification",
+    "constant",
+    "meterDevice",
+    "dataList"
+})
+public class Datachannel {
+
+    protected AssignmentType assignment;
+    protected Datachannel.Identification identification;
+    protected Datachannel.Constant constant;
+    @XmlElement(name = "meter-device")
+    protected Datachannel.MeterDevice meterDevice;
+    @XmlElement(name = "data-list")
+    protected DataList dataList;
+    @XmlAttribute(name = "obis-id-code", required = true)
+    protected String obisIdCode;
+    @XmlAttribute(name = "state")
+    protected String state;
+    @XmlAttribute(name = "obis-new")
+    protected String obisNew;
+
+    /**
+     * Obtém o valor da propriedade assignment.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AssignmentType }
+     *     
+     */
+    public AssignmentType getAssignment() {
+        return assignment;
+    }
+
+    /**
+     * Define o valor da propriedade assignment.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AssignmentType }
+     *     
+     */
+    public void setAssignment(AssignmentType value) {
+        this.assignment = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade identification.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Datachannel.Identification }
+     *     
+     */
+    public Datachannel.Identification getIdentification() {
+        return identification;
+    }
+
+    /**
+     * Define o valor da propriedade identification.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Datachannel.Identification }
+     *     
+     */
+    public void setIdentification(Datachannel.Identification value) {
+        this.identification = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade constant.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Datachannel.Constant }
+     *     
+     */
+    public Datachannel.Constant getConstant() {
+        return constant;
+    }
+
+    /**
+     * Define o valor da propriedade constant.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Datachannel.Constant }
+     *     
+     */
+    public void setConstant(Datachannel.Constant value) {
+        this.constant = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade meterDevice.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Datachannel.MeterDevice }
+     *     
+     */
+    public Datachannel.MeterDevice getMeterDevice() {
+        return meterDevice;
+    }
+
+    /**
+     * Define o valor da propriedade meterDevice.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Datachannel.MeterDevice }
+     *     
+     */
+    public void setMeterDevice(Datachannel.MeterDevice value) {
+        this.meterDevice = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade dataList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DataList }
+     *     
+     */
+    public DataList getDataList() {
+        return dataList;
+    }
+
+    /**
+     * Define o valor da propriedade dataList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DataList }
+     *     
+     */
+    public void setDataList(DataList value) {
+        this.dataList = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade obisIdCode.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getObisIdCode() {
+        return obisIdCode;
+    }
+
+    /**
+     * Define o valor da propriedade obisIdCode.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setObisIdCode(String value) {
+        this.obisIdCode = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade state.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getState() {
+        return state;
+    }
+
+    /**
+     * Define o valor da propriedade state.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setState(String value) {
+        this.state = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade obisNew.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getObisNew() {
+        return obisNew;
+    }
+
+    /**
+     * Define o valor da propriedade obisNew.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setObisNew(String value) {
+        this.obisNew = value;
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;attribute name="transformer-factor-u" type="{http://www.w3.org/2001/XMLSchema}double" />
+     *       &lt;attribute name="transformer-factor-i" type="{http://www.w3.org/2001/XMLSchema}double" />
+     *       &lt;attribute name="pulse-constant" type="{http://www.w3.org/2001/XMLSchema}double" />
+     *       &lt;attribute name="general-constant" type="{http://www.w3.org/2001/XMLSchema}double" />
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Constant {
+
+        @XmlAttribute(name = "transformer-factor-u")
+        protected Double transformerFactorU;
+        @XmlAttribute(name = "transformer-factor-i")
+        protected Double transformerFactorI;
+        @XmlAttribute(name = "pulse-constant")
+        protected Double pulseConstant;
+        @XmlAttribute(name = "general-constant")
+        protected Double generalConstant;
+
+        /**
+         * Obtém o valor da propriedade transformerFactorU.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Double }
+         *     
+         */
+        public Double getTransformerFactorU() {
+            return transformerFactorU;
+        }
+
+        /**
+         * Define o valor da propriedade transformerFactorU.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Double }
+         *     
+         */
+        public void setTransformerFactorU(Double value) {
+            this.transformerFactorU = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade transformerFactorI.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Double }
+         *     
+         */
+        public Double getTransformerFactorI() {
+            return transformerFactorI;
+        }
+
+        /**
+         * Define o valor da propriedade transformerFactorI.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Double }
+         *     
+         */
+        public void setTransformerFactorI(Double value) {
+            this.transformerFactorI = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade pulseConstant.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Double }
+         *     
+         */
+        public Double getPulseConstant() {
+            return pulseConstant;
+        }
+
+        /**
+         * Define o valor da propriedade pulseConstant.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Double }
+         *     
+         */
+        public void setPulseConstant(Double value) {
+            this.pulseConstant = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade generalConstant.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Double }
+         *     
+         */
+        public Double getGeneralConstant() {
+            return generalConstant;
+        }
+
+        /**
+         * Define o valor da propriedade generalConstant.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Double }
+         *     
+         */
+        public void setGeneralConstant(Double value) {
+            this.generalConstant = value;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;extension base="{}identificationType">
+     *       &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *     &lt;/extension>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Identification
+        extends IdentificationType
+    {
+
+        @XmlAttribute(name = "uident1")
+        protected String uident1;
+
+        /**
+         * Obtém o valor da propriedade uident1.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getUident1() {
+            return uident1;
+        }
+
+        /**
+         * Define o valor da propriedade uident1.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setUident1(String value) {
+            this.uident1 = value;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="identification" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;extension base="{}identificationType">
+     *                 &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *               &lt;/extension>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *         &lt;element name="general" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;attribute name="password" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="address" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *       &lt;/sequence>
+     *       &lt;attribute name="nr" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="ext-nr" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "identification",
+        "general"
+    })
+    public static class MeterDevice {
+
+        protected Datachannel.MeterDevice.Identification identification;
+        protected Datachannel.MeterDevice.General general;
+        @XmlAttribute(name = "nr")
+        protected String nr;
+        @XmlAttribute(name = "ext-nr")
+        protected String extNr;
+
+        /**
+         * Obtém o valor da propriedade identification.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Datachannel.MeterDevice.Identification }
+         *     
+         */
+        public Datachannel.MeterDevice.Identification getIdentification() {
+            return identification;
+        }
+
+        /**
+         * Define o valor da propriedade identification.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Datachannel.MeterDevice.Identification }
+         *     
+         */
+        public void setIdentification(Datachannel.MeterDevice.Identification value) {
+            this.identification = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade general.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Datachannel.MeterDevice.General }
+         *     
+         */
+        public Datachannel.MeterDevice.General getGeneral() {
+            return general;
+        }
+
+        /**
+         * Define o valor da propriedade general.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Datachannel.MeterDevice.General }
+         *     
+         */
+        public void setGeneral(Datachannel.MeterDevice.General value) {
+            this.general = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade nr.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getNr() {
+            return nr;
+        }
+
+        /**
+         * Define o valor da propriedade nr.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setNr(String value) {
+            this.nr = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade extNr.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getExtNr() {
+            return extNr;
+        }
+
+        /**
+         * Define o valor da propriedade extNr.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setExtNr(String value) {
+            this.extNr = value;
+        }
+
+
+        /**
+         * <p>Classe Java de anonymous complex type.
+         * 
+         * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;attribute name="password" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="address" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class General {
+
+            @XmlAttribute(name = "password")
+            protected String password;
+            @XmlAttribute(name = "address")
+            protected String address;
+
+            /**
+             * Obtém o valor da propriedade password.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getPassword() {
+                return password;
+            }
+
+            /**
+             * Define o valor da propriedade password.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setPassword(String value) {
+                this.password = value;
+            }
+
+            /**
+             * Obtém o valor da propriedade address.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getAddress() {
+                return address;
+            }
+
+            /**
+             * Define o valor da propriedade address.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setAddress(String value) {
+                this.address = value;
+            }
+
+        }
+
+
+        /**
+         * <p>Classe Java de anonymous complex type.
+         * 
+         * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;extension base="{}identificationType">
+         *       &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *     &lt;/extension>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "")
+        public static class Identification
+            extends IdentificationType
+        {
+
+            @XmlAttribute(name = "uident1")
+            protected String uident1;
+
+            /**
+             * Obtém o valor da propriedade uident1.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getUident1() {
+                return uident1;
+            }
+
+            /**
+             * Define o valor da propriedade uident1.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setUident1(String value) {
+                this.uident1 = value;
+            }
+
+        }
+
+    }
+
+}

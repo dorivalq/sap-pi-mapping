@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract local variable &apos;stringWriter&apos; from expression &apos;new StringWriter()&apos;&#x0D;&#x0A;- Original project: &apos;trata-falha-de-para-itens&apos;&#x0D;&#x0A;- Variable name: &apos;stringWriter&apos;&#x0D;&#x0A;- Destination method: &apos;br.com.cpfl.mapping.ZTrataFalhaDeParaItens.execute()&apos;&#x0D;&#x0A;- Variable expression: &apos;new StringWriter()&apos;" description="Extract local variable &apos;stringWriter&apos;" final="false" id="org.eclipse.jdt.ui.extract.temp" input="/src&lt;br.com.cpfl.mapping{ZTrataFalhaDeParaItens.java" name="stringWriter" replace="false" selection="4200 18" stamp="1485186930901" version="1.0"/>
+</session>

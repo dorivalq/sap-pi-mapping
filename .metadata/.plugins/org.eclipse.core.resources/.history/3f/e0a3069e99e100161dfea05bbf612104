@@ -1,0 +1,170 @@
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de assignmentType complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="assignmentType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;attribute name="ident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="ident2" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="ident3" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="ident4" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="ident5" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "assignmentType")
+@XmlSeeAlso({
+    br.com.cpfl.mapping.jaxb.Evaluation.SourceDatachannelList.SourceDatachannel.Assignment.class
+})
+public class AssignmentType {
+
+    @XmlAttribute(name = "ident1")
+    protected String ident1;
+    @XmlAttribute(name = "ident2")
+    protected String ident2;
+    @XmlAttribute(name = "ident3")
+    protected String ident3;
+    @XmlAttribute(name = "ident4")
+    protected String ident4;
+    @XmlAttribute(name = "ident5")
+    protected String ident5;
+
+    /**
+     * Obtém o valor da propriedade ident1.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent1() {
+        return ident1;
+    }
+
+    /**
+     * Define o valor da propriedade ident1.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent1(String value) {
+        this.ident1 = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade ident2.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent2() {
+        return ident2;
+    }
+
+    /**
+     * Define o valor da propriedade ident2.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent2(String value) {
+        this.ident2 = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade ident3.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent3() {
+        return ident3;
+    }
+
+    /**
+     * Define o valor da propriedade ident3.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent3(String value) {
+        this.ident3 = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade ident4.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent4() {
+        return ident4;
+    }
+
+    /**
+     * Define o valor da propriedade ident4.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent4(String value) {
+        this.ident4 = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade ident5.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdent5() {
+        return ident5;
+    }
+
+    /**
+     * Define o valor da propriedade ident5.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdent5(String value) {
+        this.ident5 = value;
+    }
+
+}

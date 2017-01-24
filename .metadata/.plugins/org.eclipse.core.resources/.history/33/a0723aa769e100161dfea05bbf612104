@@ -1,0 +1,407 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.18 às 03:22:30 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * <p>Classe Java de MeterDataRequest complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="MeterDataRequest">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="startTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *         &lt;element name="endTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *         &lt;element name="versionTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *         &lt;element name="Meter" type="{http://www.emeter.com/energyip/amiinterface}MeterAsset" form="qualified"/>
+ *         &lt;element name="measurementProfile" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="readingTypeList" type="{http://www.emeter.com/energyip/amiinterface}ReadingTypeList" minOccurs="0" form="qualified"/>
+ *         &lt;element name="eventCategory" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0" form="qualified"/>
+ *         &lt;element name="retrieveRegisterReads" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0" form="qualified"/>
+ *         &lt;element name="retrieveIntervalReads" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0" form="qualified"/>
+ *         &lt;element name="demandReset" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0" form="qualified"/>
+ *         &lt;element name="retrieveEvents" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0" form="qualified"/>
+ *         &lt;element name="executeStartTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *         &lt;element name="executeExpireTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "MeterDataRequest", propOrder = {
+    "startTime",
+    "endTime",
+    "versionTime",
+    "meter",
+    "measurementProfile",
+    "readingTypeList",
+    "eventCategory",
+    "retrieveRegisterReads",
+    "retrieveIntervalReads",
+    "demandReset",
+    "retrieveEvents",
+    "executeStartTime",
+    "executeExpireTime"
+})
+public class MeterDataRequest {
+
+    //@XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar startTime;
+//    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar endTime;
+//    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar versionTime;
+    @XmlElement(name = "Meter", required = true)
+    protected MeterAsset meter;
+    protected String measurementProfile;
+    protected ReadingTypeList readingTypeList;
+    protected List<String> eventCategory;
+    protected Boolean retrieveRegisterReads;
+    protected Boolean retrieveIntervalReads;
+    protected Boolean demandReset;
+    protected Boolean retrieveEvents;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar executeStartTime;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar executeExpireTime;
+
+    /**
+     * Obtém o valor da propriedade startTime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * Define o valor da propriedade startTime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setStartTime(XMLGregorianCalendar value) {
+        this.startTime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade endTime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * Define o valor da propriedade endTime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setEndTime(XMLGregorianCalendar value) {
+        this.endTime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade versionTime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getVersionTime() {
+        return versionTime;
+    }
+
+    /**
+     * Define o valor da propriedade versionTime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setVersionTime(XMLGregorianCalendar value) {
+        this.versionTime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade meter.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MeterAsset }
+     *     
+     */
+    public MeterAsset getMeter() {
+        return meter;
+    }
+
+    /**
+     * Define o valor da propriedade meter.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MeterAsset }
+     *     
+     */
+    public void setMeter(MeterAsset value) {
+        this.meter = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade measurementProfile.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMeasurementProfile() {
+        return measurementProfile;
+    }
+
+    /**
+     * Define o valor da propriedade measurementProfile.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMeasurementProfile(String value) {
+        this.measurementProfile = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade readingTypeList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ReadingTypeList }
+     *     
+     */
+    public ReadingTypeList getReadingTypeList() {
+        return readingTypeList;
+    }
+
+    /**
+     * Define o valor da propriedade readingTypeList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ReadingTypeList }
+     *     
+     */
+    public void setReadingTypeList(ReadingTypeList value) {
+        this.readingTypeList = value;
+    }
+
+    /**
+     * Gets the value of the eventCategory property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the eventCategory property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getEventCategory().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getEventCategory() {
+        if (eventCategory == null) {
+            eventCategory = new ArrayList<String>();
+        }
+        return this.eventCategory;
+    }
+
+    /**
+     * Obtém o valor da propriedade retrieveRegisterReads.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isRetrieveRegisterReads() {
+        return retrieveRegisterReads;
+    }
+
+    /**
+     * Define o valor da propriedade retrieveRegisterReads.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setRetrieveRegisterReads(Boolean value) {
+        this.retrieveRegisterReads = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade retrieveIntervalReads.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isRetrieveIntervalReads() {
+        return retrieveIntervalReads;
+    }
+
+    /**
+     * Define o valor da propriedade retrieveIntervalReads.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setRetrieveIntervalReads(Boolean value) {
+        this.retrieveIntervalReads = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade demandReset.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isDemandReset() {
+        return demandReset;
+    }
+
+    /**
+     * Define o valor da propriedade demandReset.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setDemandReset(Boolean value) {
+        this.demandReset = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade retrieveEvents.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isRetrieveEvents() {
+        return retrieveEvents;
+    }
+
+    /**
+     * Define o valor da propriedade retrieveEvents.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setRetrieveEvents(Boolean value) {
+        this.retrieveEvents = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade executeStartTime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getExecuteStartTime() {
+        return executeStartTime;
+    }
+
+    /**
+     * Define o valor da propriedade executeStartTime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setExecuteStartTime(XMLGregorianCalendar value) {
+        this.executeStartTime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade executeExpireTime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getExecuteExpireTime() {
+        return executeExpireTime;
+    }
+
+    /**
+     * Define o valor da propriedade executeExpireTime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setExecuteExpireTime(XMLGregorianCalendar value) {
+        this.executeExpireTime = value;
+    }
+
+}

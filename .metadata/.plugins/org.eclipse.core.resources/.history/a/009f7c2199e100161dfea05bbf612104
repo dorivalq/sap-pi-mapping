@@ -1,0 +1,382 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 04:23:20 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de customer complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="customer">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="assignment" type="{}assignmentType"/>
+ *         &lt;element name="identification" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;extension base="{}identificationType">
+ *                 &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *               &lt;/extension>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="address" type="{}addressType" minOccurs="0"/>
+ *         &lt;element name="contact" type="{}contactType" minOccurs="0"/>
+ *         &lt;element name="communication-list" type="{}communication-listType" minOccurs="0"/>
+ *         &lt;element name="evaluation" type="{}evaluation" minOccurs="0"/>
+ *         &lt;element name="status" type="{}statusType" minOccurs="0"/>
+ *       &lt;/sequence>
+ *       &lt;attribute name="nr" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="state">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;enumeration value="active"/>
+ *             &lt;enumeration value="inactive"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "customer", propOrder = {
+    "assignment",
+    "identification",
+    "address",
+    "contact",
+    "communicationList",
+    "evaluation",
+    "status"
+})
+public class Customer {
+
+    @XmlElement(required = true)
+    protected AssignmentType assignment;
+    protected Customer.Identification identification;
+    protected AddressType address;
+    protected ContactType contact;
+    @XmlElement(name = "communication-list")
+    protected CommunicationListType communicationList;
+    protected Evaluation evaluation;
+    protected StatusType status;
+    @XmlAttribute(name = "nr")
+    protected String nr;
+    @XmlAttribute(name = "type", required = true)
+    protected String type;
+    @XmlAttribute(name = "state")
+    protected String state;
+
+    /**
+     * Obtém o valor da propriedade assignment.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AssignmentType }
+     *     
+     */
+    public AssignmentType getAssignment() {
+        return assignment;
+    }
+
+    /**
+     * Define o valor da propriedade assignment.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AssignmentType }
+     *     
+     */
+    public void setAssignment(AssignmentType value) {
+        this.assignment = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade identification.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Customer.Identification }
+     *     
+     */
+    public Customer.Identification getIdentification() {
+        return identification;
+    }
+
+    /**
+     * Define o valor da propriedade identification.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Customer.Identification }
+     *     
+     */
+    public void setIdentification(Customer.Identification value) {
+        this.identification = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade address.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AddressType }
+     *     
+     */
+    public AddressType getAddress() {
+        return address;
+    }
+
+    /**
+     * Define o valor da propriedade address.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AddressType }
+     *     
+     */
+    public void setAddress(AddressType value) {
+        this.address = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade contact.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ContactType }
+     *     
+     */
+    public ContactType getContact() {
+        return contact;
+    }
+
+    /**
+     * Define o valor da propriedade contact.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ContactType }
+     *     
+     */
+    public void setContact(ContactType value) {
+        this.contact = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade communicationList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CommunicationListType }
+     *     
+     */
+    public CommunicationListType getCommunicationList() {
+        return communicationList;
+    }
+
+    /**
+     * Define o valor da propriedade communicationList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CommunicationListType }
+     *     
+     */
+    public void setCommunicationList(CommunicationListType value) {
+        this.communicationList = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade evaluation.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Evaluation }
+     *     
+     */
+    public Evaluation getEvaluation() {
+        return evaluation;
+    }
+
+    /**
+     * Define o valor da propriedade evaluation.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Evaluation }
+     *     
+     */
+    public void setEvaluation(Evaluation value) {
+        this.evaluation = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade status.
+     * 
+     * @return
+     *     possible object is
+     *     {@link StatusType }
+     *     
+     */
+    public StatusType getStatus() {
+        return status;
+    }
+
+    /**
+     * Define o valor da propriedade status.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link StatusType }
+     *     
+     */
+    public void setStatus(StatusType value) {
+        this.status = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade nr.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNr() {
+        return nr;
+    }
+
+    /**
+     * Define o valor da propriedade nr.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNr(String value) {
+        this.nr = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade type.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Define o valor da propriedade type.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade state.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getState() {
+        return state;
+    }
+
+    /**
+     * Define o valor da propriedade state.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setState(String value) {
+        this.state = value;
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;extension base="{}identificationType">
+     *       &lt;attribute name="uident1" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *     &lt;/extension>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Identification
+        extends IdentificationType
+    {
+
+        @XmlAttribute(name = "uident1")
+        protected String uident1;
+
+        /**
+         * Obtém o valor da propriedade uident1.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getUident1() {
+            return uident1;
+        }
+
+        /**
+         * Define o valor da propriedade uident1.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setUident1(String value) {
+            this.uident1 = value;
+        }
+
+    }
+
+}

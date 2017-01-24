@@ -1,0 +1,30 @@
+package br.com.cpfl.mapping;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="MeterReadsRequestMessage", namespace="http://www.emeter.com/energyip/amiinterface")
+class MyBind {
+	
+	@XmlRootElement(name="ami:header")
+	static class header{
+		@javax.xml.bind.annotation.XmlElement(name = "verb" , namespace="http://www.emeter.com/energyip/amiinterface" )
+		String test;
+
+		public String getTest() {
+			return test;
+		}
+
+		public void setTest(String test) {
+			this.test = test;
+		}
+
+		@Override
+		public String toString() {
+			return "header [test=" + test + "]";
+		}
+		
+	}
+}

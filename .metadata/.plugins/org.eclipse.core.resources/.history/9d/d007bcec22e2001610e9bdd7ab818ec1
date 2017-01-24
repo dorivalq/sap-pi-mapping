@@ -1,0 +1,89 @@
+<result>
+  <version date="2008-05-01">1.0</version>
+  <request-id>8028</request-id>
+  <state>succeeded</state>
+  <payload>
+    <identification>
+      <metering-point id="107111957" />
+      <device nr="" />
+      <datachannel obis-id-code="1-30:0.0.0" />
+      <device-list>
+        <device date-from="2015-07-14T00:00:00" date-to="2015-07-15T00:00:00" nr="40135966" />
+      </device-list>
+    </identification>
+    <data>
+      <time-frame date-from="2015-07-14" date-to="2015-07-15" />
+      <data-type>rv</data-type>
+      <plausibility>notset</plausibility>
+      <readout-cause>billing</readout-cause>
+      <value-list>
+        <val dt="2015-07-14T10:59:43" lb="0.99.0" st="" unit="">ABNT</val>
+        <val dt="2015-07-14T10:59:43" lb="0.99.1" st="" unit="">ETZ</val>
+        <val dt="2015-07-14T10:59:43" lb="0.99.2" st="" unit="">LIBZ</val>
+        <val dt="2015-07-14T10:59:43" lb="0.99.3" st="" unit="">ORIGINAL</val>
+        <val dt="2015-07-14T10:59:43" lb="0.0.0" st="" unit="">40135966</val>
+        <val dt="2015-07-14T10:59:43" lb="0.0.1" st="" unit="">SPCAFSENTR101R</val>
+        <val dt="2015-07-14T10:59:43" lb="0.0.2" st="" unit="">2180</val>
+        <val dt="2015-07-14T10:59:43" lb="0.9.1" st="" unit="">105943</val>
+        <val dt="2015-07-14T10:59:43" lb="0.9.2" st="" unit="">20150714</val>
+        <val dt="2015-07-14T10:59:43" lb="1.7.0" st="" unit="kW">30.323</val>
+        <val dt="2015-07-14T10:59:43" lb="3.7.0" st="" unit="kvar">-34.875</val>
+        <val dt="2015-07-14T10:59:43" lb="9.7.0" st="" unit="kVA">47.374</val>
+        <val dt="2015-07-14T10:59:43" lb="14.7.0" st="" unit="Hz">60.007</val>
+        <val dt="2015-07-14T10:59:43" lb="21.7.0" st="" unit="kW">10.643</val>
+        <val dt="2015-07-14T10:59:43" lb="23.7.0" st="" unit="kvar">-11.816</val>
+        <val dt="2015-07-14T10:59:43" lb="29.7.0" st="" unit="kVA">16.337</val>
+        <val dt="2015-07-14T10:59:43" lb="31.7.0" st="" unit="A">70.848</val>
+        <val dt="2015-07-14T10:59:43" lb="32.7.0" st="" unit="V">230.592</val>
+        <val dt="2015-07-14T10:59:43" lb="41.7.0" st="" unit="kW">9.805</val>
+        <val dt="2015-07-14T10:59:43" lb="43.7.0" st="" unit="kvar">-11.746</val>
+        <val dt="2015-07-14T10:59:43" lb="49.7.0" st="" unit="kVA">15.576</val>
+        <val dt="2015-07-14T10:59:43" lb="51.7.0" st="" unit="A">67.475</val>
+        <val dt="2015-07-14T10:59:43" lb="52.7.0" st="" unit="V">230.84</val>
+        <val dt="2015-07-14T10:59:43" lb="61.7.0" st="" unit="kW">9.875</val>
+        <val dt="2015-07-14T10:59:43" lb="63.7.0" st="" unit="kvar">-11.313</val>
+        <val dt="2015-07-14T10:59:43" lb="69.7.0" st="" unit="kVA">15.461</val>
+        <val dt="2015-07-14T10:59:43" lb="71.7.0" st="" unit="A">66.791</val>
+        <val dt="2015-07-14T10:59:43" lb="72.7.0" st="" unit="V">231.491</val>
+        <val dt="2015-07-14T10:59:43" lb="101" st="" unit="V">399.122</val>
+        <val dt="2015-07-14T10:59:43" lb="102" st="" unit="V">400.763</val>
+        <val dt="2015-07-14T10:59:43" lb="103" st="" unit="V">400.292</val>
+        <val dt="2015-07-14T10:59:43" lb="104" st="" unit="A">10.558</val>
+        <val dt="2015-07-14T10:59:43" lb="105" st="" unit="kVA">15.902</val>
+        <val dt="2015-07-14T10:59:43" lb="106" st="" unit="kVA">15.301</val>
+        <val dt="2015-07-14T10:59:43" lb="107" st="" unit="kVA">15.017</val>
+        <val dt="2015-07-14T10:59:43" lb="108" st="" unit="kVA">46.215</val>
+        <val dt="2015-07-14T10:59:43" lb="109" st="" unit="kVA">3.744</val>
+        <val dt="2015-07-14T10:59:43" lb="110" st="" unit="kVA">2.915</val>
+        <val dt="2015-07-14T10:59:43" lb="111" st="" unit="kVA">3.68</val>
+        <val dt="2015-07-14T10:59:43" lb="112" st="" unit="kVA">10.339</val>
+        <val dt="2015-07-14T10:59:43" lb="113" st="" unit="C">0.669</val>
+        <val dt="2015-07-14T10:59:43" lb="114" st="" unit="C">0.641</val>
+        <val dt="2015-07-14T10:59:43" lb="115" st="" unit="C">0.658</val>
+        <val dt="2015-07-14T10:59:43" lb="116" st="" unit="C">0.656</val>
+        <val dt="2015-07-14T10:59:43" lb="117" st="" unit="">0.651</val>
+        <val dt="2015-07-14T10:59:43" lb="118" st="" unit="">0.629</val>
+        <val dt="2015-07-14T10:59:43" lb="119" st="" unit="">0.639</val>
+        <val dt="2015-07-14T10:59:43" lb="120" st="" unit="">0.64</val>
+        <val dt="2015-07-14T10:59:43" lb="121" st="" unit="°">47.99</val>
+        <val dt="2015-07-14T10:59:43" lb="122" st="" unit="°">50.147</val>
+        <val dt="2015-07-14T10:59:43" lb="123" st="" unit="°">48.882</val>
+        <val dt="2015-07-14T10:59:43" lb="124" st="" unit="°C">37.386</val>
+        <val dt="2015-07-14T10:59:43" lb="125" st="" unit="Estrela">1</val>
+        <val dt="2015-07-14T10:59:43" lb="126" st="" unit="°">0.0</val>
+        <val dt="2015-07-14T10:59:43" lb="127" st="" unit="°">0.0</val>
+        <val dt="2015-07-14T10:59:43" lb="128" st="" unit="°">0.0</val>
+        <val dt="2015-07-14T10:59:43" lb="129" st="" unit="°">-119.757</val>
+        <val dt="2015-07-14T10:59:43" lb="130" st="" unit="°">120.058</val>
+        <val dt="2015-07-14T10:59:43" lb="131" st="" unit="°">-119.757</val>
+        <val dt="2015-07-14T10:59:43" lb="132" st="" unit="°">-120.185</val>
+        <val dt="2015-07-14T10:59:43" lb="133" st="" unit="°">-120.058</val>
+        <val dt="2015-07-14T10:59:43" lb="134" st="" unit="%">3.801</val>
+        <val dt="2015-07-14T10:59:43" lb="135" st="" unit="%">3.144</val>
+        <val dt="2015-07-14T10:59:43" lb="136" st="" unit="%">3.581</val>
+        <val dt="2015-07-14T10:59:43" lb="137" st="" unit="">14</val>
+      </value-list>
+	 
+    </data>
+  </payload>
+</result>

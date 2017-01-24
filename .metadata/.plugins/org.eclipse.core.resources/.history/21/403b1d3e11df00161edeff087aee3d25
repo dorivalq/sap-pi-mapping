@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="extracted_jar" name="Create jar for z-mdm-zfa-odr">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="D:/"/>
+	
+	
+	<target name="extracted_jar">
+        <jar destfile="D:/jar/z-mdm-zfa-odr.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="br.com.cpfl.mapping.ZMdmXiZfaOdr"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.buildfile}/bin"/>
+        	<fileset dir="${dir.buildfile}/src"/>
+            <zipfileset src="D:/dao-ejb-3.jar" includes="**/*.class, **/*.java" excludes="**/META-INF/*.MF">
+            	<!--include name="**/*.class"/-->
+            </zipfileset>
+        </jar>
+    </target>
+
+</project>

@@ -1,0 +1,307 @@
+
+package br.com.cpfl.mapping.jaxb;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * <p>Classe Java de anonymous complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="version">
+ *           &lt;complexType>
+ *             &lt;simpleContent>
+ *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
+ *                 &lt;attribute name="date" use="required" type="{http://www.w3.org/2001/XMLSchema}date" />
+ *               &lt;/extension>
+ *             &lt;/simpleContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="status" type="{}statusType" minOccurs="0"/>
+ *         &lt;element name="group-list">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="group" type="{}group1" maxOccurs="unbounded"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *       &lt;/sequence>
+ *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" fixed="master-data-transfer" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "version",
+    "status",
+    "groupList"
+})
+@XmlRootElement(name = "import")
+public class Import {
+
+    @XmlElement(required = true)
+    protected Import.Version version;
+    protected StatusType status;
+    @XmlElement(name = "group-list", required = true)
+    protected Import.GroupList groupList;
+    @XmlAttribute(name = "name", required = true)
+    @XmlSchemaType(name = "anySimpleType")
+    protected String name;
+
+    /**
+     * Obtém o valor da propriedade version.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Import.Version }
+     *     
+     */
+    public Import.Version getVersion() {
+        return version;
+    }
+
+    /**
+     * Define o valor da propriedade version.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Import.Version }
+     *     
+     */
+    public void setVersion(Import.Version value) {
+        this.version = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade status.
+     * 
+     * @return
+     *     possible object is
+     *     {@link StatusType }
+     *     
+     */
+    public StatusType getStatus() {
+        return status;
+    }
+
+    /**
+     * Define o valor da propriedade status.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link StatusType }
+     *     
+     */
+    public void setStatus(StatusType value) {
+        this.status = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade groupList.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Import.GroupList }
+     *     
+     */
+    public Import.GroupList getGroupList() {
+        return groupList;
+    }
+
+    /**
+     * Define o valor da propriedade groupList.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Import.GroupList }
+     *     
+     */
+    public void setGroupList(Import.GroupList value) {
+        this.groupList = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade name.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        if (name == null) {
+            return "master-data-transfer";
+        } else {
+            return name;
+        }
+    }
+
+    /**
+     * Define o valor da propriedade name.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="group" type="{}group1" maxOccurs="unbounded"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "group"
+    })
+    public static class GroupList {
+
+        @XmlElement(required = true)
+        protected List<Group1> group;
+
+        /**
+         * Gets the value of the group property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the group property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getGroup().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link Group1 }
+         * 
+         * 
+         */
+        public List<Group1> getGroup() {
+            if (group == null) {
+                group = new ArrayList<Group1>();
+            }
+            return this.group;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;simpleContent>
+     *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
+     *       &lt;attribute name="date" use="required" type="{http://www.w3.org/2001/XMLSchema}date" />
+     *     &lt;/extension>
+     *   &lt;/simpleContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "value"
+    })
+    public static class Version {
+
+        @XmlValue
+        protected double value;
+        @XmlAttribute(name = "date", required = true)
+        @XmlSchemaType(name = "date")
+        protected XMLGregorianCalendar date;
+
+        /**
+         * Obtém o valor da propriedade value.
+         * 
+         */
+        public double getValue() {
+            return value;
+        }
+
+        /**
+         * Define o valor da propriedade value.
+         * 
+         */
+        public void setValue(double value) {
+            this.value = value;
+        }
+
+        /**
+         * Obtém o valor da propriedade date.
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public XMLGregorianCalendar getDate() {
+            return date;
+        }
+
+        /**
+         * Define o valor da propriedade date.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public void setDate(XMLGregorianCalendar value) {
+            this.date = value;
+        }
+
+    }
+
+}

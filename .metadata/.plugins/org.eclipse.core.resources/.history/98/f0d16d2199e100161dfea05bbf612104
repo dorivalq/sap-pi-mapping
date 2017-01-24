@@ -1,0 +1,407 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 04:23:20 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlRegistry;
+
+
+/**
+ * This object contains factory methods for each 
+ * Java content interface and Java element interface 
+ * generated in the br.com.cpfl.mapping.jaxb package. 
+ * <p>An ObjectFactory allows you to programatically 
+ * construct new instances of the Java representation 
+ * for XML content. The Java representation of XML 
+ * content can consist of schema derived interfaces 
+ * and classes representing the binding of schema 
+ * type definitions, element declarations and model 
+ * groups.  Factory methods for each of these are 
+ * provided in this class.
+ * 
+ */
+@XmlRegistry
+public class ObjectFactory {
+
+
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.cpfl.mapping.jaxb
+     * 
+     */
+    public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link Import }
+     * 
+     */
+    public Import createImport() {
+        return new Import();
+    }
+
+    /**
+     * Create an instance of {@link Customer }
+     * 
+     */
+    public Customer createCustomer() {
+        return new Customer();
+    }
+
+    /**
+     * Create an instance of {@link Device }
+     * 
+     */
+    public Device createDevice() {
+        return new Device();
+    }
+
+    /**
+     * Create an instance of {@link Device.TransDevice }
+     * 
+     */
+    public Device.TransDevice createDeviceTransDevice() {
+        return new Device.TransDevice();
+    }
+
+    /**
+     * Create an instance of {@link MeteringPoint }
+     * 
+     */
+    public MeteringPoint createMeteringPoint() {
+        return new MeteringPoint();
+    }
+
+    /**
+     * Create an instance of {@link DataList }
+     * 
+     */
+    public DataList createDataList() {
+        return new DataList();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation }
+     * 
+     */
+    public Evaluation createEvaluation() {
+        return new Evaluation();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.TimeFrameList }
+     * 
+     */
+    public Evaluation.TimeFrameList createEvaluationTimeFrameList() {
+        return new Evaluation.TimeFrameList();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.SourceDatachannelList }
+     * 
+     */
+    public Evaluation.SourceDatachannelList createEvaluationSourceDatachannelList() {
+        return new Evaluation.SourceDatachannelList();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.SourceDatachannelList.SourceDatachannel }
+     * 
+     */
+    public Evaluation.SourceDatachannelList.SourceDatachannel createEvaluationSourceDatachannelListSourceDatachannel() {
+        return new Evaluation.SourceDatachannelList.SourceDatachannel();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.ResultDatachannel }
+     * 
+     */
+    public Evaluation.ResultDatachannel createEvaluationResultDatachannel() {
+        return new Evaluation.ResultDatachannel();
+    }
+
+    /**
+     * Create an instance of {@link Datachannel }
+     * 
+     */
+    public Datachannel createDatachannel() {
+        return new Datachannel();
+    }
+
+    /**
+     * Create an instance of {@link Datachannel.MeterDevice }
+     * 
+     */
+    public Datachannel.MeterDevice createDatachannelMeterDevice() {
+        return new Datachannel.MeterDevice();
+    }
+
+    /**
+     * Create an instance of {@link Group1 }
+     * 
+     */
+    public Group1 createGroup1() {
+        return new Group1();
+    }
+
+    /**
+     * Create an instance of {@link Group2 }
+     * 
+     */
+    public Group2 createGroup2() {
+        return new Group2();
+    }
+
+    /**
+     * Create an instance of {@link CommunicationListType }
+     * 
+     */
+    public CommunicationListType createCommunicationListType() {
+        return new CommunicationListType();
+    }
+
+    /**
+     * Create an instance of {@link Import.Version }
+     * 
+     */
+    public Import.Version createImportVersion() {
+        return new Import.Version();
+    }
+
+    /**
+     * Create an instance of {@link StatusType }
+     * 
+     */
+    public StatusType createStatusType() {
+        return new StatusType();
+    }
+
+    /**
+     * Create an instance of {@link Import.GroupList }
+     * 
+     */
+    public Import.GroupList createImportGroupList() {
+        return new Import.GroupList();
+    }
+
+    /**
+     * Create an instance of {@link AddressType }
+     * 
+     */
+    public AddressType createAddressType() {
+        return new AddressType();
+    }
+
+    /**
+     * Create an instance of {@link IdentificationType }
+     * 
+     */
+    public IdentificationType createIdentificationType() {
+        return new IdentificationType();
+    }
+
+    /**
+     * Create an instance of {@link ContactType }
+     * 
+     */
+    public ContactType createContactType() {
+        return new ContactType();
+    }
+
+    /**
+     * Create an instance of {@link AssignmentType }
+     * 
+     */
+    public AssignmentType createAssignmentType() {
+        return new AssignmentType();
+    }
+
+    /**
+     * Create an instance of {@link Customer.Identification }
+     * 
+     */
+    public Customer.Identification createCustomerIdentification() {
+        return new Customer.Identification();
+    }
+
+    /**
+     * Create an instance of {@link Device.Identification }
+     * 
+     */
+    public Device.Identification createDeviceIdentification() {
+        return new Device.Identification();
+    }
+
+    /**
+     * Create an instance of {@link Device.General }
+     * 
+     */
+    public Device.General createDeviceGeneral() {
+        return new Device.General();
+    }
+
+    /**
+     * Create an instance of {@link Device.Param }
+     * 
+     */
+    public Device.Param createDeviceParam() {
+        return new Device.Param();
+    }
+
+    /**
+     * Create an instance of {@link Device.DatachannelList }
+     * 
+     */
+    public Device.DatachannelList createDeviceDatachannelList() {
+        return new Device.DatachannelList();
+    }
+
+    /**
+     * Create an instance of {@link Device.TransDevice.Communication }
+     * 
+     */
+    public Device.TransDevice.Communication createDeviceTransDeviceCommunication() {
+        return new Device.TransDevice.Communication();
+    }
+
+    /**
+     * Create an instance of {@link MeteringPoint.Exchange }
+     * 
+     */
+    public MeteringPoint.Exchange createMeteringPointExchange() {
+        return new MeteringPoint.Exchange();
+    }
+
+    /**
+     * Create an instance of {@link DataList.Data }
+     * 
+     */
+    public DataList.Data createDataListData() {
+        return new DataList.Data();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.General }
+     * 
+     */
+    public Evaluation.General createEvaluationGeneral() {
+        return new Evaluation.General();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.TimeFrameList.TimeFrame }
+     * 
+     */
+    public Evaluation.TimeFrameList.TimeFrame createEvaluationTimeFrameListTimeFrame() {
+        return new Evaluation.TimeFrameList.TimeFrame();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.SourceDatachannelList.SourceDatachannel.Assignment }
+     * 
+     */
+    public Evaluation.SourceDatachannelList.SourceDatachannel.Assignment createEvaluationSourceDatachannelListSourceDatachannelAssignment() {
+        return new Evaluation.SourceDatachannelList.SourceDatachannel.Assignment();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.ResultDatachannel.Identification }
+     * 
+     */
+    public Evaluation.ResultDatachannel.Identification createEvaluationResultDatachannelIdentification() {
+        return new Evaluation.ResultDatachannel.Identification();
+    }
+
+    /**
+     * Create an instance of {@link Evaluation.ResultDatachannel.General }
+     * 
+     */
+    public Evaluation.ResultDatachannel.General createEvaluationResultDatachannelGeneral() {
+        return new Evaluation.ResultDatachannel.General();
+    }
+
+    /**
+     * Create an instance of {@link Datachannel.Identification }
+     * 
+     */
+    public Datachannel.Identification createDatachannelIdentification() {
+        return new Datachannel.Identification();
+    }
+
+    /**
+     * Create an instance of {@link Datachannel.Constant }
+     * 
+     */
+    public Datachannel.Constant createDatachannelConstant() {
+        return new Datachannel.Constant();
+    }
+
+    /**
+     * Create an instance of {@link Datachannel.MeterDevice.Identification }
+     * 
+     */
+    public Datachannel.MeterDevice.Identification createDatachannelMeterDeviceIdentification() {
+        return new Datachannel.MeterDevice.Identification();
+    }
+
+    /**
+     * Create an instance of {@link Datachannel.MeterDevice.General }
+     * 
+     */
+    public Datachannel.MeterDevice.General createDatachannelMeterDeviceGeneral() {
+        return new Datachannel.MeterDevice.General();
+    }
+
+    /**
+     * Create an instance of {@link Group1 .Identification }
+     * 
+     */
+    public Group1 .Identification createGroup1Identification() {
+        return new Group1 .Identification();
+    }
+
+    /**
+     * Create an instance of {@link Group1 .MeteringPointList }
+     * 
+     */
+    public Group1 .MeteringPointList createGroup1MeteringPointList() {
+        return new Group1 .MeteringPointList();
+    }
+
+    /**
+     * Create an instance of {@link Group1 .DeviceList }
+     * 
+     */
+    public Group1 .DeviceList createGroup1DeviceList() {
+        return new Group1 .DeviceList();
+    }
+
+    /**
+     * Create an instance of {@link Group1 .CustomerList }
+     * 
+     */
+    public Group1 .CustomerList createGroup1CustomerList() {
+        return new Group1 .CustomerList();
+    }
+
+    /**
+     * Create an instance of {@link Group2 .Identification }
+     * 
+     */
+    public Group2 .Identification createGroup2Identification() {
+        return new Group2 .Identification();
+    }
+
+    /**
+     * Create an instance of {@link CommunicationListType.Communication }
+     * 
+     */
+    public CommunicationListType.Communication createCommunicationListTypeCommunication() {
+        return new CommunicationListType.Communication();
+    }
+
+}

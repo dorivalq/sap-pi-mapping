@@ -1,0 +1,324 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 10:45:19 AM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * <p>Classe Java de MeterChangeRequestPayload complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="MeterChangeRequestPayload">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="meterAsset" type="{http://www.emeter.com/energyip/amiinterface}MeterAsset" form="qualified"/>
+ *         &lt;element name="comFunction" type="{http://www.emeter.com/energyip/amiinterface}ComFunction" form="qualified"/>
+ *         &lt;element name="serviceDeliveryPoint" type="{http://www.emeter.com/energyip/amiinterface}ServiceDeliveryPoint" form="qualified"/>
+ *         &lt;element name="serviceLocation" type="{http://www.emeter.com/energyip/amiinterface}ServiceLocation" form="qualified"/>
+ *         &lt;element name="customerAccount" type="{http://www.emeter.com/energyip/amiinterface}CustomerAccount" form="qualified"/>
+ *         &lt;element name="provisioningGroup" type="{http://www.emeter.com/energyip/amiinterface}ProvisioningGroup" minOccurs="0" form="qualified"/>
+ *         &lt;element name="collectionGroup" type="{http://www.emeter.com/energyip/amiinterface}CollectionGroup" minOccurs="0" form="qualified"/>
+ *         &lt;element name="broadcastGroup" type="{http://www.emeter.com/energyip/amiinterface}BroadcastGroup" minOccurs="0" form="qualified"/>
+ *         &lt;element name="executeStartTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *         &lt;element name="executeExpireTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "MeterChangeRequestPayload", propOrder = {
+    "meterAsset",
+    "comFunction",
+    "serviceDeliveryPoint",
+    "serviceLocation",
+    "customerAccount",
+    "provisioningGroup",
+    "collectionGroup",
+    "broadcastGroup",
+    "executeStartTime",
+    "executeExpireTime"
+})
+@XmlSeeAlso({
+    MeterAddRequestPayload.class
+})
+public class MeterChangeRequestPayload {
+
+    @XmlElement(required = true)
+    protected MeterAsset meterAsset;
+    @XmlElement(required = true)
+    protected ComFunction comFunction;
+    @XmlElement(required = true)
+    protected ServiceDeliveryPoint serviceDeliveryPoint;
+    @XmlElement(required = true)
+    protected ServiceLocation serviceLocation;
+    @XmlElement(required = true)
+    protected CustomerAccount customerAccount;
+    protected ProvisioningGroup provisioningGroup;
+    protected CollectionGroup collectionGroup;
+    protected BroadcastGroup broadcastGroup;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar executeStartTime;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar executeExpireTime;
+
+    /**
+     * Obtém o valor da propriedade meterAsset.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MeterAsset }
+     *     
+     */
+    public MeterAsset getMeterAsset() {
+        return meterAsset;
+    }
+
+    /**
+     * Define o valor da propriedade meterAsset.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MeterAsset }
+     *     
+     */
+    public void setMeterAsset(MeterAsset value) {
+        this.meterAsset = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade comFunction.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ComFunction }
+     *     
+     */
+    public ComFunction getComFunction() {
+        return comFunction;
+    }
+
+    /**
+     * Define o valor da propriedade comFunction.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ComFunction }
+     *     
+     */
+    public void setComFunction(ComFunction value) {
+        this.comFunction = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade serviceDeliveryPoint.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ServiceDeliveryPoint }
+     *     
+     */
+    public ServiceDeliveryPoint getServiceDeliveryPoint() {
+        return serviceDeliveryPoint;
+    }
+
+    /**
+     * Define o valor da propriedade serviceDeliveryPoint.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ServiceDeliveryPoint }
+     *     
+     */
+    public void setServiceDeliveryPoint(ServiceDeliveryPoint value) {
+        this.serviceDeliveryPoint = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade serviceLocation.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ServiceLocation }
+     *     
+     */
+    public ServiceLocation getServiceLocation() {
+        return serviceLocation;
+    }
+
+    /**
+     * Define o valor da propriedade serviceLocation.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ServiceLocation }
+     *     
+     */
+    public void setServiceLocation(ServiceLocation value) {
+        this.serviceLocation = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade customerAccount.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CustomerAccount }
+     *     
+     */
+    public CustomerAccount getCustomerAccount() {
+        return customerAccount;
+    }
+
+    /**
+     * Define o valor da propriedade customerAccount.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CustomerAccount }
+     *     
+     */
+    public void setCustomerAccount(CustomerAccount value) {
+        this.customerAccount = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade provisioningGroup.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ProvisioningGroup }
+     *     
+     */
+    public ProvisioningGroup getProvisioningGroup() {
+        return provisioningGroup;
+    }
+
+    /**
+     * Define o valor da propriedade provisioningGroup.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ProvisioningGroup }
+     *     
+     */
+    public void setProvisioningGroup(ProvisioningGroup value) {
+        this.provisioningGroup = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade collectionGroup.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CollectionGroup }
+     *     
+     */
+    public CollectionGroup getCollectionGroup() {
+        return collectionGroup;
+    }
+
+    /**
+     * Define o valor da propriedade collectionGroup.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CollectionGroup }
+     *     
+     */
+    public void setCollectionGroup(CollectionGroup value) {
+        this.collectionGroup = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade broadcastGroup.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BroadcastGroup }
+     *     
+     */
+    public BroadcastGroup getBroadcastGroup() {
+        return broadcastGroup;
+    }
+
+    /**
+     * Define o valor da propriedade broadcastGroup.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BroadcastGroup }
+     *     
+     */
+    public void setBroadcastGroup(BroadcastGroup value) {
+        this.broadcastGroup = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade executeStartTime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getExecuteStartTime() {
+        return executeStartTime;
+    }
+
+    /**
+     * Define o valor da propriedade executeStartTime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setExecuteStartTime(XMLGregorianCalendar value) {
+        this.executeStartTime = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade executeExpireTime.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getExecuteExpireTime() {
+        return executeExpireTime;
+    }
+
+    /**
+     * Define o valor da propriedade executeExpireTime.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setExecuteExpireTime(XMLGregorianCalendar value) {
+        this.executeExpireTime = value;
+    }
+
+}

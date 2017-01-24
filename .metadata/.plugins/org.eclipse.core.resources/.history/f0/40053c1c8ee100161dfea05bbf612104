@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:MeterDataMessage xmlns:ns0="http://www.emeter.com/energyip/amiinterface">
+	<ns0:header>
+		<ns0:verb>reply</ns0:verb>
+		<ns0:noun>MeterReads</ns0:noun>
+		<ns0:revision>1</ns0:revision>
+		<ns0:dateTime>2016-11-23T01:03:22-03:00</ns0:dateTime>
+		<ns0:source>ZFA</ns0:source>
+	</ns0:header>
+	<ns0:payload>
+		<ns0:MeterReading>
+			<ns0:Meter>
+				<ns0:mRID></ns0:mRID>
+				<ns0:idType>METER_BADGE_ID</ns0:idType>
+				<ns0:pathName>CPFL</ns0:pathName>
+				<ns0:serialNumber></ns0:serialNumber>
+				<ns0:serviceType>Electric</ns0:serviceType>
+			</ns0:Meter>
+			<ns0:Event>
+				<ns0:category>NAO ENCONTRADO NO PI / ALARMES - CATEGORY</ns0:category>
+				<ns0:name>NAO ENCONTRADO NO PI / ALARMES - NAME</ns0:name>
+				<ns0:timestamp>2016-11-23T01:03:22-03:00</ns0:timestamp>
+				<ns0:description></ns0:description>
+				<ns0:argument>
+					<ns0:name>File Name</ns0:name>
+					<ns0:value>AL__24112016144945_</ns0:value>
+				</ns0:argument>
+				<ns0:source>ZFA</ns0:source>
+				<ns0:collectionTime>2016-11-23T01:03:22-03:00</ns0:collectionTime>
+			</ns0:Event>
+		</ns0:MeterReading>
+	</ns0:payload>
+</ns0:MeterDataMessage>

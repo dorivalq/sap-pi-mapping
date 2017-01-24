@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="false" key="AntPropertiesFileSelectionDialog.showAll"/>
+	<item value="/trata-falha" key="AntPropertiesFileSelectionDialog.lastContainer"/>
+	<section name="org.eclipse.ant.internal.ui.views.AntView">
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;antView&gt;&#x0D;&#x0A;&lt;project default=&quot;extracted_jar&quot; error=&quot;false&quot; name=&quot;Create Runnable Jar for Project provisionamento-r-prj with Jar-in-Jar Loader&quot; path=&quot;/provisionamento-r-prj/provision-build.xml&quot;/&gt;&#x0D;&#x0A;&lt;project default=&quot;extracted_jar&quot; error=&quot;false&quot; name=&quot;Create Runnable Jar for Project zflag&quot; path=&quot;/zflag/provision-build.xml&quot;/&gt;&#x0D;&#x0A;&lt;project default=&quot;extracted_jar&quot; error=&quot;false&quot; name=&quot;Create jar for z-mdm-zfa-odr&quot; path=&quot;/z-mdm-zfa-odr/provision-build.xml&quot;/&gt;&#x0D;&#x0A;&lt;filterInternalTargets value=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;/antView&gt;" key="memento"/>
+	</section>
+</section>

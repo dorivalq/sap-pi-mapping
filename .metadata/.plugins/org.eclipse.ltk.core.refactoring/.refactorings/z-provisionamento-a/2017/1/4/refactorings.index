@@ -1,0 +1,30 @@
+1485190702909	Rename type 'ZMdmXiZfaProvisionamentoU'
+1485190816829	Rename type 'ZMdmXiZfaProvisionamentoA'
+1485191045136	Rename type 'ZMdmXiZfaOdr'
+1485191615710	Rename resource 'NewFile.xsd'
+1485192267493	Delete elements
+1485192708859	Delete element
+1485192714157	Delete element
+1485195727655	Delete element
+1485195752302	Delete element
+1485195767832	Delete elements
+1485195848977	Delete elements
+1485195944371	Delete elements
+1485195995421	Delete elements
+1485196058019	Delete elements
+1485196159228	Delete element
+1485198865973	Convert local variable 'evaluation' to field
+1485199341737	Convert local variable 'mMeteringPoint' to field
+1485200299807	Extract local variable 'identification'
+1485200428835	Convert local variable 'customer' to field
+1485254838008	Delete element
+1485254843311	Delete element
+1485255031081	Delete element
+1485255079851	Delete element
+1485255137481	Copy file
+1485255246219	Delete element
+1485255277073	Move files
+1485264514302	Convert local variable 'document' to field
+1485265059048	Extract local variable 'findNodeByValue'
+1485265698166	Extract local variable 'nodeValue'
+1485273888669	Extract local variable 'beginIndex'

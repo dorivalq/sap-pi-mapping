@@ -1,0 +1,494 @@
+package br.com.cpfl.mapping;
+
+import static javax.naming.Context.URL_PKG_PREFIXES;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Scanner;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import com.sap.aii.mapping.api.StreamTransformation;
+import com.sap.aii.mapping.api.StreamTransformationException;
+import com.sap.engine.services.rmi_p4.ByteArrayOutput;
+
+import br.com.cpfl.daoejb.MappingPODataAccessRemote;
+import br.com.cpfl.daoejb.entidades.CpflZmodelObisc;
+import br.com.cpfl.mapping.jaxb.AssignmentType;
+import br.com.cpfl.mapping.jaxb.CommunicationListType.Communication;
+import br.com.cpfl.mapping.jaxb.Customer;
+import br.com.cpfl.mapping.jaxb.Datachannel;
+import br.com.cpfl.mapping.jaxb.Device;
+import br.com.cpfl.mapping.jaxb.Device.DatachannelList;
+import br.com.cpfl.mapping.jaxb.Device.Identification;
+import br.com.cpfl.mapping.jaxb.Device.TransDevice;
+import br.com.cpfl.mapping.jaxb.Evaluation;
+import br.com.cpfl.mapping.jaxb.Evaluation.General;
+import br.com.cpfl.mapping.jaxb.Group1;
+import br.com.cpfl.mapping.jaxb.Import;
+import br.com.cpfl.mapping.jaxb.Import.GroupList;
+import br.com.cpfl.mapping.jaxb.Import.Version;
+import br.com.cpfl.mapping.jaxb.MeteringPoint;
+import br.com.cpfl.mapping.jaxb.MeteringPoint.Exchange;
+import sun.net.www.MessageHeader;
+
+/**
+ * Implementação em Java do programa Abap Z_MDM_XI_ZFA_ODR
+ * 
+ * @author Dorival Querino da Silva
+ * 
+ *         - 7 de dez de 2016 - CSC
+ * 
+ */
+public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
+
+	private Map map;
+
+	private String wDateTime;
+
+	private String wStarttime;
+	private String wEndTime;
+	private String w_date;
+
+	private Object ejbObj;
+	private String wModel;
+
+	private Import import1;
+
+	private Evaluation evaluation;
+
+	private MeteringPoint mMeteringPoint;
+
+	private Customer customer;
+
+	private Document document;
+
+	@Override
+	public void setParameter(Map map) {
+		this.map = map;
+		if (map == null) {
+			this.map = new HashMap();
+		}
+	}
+
+	@Override
+	public void execute(InputStream inputStream, OutputStream outputStream) throws StreamTransformationException {
+		try {
+
+			Scanner scanner = new Scanner(inputStream);
+			scanner.useDelimiter("//A");
+			String conteudo = scanner.next();
+			InputStream inputStream1 = new ByteArrayInputStream(conteudo.getBytes());
+			InputStream inputStream2 = new ByteArrayInputStream(conteudo.getBytes());
+			InputStream inputStream3 = new ByteArrayInputStream(conteudo.getBytes());
+			InputStream inputStream4 = new ByteArrayInputStream(conteudo.getBytes());
+			InputStream inputStream5 = new ByteArrayInputStream(conteudo.getBytes());
+			InputStream inputStream6 = new ByteArrayInputStream(conteudo.getBytes());
+			InputStream inputStream7 = new ByteArrayInputStream(conteudo.getBytes());
+			
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			document = builder.parse(inputStream);
+			
+			
+			// applica unmarshal no payload de entrada
+			JAXBContext jbContex = JAXBContext.newInstance(Import.class);
+			Unmarshaller unmarshaller = jbContex.createUnmarshaller();
+			import1 = (Import) unmarshaller.unmarshal(inputStream1);
+
+			
+			jbContex = JAXBContext.newInstance(Evaluation.class);
+			unmarshaller = jbContex.createUnmarshaller();
+			evaluation = (Evaluation) unmarshaller.unmarshal(inputStream2);
+
+			jbContex = JAXBContext.newInstance(MeteringPoint.class);
+			unmarshaller = jbContex.createUnmarshaller();
+			mMeteringPoint = (MeteringPoint) unmarshaller.unmarshal(inputStream3);
+//	          name          TYPE REF TO if_ixml_node,
+			
+//	          import2       TYPE REF TO if_ixml_node,
+//	          version       TYPE REF TO if_ixml_node,
+//	          version2      TYPE REF TO if_ixml_node,
+			Version version2 = import1.getVersion();
+			
+//	          date          TYPE REF TO if_ixml_node,
+			XMLGregorianCalendar date = mMeteringPoint.getExchange().get(0).getDate();
+			
+//	          grouplist     TYPE REF TO if_ixml_node,
+			GroupList groupList = import1.getGroupList();
+//	          group         TYPE REF TO if_ixml_node,
+			List<Group1> group = groupList.getGroup();
+//	          device        TYPE REF TO if_ixml_node,
+			
+			jbContex = JAXBContext.newInstance(Device.class);
+			unmarshaller = jbContex.createUnmarshaller();
+			Device device = (Device) unmarshaller.unmarshal(inputStream4);
+//	          assignment    TYPE REF TO if_ixml_node,
+			AssignmentType assignment = device.getAssignment();
+//	          datachannel   TYPE REF TO if_ixml_node,
+			List<Datachannel> datachannel = device.getDatachannelList().getDatachannel();
+//	          identification TYPE REF TO if_ixml_node,
+			Identification identification = device.getIdentification();
+//	          transdevice   TYPE REF TO if_ixml_node,
+			TransDevice transDevice = device.getTransDevice();
+//	          communication TYPE REF TO if_ixml_node,
+			jbContex = JAXBContext.newInstance(Customer.class);
+			unmarshaller = jbContex.createUnmarshaller();
+			customer = (Customer) unmarshaller.unmarshal(inputStream5);
+			List<Communication> communication = customer.getCommunicationList().getCommunication();
+//	          general       TYPE REF TO if_ixml_node,
+			General general = evaluation.getGeneral();
+//	          nr            TYPE REF TO if_ixml_node,
+			
+//	          datachannellist TYPE REF TO if_ixml_node,
+			DatachannelList datachannelList = device.getDatachannelList();
+//	          meteringpointlist TYPE REF TO if_ixml_node,
+			Group1.MeteringPointList meteringPointList = new Group1.MeteringPointList();
+			
+			jbContex = JAXBContext.newInstance(Group1.class);
+			unmarshaller = jbContex.createUnmarshaller();
+			Group1 group1 = (Group1) unmarshaller.unmarshal(inputStream6);
+//			Group1 group1 = customer.getCommunicationList().getCommunication();
+
+			//	          meteringpoint TYPE REF TO if_ixml_node,
+			jbContex = JAXBContext.newInstance(MeteringPoint.class);
+			unmarshaller = jbContex.createUnmarshaller();
+			MeteringPoint meteringPoint = (MeteringPoint) unmarshaller.unmarshal(inputStream7);
+
+//	          exchange      TYPE REF TO if_ixml_node,
+			List<Exchange> exchange = meteringPoint.getExchange();
+//	          li_attr       TYPE REF TO if_ixml_node,
+//	          rnode         TYPE REF TO if_ixml_node,
+//	          dt_provisionamento_in TYPE REF TO if_ixml_node,
+			
+//	          xml          TYPE REF TO if_ixml_node.
+			// popula objetos jaxb
+//			wHeader = message.getHeader();
+//			wPayload = message.getPayload();
+//			tMeter = message.getPayload().getMeter();
+//			wMeter = message.getPayload().getMeter();
+//			wHeader = message.getHeader();
+
+			DocumentBuilderFactory factory2 = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder2 = factory2.newDocumentBuilder();
+			Document oDocument = builder2.newDocument();
+			w_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+			Node programNode = findNodeByValue("Program Code").getParentNode();
+//			wStarttime = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").format(cal.getTime());
+
+//			cal.setTime(new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(wEndTime));
+
+			// wEndTime = new
+			// SimpleDateFormat("yyyy-MM-dd'T'hh:mm").format(cal.getTime());
+			//
+			// Element paramE = oDocument.createElement("param");
+			// oDocument.appendChild(paramE);
+			// Element version = oDocument.createElement("version");
+			// version.setAttribute("date", w_date);
+			// version.setTextContent("1.1");
+			// paramE.appendChild(version);
+			//
+			// Element requestId = oDocument.createElement("request-id");
+			// requestId.setTextContent(wHeader.getMessageID());
+			// paramE.appendChild(requestId);
+			// Element ident = oDocument.createElement("identification");
+			// paramE.appendChild(ident);
+			// Element meterPoint = oDocument.createElement("metering-point");
+			// meterPoint.setAttribute("id", wMeter.getMRID());
+			// ident.appendChild(meterPoint);
+			//
+			// Element actionList = oDocument.createElement("action-list");
+			// paramE.appendChild(actionList);
+			//
+			// wModel = wMeter.getModelNumber();
+			//
+			// List<CpflZmodelObisc> modelos = consultarModelo(wModel);
+			// if (modelos != null && modelos.size() > 0) {
+			// ordenarModelos(modelos);
+			// }
+			// String wObisCode2 = null;
+			// for (CpflZmodelObisc zModelObisc : modelos) {
+			// String wObisCode = zModelObisc.getId().getObiscode();
+			// Element actionE = oDocument.createElement("action");
+			// if (zModelObisc.getFlagRegister() != null) {
+			// actionE.setAttribute("task-name", "read-register-values");
+			// } else {
+			// actionE.setAttribute("task-name", "read-load-profile");
+			// }
+			//
+			// if ("ION8600-3E".equals(zModelObisc.getId().getModel())
+			// || "2180-3E-COMP".equals(zModelObisc.getId().getModel())) {
+			//
+			// if ("1-9".equals(wObisCode))
+			// wObisCode2 = "1-9:0.0.0";
+			// else if ("1-10".equals(wObisCode))
+			// wObisCode2 = "1-10:0.0.0";
+			// else if ("1-30".equals(wObisCode))
+			// wObisCode2 = "1-30:0.0.0";
+			// else if ("1-31".equals(wObisCode))
+			// wObisCode2 = "1-31:0.0.0";
+			// else
+			// wObisCode2 = wObisCode;
+			//
+			// actionE.setAttribute("obis-id-code", wObisCode2);
+			//
+			// }else{
+			// actionE.setAttribute("obis-id-code", wObisCode);
+			// }
+			//
+			// actionE.setAttribute("valuate", "full");
+			// Element timeFrame = oDocument.createElement("time-frame");
+			//
+			// if( "2180-3E-COMP".equals(zModelObisc.getId().getModel()) ||
+			// "ION8600-3E".equals(zModelObisc.getId().getModel())){
+			//
+			// timeFrame.setAttribute("date-from", wStarttime.substring(0, 10));
+			// timeFrame.setAttribute("date-to", wEndTime.substring(0, 10));
+			// }else{
+			// timeFrame.setAttribute("date-from", wStarttime);
+			// timeFrame.setAttribute("date-to", wEndTime);
+			// }
+			//
+			// actionE.appendChild(timeFrame);
+			// actionList.appendChild(actionE);
+			// }//end loop
+			//
+			// TransformerFactory tfInterna = TransformerFactory.newInstance();
+			// Transformer transformerInterno = tfInterna.newTransformer();
+			// DOMSource sourceInterno = new DOMSource(oDocument);
+			// StringWriter stringWriter = new StringWriter();
+			// transformerInterno.transform(sourceInterno, new
+			// StreamResult(stringWriter));
+			// StringBuffer buffer = stringWriter.getBuffer();
+			//
+			// String inicioXmlHeader = "<?xml ";
+			// int i = buffer.indexOf(inicioXmlHeader);
+			// String fimXmlHeader = "?>";
+			// int j = buffer.indexOf(fimXmlHeader)+fimXmlHeader.length();
+			// buffer.replace(i, j, "");
+			//
+			//
+			// String wrapperTag = "<ExecuteJob
+			// xmlns=\"http://odrlayer.tauron.cpfl.com.br/\">
+			// <request><![CDATA['"
+			// + buffer.toString()
+			// + "]]></request></ExecuteJob>";
+			//
+			// outputStream.write(wrapperTag.getBytes());
+			//
+			// NodeList emp_node_iterator =
+			// document.getElementsByTagName("MeterReadsRequestMessage");
+
+			// TODO:
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new StreamTransformationException("Falha ao processar o mapping ", e);
+		}
+	}
+	
+	private Element findNodeByValue(String value) throws XPathExpressionException {
+		XPathFactory xpf = XPathFactory.newInstance();
+		XPath xPath = xpf.newXPath();
+		NodeList nodelist = document.getElementsByTagName("*");
+		for (int i = 0; i < nodelist.getLength(); i++) {
+			Node node = nodelist.item(i);
+			if (Node.ELEMENT_NODE == node.getNodeType()) {
+				if (value.equals(node.getTextContent())) {
+					return (Element) node;
+				}
+			}
+		}
+		return null;
+	}
+
+	private void ordenarModelos(List<CpflZmodelObisc> modelos) {
+		Collections.sort(modelos, new Comparator<CpflZmodelObisc>() {
+			@Override
+			public int compare(CpflZmodelObisc o1, CpflZmodelObisc o2) {
+		        if (o1 == null && o2 == null) {
+		            return 0;
+		        }
+		        if (o1 == null) {
+		            return 1;
+		        }
+		        if (o2 == null) {
+		            return -1;
+		        }
+		        
+		        if (o1.getOrdem() == null && o2.getOrdem() == null) {
+		            return 0;
+		        }
+		        if (o1.getOrdem() == null) {
+		            return 1;
+		        }
+		        if (o2.getOrdem() == null) {
+		            return -1;
+		        }
+				return o1.getOrdem().compareTo(o2.getOrdem());
+			}
+		});
+	}
+
+	/**
+	 * Metodo para buscar modelo com tratativa para o problema de class cast
+	 * causado por diferença de classLoader
+	 * 
+	 * @param paramModelo
+	 * @return T(s) encontrado(s) no BD
+	 */
+	public <T> T executarMetodoRemoto(String metodo) throws Exception {
+		Properties props = getProperties();
+
+		// FIXME: Fazer cache, ver de instancia ou de classe, nao sera chamada
+		// de outra classe
+		Class<?> remoteInterface = getService(props);
+
+		Method method = remoteInterface.getMethod(metodo);
+
+		T tipoRetorno = (T) method.invoke(ejbObj);
+
+		// CpflZCcsXiT001 ccsXi = (CpflZCcsXiT001) result;
+		return tipoRetorno;
+	}
+
+	private Properties getProperties() {
+		Properties props = new Properties();
+
+		props.put(Context.INITIAL_CONTEXT_FACTORY,
+
+				PIMessages.getString("ejbclient.context"));
+		props.put(Context.PROVIDER_URL, PIMessages.getString("ejbclient.host_port"));
+
+		props.put(URL_PKG_PREFIXES, PIMessages.getString("ejbclient.pkg_prefix"));
+		return props;
+	}
+
+	private Class<?> getService(Properties props) throws Exception {
+		InitialContext ctx = new InitialContext(props);
+		ejbObj = ctx.lookup(PIMessages.getString("ejbclient.remote_url"));
+		Class<?> remoteInterface;
+		ClassLoader classLoader = ejbObj.getClass().getClassLoader();
+		remoteInterface = classLoader.loadClass(MappingPODataAccessRemote.class.getCanonicalName());
+		return remoteInterface;
+	}
+
+	/**
+	 * Metodo para buscar modelo com tratativa para o problema de class cast
+	 * causado por diferença de classLoader
+	 * 
+	 * @param paramModelo
+	 * @return Lista com os modelos encontrados no BD
+	 */
+	public List consultarModelo(String paramModelo) throws Exception {
+
+		Properties props = new Properties();
+
+		props.put(Context.INITIAL_CONTEXT_FACTORY,
+
+				PIMessages.getString("ejbclient.context"));
+		props.put(Context.PROVIDER_URL, PIMessages.getString("ejbclient.host_port"));
+
+		props.put(URL_PKG_PREFIXES, PIMessages.getString("ejbclient.pkg_prefix"));
+
+		InitialContext ctx = new InitialContext(props);
+
+		Object ejbObj = ctx.lookup(PIMessages.getString("ejbclient.remote_url"));
+
+		ClassLoader classLoader = ejbObj.getClass().getClassLoader();
+		Class<?> remoteInterface = classLoader.loadClass(MappingPODataAccessRemote.class.getCanonicalName());
+
+		Class args[] = { paramModelo.getClass() };
+		Method method = remoteInterface.getMethod("consultarModelo", args);
+		Object params[] = { paramModelo };
+		Object result = method.invoke(ejbObj, params);
+
+		return (List) result;
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		 XPathFactory xpf = XPathFactory.newInstance();
+		 XPath xPath = xpf.newXPath();
+//		 String xml = "<add
+//		 String job="<add \"351\"><tag>foobar</tag><tag>foobar2</tag></add>";
+//		 InputSource source = new InputSource(new StringReader(job ));
+//		 String text = xPath.evaluate("//add[@job='351']/tag[position()=2]/text()", source);
+		 
+//InputSource dDoc ;
+//		//        XPath xPath = XPathFactory.newInstance().newXPath();
+//        Node node = (Node) xPath.evaluate("/Request/@name", dDoc , XPathConstants.NODE);
+//        System.out.println(node.getNodeValue());
+  
+		 
+		 String job="<ami:parameter> <ami:name>Program Code</ami:name> <ami:value>ZFA-PC1</ami:value> </ami:parameter>";
+		 InputSource source = new InputSource(new StringReader(job ));
+		
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			
+			ZMdmXiZfaProvisionamentoA zProv = new ZMdmXiZfaProvisionamentoA();
+//////////////////////////////////	
+			zProv.document = builder.parse(source);
+			Element node = zProv.findNodeByValue("Program Code");
+			Node item = ((Element)node.getParentNode()).getElementsByTagName("ami:value").item(0);
+			String nodeValue = item.getFirstChild().getNodeValue();
+			System.out.println(nodeValue);
+//			Node sibling = node.getParentNode().getNextSibling();
+		System.out.println(item.getTextContent());
+//////////////////////////////////
+		
+		
+//		System.out.println("Inicio: " + new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()));
+//		long timeInMillis = Calendar.getInstance().getTimeInMillis();
+//
+
+//
+//		InputStream inputStream = new FileInputStream(new File("src/br/com/cpfl/mapping/prov_add_entrada.xml"));
+//		OutputStream outputStream = new FileOutputStream(new File("src/br/com/cpfl/mapping/prov_add_entrada-OUT.xml"));
+//
+//		zProv.execute(inputStream, outputStream);
+//
+//		System.out.println("Fim: " + new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()));
+//		long timeInMillis2 = Calendar.getInstance().getTimeInMillis();
+//		System.out.println("Tempo gasto = " + (Double.valueOf(timeInMillis2 - timeInMillis) / 1000) + " segundo(s)");
+//
+//		Runtime.getRuntime().exec("explorer D:\\desenv\\CPFL\\Workspace\\z-provisionamento-a\\src\\prov_add_entrada-OUT.xml");
+	}
+}

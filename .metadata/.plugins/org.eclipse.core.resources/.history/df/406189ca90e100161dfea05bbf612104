@@ -1,0 +1,370 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 10:45:19 AM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de ErpAddress complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="ErpAddress">
+ *   &lt;complexContent>
+ *     &lt;extension base="{http://www.emeter.com/energyip/amiinterface}IdentifiedObject">
+ *       &lt;sequence>
+ *         &lt;element name="streetNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="streetName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="streetSuffix" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="streetPrefix" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="streetType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="poBox" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="suiteNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="addressGeneral" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="stateOrProvince" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="country" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="postalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/extension>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ErpAddress", propOrder = {
+    "streetNumber",
+    "streetName",
+    "streetSuffix",
+    "streetPrefix",
+    "streetType",
+    "poBox",
+    "suiteNumber",
+    "addressGeneral",
+    "city",
+    "stateOrProvince",
+    "country",
+    "postalCode"
+})
+@XmlSeeAlso({
+    ServiceLocation.class
+})
+public class ErpAddress
+    extends IdentifiedObject
+{
+
+    protected String streetNumber;
+    protected String streetName;
+    protected String streetSuffix;
+    protected String streetPrefix;
+    protected String streetType;
+    protected String poBox;
+    protected String suiteNumber;
+    protected String addressGeneral;
+    protected String city;
+    protected String stateOrProvince;
+    protected String country;
+    protected String postalCode;
+
+    /**
+     * Obtém o valor da propriedade streetNumber.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    /**
+     * Define o valor da propriedade streetNumber.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStreetNumber(String value) {
+        this.streetNumber = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade streetName.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStreetName() {
+        return streetName;
+    }
+
+    /**
+     * Define o valor da propriedade streetName.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStreetName(String value) {
+        this.streetName = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade streetSuffix.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStreetSuffix() {
+        return streetSuffix;
+    }
+
+    /**
+     * Define o valor da propriedade streetSuffix.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStreetSuffix(String value) {
+        this.streetSuffix = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade streetPrefix.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStreetPrefix() {
+        return streetPrefix;
+    }
+
+    /**
+     * Define o valor da propriedade streetPrefix.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStreetPrefix(String value) {
+        this.streetPrefix = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade streetType.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStreetType() {
+        return streetType;
+    }
+
+    /**
+     * Define o valor da propriedade streetType.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStreetType(String value) {
+        this.streetType = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade poBox.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPoBox() {
+        return poBox;
+    }
+
+    /**
+     * Define o valor da propriedade poBox.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPoBox(String value) {
+        this.poBox = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade suiteNumber.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSuiteNumber() {
+        return suiteNumber;
+    }
+
+    /**
+     * Define o valor da propriedade suiteNumber.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSuiteNumber(String value) {
+        this.suiteNumber = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade addressGeneral.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAddressGeneral() {
+        return addressGeneral;
+    }
+
+    /**
+     * Define o valor da propriedade addressGeneral.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAddressGeneral(String value) {
+        this.addressGeneral = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade city.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * Define o valor da propriedade city.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCity(String value) {
+        this.city = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade stateOrProvince.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStateOrProvince() {
+        return stateOrProvince;
+    }
+
+    /**
+     * Define o valor da propriedade stateOrProvince.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStateOrProvince(String value) {
+        this.stateOrProvince = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade country.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * Define o valor da propriedade country.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCountry(String value) {
+        this.country = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade postalCode.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    /**
+     * Define o valor da propriedade postalCode.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPostalCode(String value) {
+        this.postalCode = value;
+    }
+
+}

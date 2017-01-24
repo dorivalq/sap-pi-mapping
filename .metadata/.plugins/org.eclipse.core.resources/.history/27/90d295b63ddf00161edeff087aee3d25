@@ -1,0 +1,164 @@
+package br.com.cpfl.mapping;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import com.sap.aii.mapping.api.StreamTransformation;
+import com.sap.aii.mapping.api.StreamTransformationException;
+import com.sap.engine.lib.lang.array.ByteArray;
+
+/**
+ * Implementação em Java do programa Abap Z_TRATA_FALHA_DEPARA_ITENS
+ * 
+ * @author Dorival Querino da Silva
+ * 
+ *         - 7 de dez de 2016 - CSC
+ * 
+ */
+@SuppressWarnings("rawtypes")
+public class ZTrataFalhaDeParaItens implements StreamTransformation {
+	private Map param;
+	private Document document;
+
+	@Override
+	public void setParameter(Map param) {
+		this.param = param;
+		if (param == null)
+			this.param = new HashMap();
+	}
+
+	@Override
+	public void execute(InputStream inputStream, OutputStream outputStream) throws StreamTransformationException {
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			
+			//tratamento para o conteudo que vem sem o cabecalho xml
+			Scanner scanner = new Scanner(inputStream);
+			scanner.useDelimiter("//A");
+			String conteudo =  scanner.next();
+			scanner.close();
+			if (!conteudo.startsWith("<?"))
+					conteudo = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + conteudo;
+			inputStream = new ByteArrayInputStream(conteudo.getBytes());
+			
+			//parser do xml
+			this.document = builder.parse(inputStream);
+			String wDateTime = null;
+			if ( contemAsterisco()) {
+				Node dateTimeNode = document.getElementsByTagName("ns0:endTime").item(0);
+				if (dateTimeNode != null) {
+					wDateTime = dateTimeNode.getFirstChild().getNodeValue();
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss")
+							.parse(wDateTime.substring(0, wDateTime.lastIndexOf('-') - 1)));
+					if (cal.get(Calendar.HOUR_OF_DAY) >= 24 && cal.get(Calendar.MINUTE) > 0
+							&& cal.get(Calendar.SECOND) > 0) {
+						cal.add(Calendar.DAY_OF_MONTH, -1);
+					}
+					cal.add(Calendar.MILLISECOND, -300);
+					wDateTime = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").format(cal.getTime()) + "-03:00";
+
+					NodeList nodeList = document.getElementsByTagName("ns0:readingTypeId");
+					for (int i = 0; i < nodeList.getLength(); i++) {
+						Node node = nodeList.item(i);
+						if (node != null && node.getFirstChild().getNodeValue().startsWith("*")) {
+							Node endTime = ((Element) node.getParentNode()).getElementsByTagName("ns0:endTime").item(0);
+							if (endTime != null) {
+								endTime.getFirstChild().setTextContent(wDateTime);
+								Element flag = (Element) ((Element) node.getParentNode())
+										.getElementsByTagName("ns0:flags").item(0);
+								flag.getFirstChild().setTextContent("32");
+							}
+						}
+					}
+
+				}
+			}
+
+			// se não tem as tags ns0:IntervalBlock, remove todo o conteúdo.
+			if (document.getElementsByTagName("ns0:IntervalBlock").getLength() == 0) {
+				Node remover = document.getFirstChild();
+				document.removeChild(remover);
+			}
+
+			// Escreve o xml de saida
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			StreamResult streamResult = new StreamResult(outputStream);
+			DOMSource source = new DOMSource(document);
+			transformer.transform(source, streamResult);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new StreamTransformationException("Falha ao efetuar o mapping: ", e);
+		}
+	}
+
+	private boolean contemAsterisco() {
+		NodeList nList = document.getElementsByTagName("ns0:readingTypeId");
+		boolean contem = false;
+		for (int i = 0; i < nList.getLength(); i++) {
+			Node node = nList.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				if (node.hasChildNodes()) {
+					if (node.getFirstChild() != null && node.getFirstChild().getTextContent().contains("*")) {
+						return true;
+					}
+				}
+			}
+		}
+		return contem;
+	}
+
+	public static void main(String[] args) throws Exception {
+		
+		System.out.println("Inicio: " + new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()));
+		long timeInMillis = Calendar.getInstance().getTimeInMillis();
+
+//		ProvisionamentoRTeste zProv = new ProvisionamentoRTeste();
+		ZTrataFalhaDeParaItens zProv = new ZTrataFalhaDeParaItens();
+
+		InputStream inputStream = new FileInputStream(new File(
+				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\odr-result.xml"));//trata-falha-de-para-itens.xml"));
+//						+ "D:\\desenv\\CPFL\\Workspace\\mapeamento-pi\\dados\\trata-falha-reg-fat.xml"));
+		OutputStream outputStream = new FileOutputStream(new File(
+				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\trata-falha-de-para-itens-OUT.xml"));
+
+		zProv.execute(inputStream, outputStream);
+
+		System.out.println("Fim: " + new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()));
+		long timeInMillis2 = Calendar.getInstance().getTimeInMillis();
+		System.out.println("Tempo gasto = " + (Double.valueOf(timeInMillis2 - timeInMillis) / 1000) + " segundo(s)");
+
+		Runtime.getRuntime().exec(
+				"explorer C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\trata-falha-de-para-itens-OUT.xml");
+	}
+
+}

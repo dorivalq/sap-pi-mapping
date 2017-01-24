@@ -1,0 +1,49 @@
+package br.com.cpfl.mapping;
+
+import java.util.Properties;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+
+import br.com.cpfl.daoejb.load.LoadDataPORemote;
+
+public class LoadDataEjbClient {
+	public static void main(String[] args) throws Exception {
+
+		LoadDataPORemote service = getService();
+		//service.carregarDadosCcsXi();
+		//service.carregarDadosZModel();
+		service.carregarDadosZProvGrupo();
+
+		service.carregarDestinationCcsXi("CCS_160_IDOC" ,null ,"192.168.35.150" ,"20" ,"160" ,"pirfcuser" ,"rfcALL01" ,"en");
+		
+		System.out.println(" Load Data finalizado com sucesso !!");
+	}
+
+	public static LoadDataPORemote getService() throws Exception {
+
+//		LoadDataPORemote
+
+		Properties props = new Properties();
+
+		props.put(Context.INITIAL_CONTEXT_FACTORY,
+
+				"com.sap.engine.services.jndi.InitialContextFactoryImpl");
+
+		props.put(Context.PROVIDER_URL, "10.50.152.35:50004");
+
+		props.put(Context.URL_PKG_PREFIXES, "com.sap.engine.services");
+
+		InitialContext ctx = new InitialContext(props);
+
+//		ApplicationConfigHandlerFactory cfgHandler = (ApplicationConfigHandlerFactory) ctx
+//				.lookup("ApplicationConfiguration");
+
+//		java.util.Properties appProps = cfgHandler.getApplicationProperties();
+
+		LoadDataPORemote ejb = (LoadDataPORemote) ctx.lookup(""
+				+ "ejb:/appName=demo.sap.com/dao-ejb-3-ear, jarName=demo.sap.com~dao-ejb-3.jar, beanName=LoadDataPOImpl, interfaceName=br.com.cpfl.daoejb.load.LoadDataPORemote");
+		
+		return ejb;
+	}
+}

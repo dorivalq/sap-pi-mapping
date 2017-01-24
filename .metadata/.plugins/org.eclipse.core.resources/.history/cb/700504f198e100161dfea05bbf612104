@@ -1,0 +1,191 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 03:34:59 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlRegistry;
+
+
+/**
+ * This object contains factory methods for each 
+ * Java content interface and Java element interface 
+ * generated in the br.com.cpfl.mapping.jaxb package. 
+ * <p>An ObjectFactory allows you to programatically 
+ * construct new instances of the Java representation 
+ * for XML content. The Java representation of XML 
+ * content can consist of schema derived interfaces 
+ * and classes representing the binding of schema 
+ * type definitions, element declarations and model 
+ * groups.  Factory methods for each of these are 
+ * provided in this class.
+ * 
+ */
+@XmlRegistry
+public class ObjectFactory {
+
+
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.cpfl.mapping.jaxb
+     * 
+     */
+    public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link MeterAssetAddRequestMessage }
+     * 
+     */
+    public MeterAssetAddRequestMessage createMeterAssetAddRequestMessage() {
+        return new MeterAssetAddRequestMessage();
+    }
+
+    /**
+     * Create an instance of {@link MessageHeader }
+     * 
+     */
+    public MessageHeader createMessageHeader() {
+        return new MessageHeader();
+    }
+
+    /**
+     * Create an instance of {@link MeterAddRequestPayload }
+     * 
+     */
+    public MeterAddRequestPayload createMeterAddRequestPayload() {
+        return new MeterAddRequestPayload();
+    }
+
+    /**
+     * Create an instance of {@link MeterAsset }
+     * 
+     */
+    public MeterAsset createMeterAsset() {
+        return new MeterAsset();
+    }
+
+    /**
+     * Create an instance of {@link WaterMeter }
+     * 
+     */
+    public WaterMeter createWaterMeter() {
+        return new WaterMeter();
+    }
+
+    /**
+     * Create an instance of {@link ComFunction }
+     * 
+     */
+    public ComFunction createComFunction() {
+        return new ComFunction();
+    }
+
+    /**
+     * Create an instance of {@link ErpAddress }
+     * 
+     */
+    public ErpAddress createErpAddress() {
+        return new ErpAddress();
+    }
+
+    /**
+     * Create an instance of {@link GasMeter }
+     * 
+     */
+    public GasMeter createGasMeter() {
+        return new GasMeter();
+    }
+
+    /**
+     * Create an instance of {@link CustomerAccount }
+     * 
+     */
+    public CustomerAccount createCustomerAccount() {
+        return new CustomerAccount();
+    }
+
+    /**
+     * Create an instance of {@link MeterChangeRequestPayload }
+     * 
+     */
+    public MeterChangeRequestPayload createMeterChangeRequestPayload() {
+        return new MeterChangeRequestPayload();
+    }
+
+    /**
+     * Create an instance of {@link ReadingType }
+     * 
+     */
+    public ReadingType createReadingType() {
+        return new ReadingType();
+    }
+
+    /**
+     * Create an instance of {@link CollectionGroup }
+     * 
+     */
+    public CollectionGroup createCollectionGroup() {
+        return new CollectionGroup();
+    }
+
+    /**
+     * Create an instance of {@link BroadcastGroup }
+     * 
+     */
+    public BroadcastGroup createBroadcastGroup() {
+        return new BroadcastGroup();
+    }
+
+    /**
+     * Create an instance of {@link ServiceLocation }
+     * 
+     */
+    public ServiceLocation createServiceLocation() {
+        return new ServiceLocation();
+    }
+
+    /**
+     * Create an instance of {@link ServiceDeliveryPoint }
+     * 
+     */
+    public ServiceDeliveryPoint createServiceDeliveryPoint() {
+        return new ServiceDeliveryPoint();
+    }
+
+    /**
+     * Create an instance of {@link ProvisioningGroup }
+     * 
+     */
+    public ProvisioningGroup createProvisioningGroup() {
+        return new ProvisioningGroup();
+    }
+
+    /**
+     * Create an instance of {@link Asset }
+     * 
+     */
+    public Asset createAsset() {
+        return new Asset();
+    }
+
+    /**
+     * Create an instance of {@link ElectricMeter }
+     * 
+     */
+    public ElectricMeter createElectricMeter() {
+        return new ElectricMeter();
+    }
+
+    /**
+     * Create an instance of {@link IdentifiedObject }
+     * 
+     */
+    public IdentifiedObject createIdentifiedObject() {
+        return new IdentifiedObject();
+    }
+
+}

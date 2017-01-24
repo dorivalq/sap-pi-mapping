@@ -1,0 +1,310 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.18 às 03:22:30 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de ElectricMeter complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="ElectricMeter">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="aepCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="form" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="base" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="voltageRating" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="currentRating" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="frequencyRating" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="numPhases" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="numWires" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="kh" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="registerRatio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ElectricMeter", propOrder = {
+    "aepCode",
+    "form",
+    "base",
+    "voltageRating",
+    "currentRating",
+    "frequencyRating",
+    "numPhases",
+    "numWires",
+    "kh",
+    "registerRatio"
+})
+public class ElectricMeter {
+
+    protected String aepCode;
+    protected String form;
+    protected String base;
+    protected String voltageRating;
+    protected String currentRating;
+    protected String frequencyRating;
+    protected String numPhases;
+    protected String numWires;
+    protected String kh;
+    protected String registerRatio;
+
+    /**
+     * Obtém o valor da propriedade aepCode.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAepCode() {
+        return aepCode;
+    }
+
+    /**
+     * Define o valor da propriedade aepCode.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAepCode(String value) {
+        this.aepCode = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade form.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getForm() {
+        return form;
+    }
+
+    /**
+     * Define o valor da propriedade form.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setForm(String value) {
+        this.form = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade base.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBase() {
+        return base;
+    }
+
+    /**
+     * Define o valor da propriedade base.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBase(String value) {
+        this.base = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade voltageRating.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getVoltageRating() {
+        return voltageRating;
+    }
+
+    /**
+     * Define o valor da propriedade voltageRating.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setVoltageRating(String value) {
+        this.voltageRating = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade currentRating.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCurrentRating() {
+        return currentRating;
+    }
+
+    /**
+     * Define o valor da propriedade currentRating.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCurrentRating(String value) {
+        this.currentRating = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade frequencyRating.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFrequencyRating() {
+        return frequencyRating;
+    }
+
+    /**
+     * Define o valor da propriedade frequencyRating.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFrequencyRating(String value) {
+        this.frequencyRating = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade numPhases.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNumPhases() {
+        return numPhases;
+    }
+
+    /**
+     * Define o valor da propriedade numPhases.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNumPhases(String value) {
+        this.numPhases = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade numWires.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNumWires() {
+        return numWires;
+    }
+
+    /**
+     * Define o valor da propriedade numWires.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNumWires(String value) {
+        this.numWires = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade kh.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getKh() {
+        return kh;
+    }
+
+    /**
+     * Define o valor da propriedade kh.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setKh(String value) {
+        this.kh = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade registerRatio.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRegisterRatio() {
+        return registerRatio;
+    }
+
+    /**
+     * Define o valor da propriedade registerRatio.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRegisterRatio(String value) {
+        this.registerRatio = value;
+    }
+
+}

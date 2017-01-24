@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?><!-- Inbound Message -->
+<ami:MeterReadsRequestMessage
+	xmlns:ami='http://www.emeter.com/energyip/amiinterface' xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>
+	<ami:header>
+		<ami:verb>request</ami:verb>
+		<ami:noun>MeterReads</ami:noun>
+		<ami:revision>1</ami:revision>
+		<ami:dateTime>2017-01-18T10:09:25.955-03:00</ami:dateTime>
+		<ami:source>UI Support Web Service</ami:source>
+		<ami:messageID>15632</ami:messageID>
+		<ami:asyncReplyTo>http://localhost:8080/UniversalAMIAdapterWS/services/UniversalAMIMeterReadsResponseService?wsdl
+		</ami:asyncReplyTo>
+	</ami:header>
+	<ami:payload>
+		<ami:startTime>2017-01-17T13:09:21.000Z</ami:startTime>
+		<ami:endTime>2017-01-18T13:09:21.000Z</ami:endTime>
+		<ami:versionTime>2017-01-18T13:09:21.000Z</ami:versionTime>
+		<ami:Meter>
+			<ami:mRID>106424505</ami:mRID>
+			<ami:idType>METER_BADGE_ID</ami:idType>
+			<ami:pathName>CPFL</ami:pathName>
+			<ami:modelNumber>SL7000-3E</ami:modelNumber>
+			<ami:serialNumber>40116459</ami:serialNumber>
+			<ami:serviceType>Electric</ami:serviceType>
+			<ami:electricMeter />
+			<ami:numDigits>6</ami:numDigits>
+		</ami:Meter>
+		<ami:retrieveRegisterReads>true</ami:retrieveRegisterReads>
+		<ami:retrieveIntervalReads>true</ami:retrieveIntervalReads>
+		<ami:demandReset>false</ami:demandReset>
+		<ami:retrieveEvents>false</ami:retrieveEvents>
+		<ami:executeStartTime>2017-01-18T13:09:21.000Z</ami:executeStartTime>
+		<ami:executeExpireTime>2017-01-19T13:09:21.000Z
+		</ami:executeExpireTime>
+	</ami:payload>
+</ami:MeterReadsRequestMessage>

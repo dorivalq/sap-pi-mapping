@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContextState>
+<org.eclipse.mylyn.context.ui.editors>
+<MonitoredWindowOpenEditors class="org.eclipse.ui.internal.WorkbenchWindow" isActive="true" isLaunching="true" number="0">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataBaseAccessor.java" partName="DataBaseAccessor.java" title="DataBaseAccessor.java" tooltip="trata-falha/src/br/com/cpfl/mapping/test/DataBaseAccessor.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/trata-falha/src/br/com/cpfl/mapping/test/DataBaseAccessor.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MMCcsXiAnnelRegistrarFatura.java" partName="MMCcsXiAnnelRegistrarFatura.java" title="MMCcsXiAnnelRegistrarFatura.java" tooltip="trata-falha/src/br/com/cpfl/mapping/MMCcsXiAnnelRegistrarFatura.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/trata-falha/src/br/com/cpfl/mapping/MMCcsXiAnnelRegistrarFatura.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8591" selectionTopPixel="175"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CustomDestinationDataProvider.java" partName="CustomDestinationDataProvider.java" title="CustomDestinationDataProvider.java" tooltip="SAPJCOconectionTest/src/com/test/CustomDestinationDataProvider.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SAPJCOconectionTest/src/com/test/CustomDestinationDataProvider.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5455" selectionTopPixel="1560"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ZFlag.java" partName="ZFlag.java" title="ZFlag.java" tooltip="trata-falha/src/br/com/cpfl/mapping/ZFlag.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/trata-falha/src/br/com/cpfl/mapping/ZFlag.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4010" selectionTopPixel="1050"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="main.java" partName="main.java" title="main.java" tooltip="sap-jco-connect/src/example/dom/main.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/sap-jco-connect/src/example/dom/main.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="39" selectionOffset="1821" selectionTopPixel="693"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ZTrataFalhaRegistradorFaturadoO.java" partName="ZTrataFalhaRegistradorFaturadoO.java" title="ZTrataFalhaRegistradorFaturadoO.java" tooltip="trata-falha/src/br/com/cpfl/mapping/ZTrataFalhaRegistradorFaturadoO.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/trata-falha/src/br/com/cpfl/mapping/ZTrataFalhaRegistradorFaturadoO.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="334" selectionOffset="2117" selectionTopPixel="457"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ZFlag.java" partName="ZFlag.java" title="ZFlag.java" tooltip="zflag-prj/src/br/com/cpfl/mapping/ZFlag.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/zflag-prj/src/br/com/cpfl/mapping/ZFlag.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2579" selectionTopPixel="615"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Messages.java" partName="Messages.java" title="Messages.java" tooltip="zflag-prj/src/br/com/cpfl/mapping/Messages.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/zflag-prj/src/br/com/cpfl/mapping/Messages.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="411" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.ClassFileEditor" name="ResourceBundle.class" partName="ResourceBundle.class" title="ResourceBundle.class" tooltip="java.util.ResourceBundle">
+<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=SAPJCOconectionTest/C:\/Program Files\/Java\/jdk1.8.0_111\/jre\/lib\/rt.jar&lt;java.util(ResourceBundle.class"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="15399" selectionTopPixel="5265"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ZTrataFalhaDeParaItens.java" partName="ZTrataFalhaDeParaItens.java" title="ZTrataFalhaDeParaItens.java" tooltip="trata-falha/src/br/com/cpfl/mapping/ZTrataFalhaDeParaItens.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/trata-falha/src/br/com/cpfl/mapping/ZTrataFalhaDeParaItens.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="759" selectionTopPixel="240"/>
+</editor>
+</MonitoredWindowOpenEditors>
+</org.eclipse.mylyn.context.ui.editors>
+</ContextState>

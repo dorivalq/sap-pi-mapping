@@ -1,0 +1,98 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 10:45:19 AM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de anonymous complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="header" type="{http://www.emeter.com/energyip/amiinterface}MessageHeader" form="qualified"/>
+ *         &lt;element name="payload" type="{http://www.emeter.com/energyip/amiinterface}MeterAddRequestPayload" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "header",
+    "payload"
+})
+@XmlRootElement(name = "MeterAssetAddRequestMessage")
+public class MeterAssetAddRequestMessage {
+
+    @XmlElement(required = true)
+    protected MessageHeader header;
+    protected MeterAddRequestPayload payload;
+
+    /**
+     * Obtém o valor da propriedade header.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MessageHeader }
+     *     
+     */
+    public MessageHeader getHeader() {
+        return header;
+    }
+
+    /**
+     * Define o valor da propriedade header.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MessageHeader }
+     *     
+     */
+    public void setHeader(MessageHeader value) {
+        this.header = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade payload.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MeterAddRequestPayload }
+     *     
+     */
+    public MeterAddRequestPayload getPayload() {
+        return payload;
+    }
+
+    /**
+     * Define o valor da propriedade payload.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MeterAddRequestPayload }
+     *     
+     */
+    public void setPayload(MeterAddRequestPayload value) {
+        this.payload = value;
+    }
+
+}

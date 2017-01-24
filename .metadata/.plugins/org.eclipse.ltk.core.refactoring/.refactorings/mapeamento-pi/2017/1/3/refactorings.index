@@ -1,0 +1,29 @@
+1484569070992	Rename resource 'instance.xml'
+1484569576881	Rename resource 'add.xml'
+1484570284438	Extract local variable 'format'
+1484574097866	Extract local variable 'writer'
+1484582762732	Extract local variable 'createElementNS'
+1484584032298	Extract local variable 'newInstance'
+1484649824913	Extract method 'extracted'
+1484666457806	Rename method 'contemAsteristico'
+1484671853752	Extract local variable 'elementsByTagName'
+1484671894663	Extract local variable 'item'
+1484672258445	Copy compilation unit
+1484678985252	Copy compilation unit
+1484679222009	Copy compilation unit
+1484742363693	Extract local variable 'instance'
+1484746417514	Convert local variable 'ejbObj' to field
+1484755650991	Rename resource 'ODR_entrada.txt'
+1484755659545	Rename resource 'ODR_saida.txt'
+1484757366389	Copy compilation unit
+1484757426588	Copy files
+1484758653042	Copy file
+1484916288666	Copy compilation unit
+1484916509083	Copy compilation unit
+1484916662252	Delete element
+1484916685573	Delete element
+1484916704561	Delete element
+1484916718463	Delete element
+1484916734155	Delete element
+1484916763205	Delete element
+1484916776740	Delete element

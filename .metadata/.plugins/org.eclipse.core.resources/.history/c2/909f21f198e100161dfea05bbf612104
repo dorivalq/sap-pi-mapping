@@ -1,0 +1,96 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.23 às 03:34:59 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de ComFunction complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="ComFunction">
+ *   &lt;complexContent>
+ *     &lt;extension base="{http://www.emeter.com/energyip/amiinterface}Asset">
+ *       &lt;sequence>
+ *         &lt;element name="amrAddress" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *         &lt;element name="amrSystem" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0" form="qualified"/>
+ *       &lt;/sequence>
+ *     &lt;/extension>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ComFunction", propOrder = {
+    "amrAddress",
+    "amrSystem"
+})
+public class ComFunction
+    extends Asset
+{
+
+    protected String amrAddress;
+    protected String amrSystem;
+
+    /**
+     * Obtém o valor da propriedade amrAddress.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAmrAddress() {
+        return amrAddress;
+    }
+
+    /**
+     * Define o valor da propriedade amrAddress.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAmrAddress(String value) {
+        this.amrAddress = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade amrSystem.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAmrSystem() {
+        return amrSystem;
+    }
+
+    /**
+     * Define o valor da propriedade amrSystem.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAmrSystem(String value) {
+        this.amrSystem = value;
+    }
+
+}

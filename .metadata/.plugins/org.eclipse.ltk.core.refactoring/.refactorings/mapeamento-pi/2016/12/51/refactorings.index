@@ -1,0 +1,13 @@
+1481559839297	Delete element
+1481560278763	Delete element
+1481561749510	Delete element
+1481561756069	Delete element
+1481562231385	Delete element
+1481564790833	Extract local variable 'valorNode'
+1481568690266	Extract local variable 'elementsByTagName'
+1481625130560	Delete element
+1481626792644	Extract local variable 'item'
+1481633713029	Extract local variable 'elementsByTagName'
+1481635705223	Convert local variable 'document' to field
+1481646544069	Extract local variable 'string'
+1481647607245	Rename local variable 'xmlOutput'

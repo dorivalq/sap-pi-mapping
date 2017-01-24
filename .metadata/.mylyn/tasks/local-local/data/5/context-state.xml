@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContextState>
+<org.eclipse.mylyn.context.ui.editors>
+<MonitoredWindowOpenEditors class="org.eclipse.ui.internal.WorkbenchWindow" isActive="true" isLaunching="true" number="0">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ZMdmXiZfaProvisionamentoU.java" partName="ZMdmXiZfaProvisionamentoU.java" title="ZMdmXiZfaProvisionamentoU.java" tooltip="mapeamento-pi/src/br/com/cpfl/mapping/ZMdmXiZfaProvisionamentoU.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mapeamento-pi/src/br/com/cpfl/mapping/ZMdmXiZfaProvisionamentoU.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12874" selectionTopPixel="4590"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FunctionUtil.java" partName="FunctionUtil.java" title="FunctionUtil.java" tooltip="mapeamento-pi/src/br/com/cpfl/mapping/FunctionUtil.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mapeamento-pi/src/br/com/cpfl/mapping/FunctionUtil.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3330" selectionTopPixel="975"/>
+</editor>
+</MonitoredWindowOpenEditors>
+</org.eclipse.mylyn.context.ui.editors>
+</ContextState>

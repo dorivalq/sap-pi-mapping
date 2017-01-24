@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;sap-jco-connecot&apos; to &apos;sap-jco-connect&apos;&#x0D;&#x0A;- Original element: &apos;sap-jco-connecot&apos;&#x0D;&#x0A;- Renamed element: &apos;sap-jco-connecot&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;sap-jco-connecot&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=sap-jco-connecot" name="sap-jco-connect" references="true" stamp="1479811945010" version="1.0"/>
+</session>

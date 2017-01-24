@@ -1,0 +1,130 @@
+package br.com.cpfl.mapping;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
+import com.sap.conn.jco.AbapException;
+import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoDestinationManager;
+import com.sap.conn.jco.JCoException;
+import com.sap.conn.jco.JCoFunction;
+import com.sap.conn.jco.JCoParameterList;
+import com.sap.conn.jco.ext.DataProviderException;
+import com.sap.conn.jco.ext.DestinationDataEventListener;
+import com.sap.conn.jco.ext.DestinationDataProvider;
+
+public class FunctionUtil {
+
+	public static class MyDestinationDataProvider implements DestinationDataProvider {
+		private DestinationDataEventListener eL;
+		private HashMap<String, Properties> secureDBStorage = new HashMap<String, Properties>();
+
+		public Properties getDestinationProperties(String destinationName) {
+			try {
+				Properties p = secureDBStorage.get(destinationName);
+				if (p != null) {
+					// check if all is correct, for example
+					if (p.isEmpty())
+						throw new DataProviderException(DataProviderException.Reason.INVALID_CONFIGURATION,
+								"destination configuration is incorrect", null);
+					return p;
+				}
+				return null;
+			} catch (RuntimeException re) {
+				throw new DataProviderException(DataProviderException.Reason.INTERNAL_ERROR, re);
+			}
+		}
+
+		public void setDestinationDataEventListener(DestinationDataEventListener eventListener) {
+			this.eL = eventListener;
+		}
+
+		public boolean supportsEvents() {
+			return true;
+		}
+
+		// implementation that saves the properties in a very secure way
+		void changeProperties(String destName, Properties properties) {
+			synchronized (secureDBStorage) {
+				if (properties == null) {
+					if (secureDBStorage.remove(destName) != null)
+						eL.deleted(destName);
+				} else {
+					secureDBStorage.put(destName, properties);
+					eL.updated(destName); // create or updated
+				}
+			}
+		}
+	} // end of MyDestinationDataProvider
+
+	// business logic
+	public static JCoFunction executeCalls(String destName, String functionName, Map<String, String> importParamMap) {
+		JCoFunction function = null;
+		MyDestinationDataProvider myProvider = new MyDestinationDataProvider();
+		try {
+			com.sap.conn.jco.ext.Environment.registerDestinationDataProvider(myProvider);
+		} catch (IllegalStateException providerAlreadyRegisteredException) {
+			throw new RuntimeException(providerAlreadyRegisteredException);
+		}
+		Properties properties = getDestinationPropertiesFromUI();
+		myProvider.changeProperties(destName, properties);
+
+		JCoDestination dest;
+		JCoParameterList jcoParameterList = null;
+		try {
+			dest = JCoDestinationManager.getDestination(destName);
+
+			function = dest.getRepository().getFunction(functionName);
+			if (function == null)
+				throw new RuntimeException(functionName + " not found in SAP.");
+
+			Set<String> keySet = importParamMap.keySet();
+			for (String key : keySet) {
+				System.out.println(importParamMap.get(key));
+				function.getImportParameterList().setValue(key, importParamMap.get(key));
+			}
+//			function.getChangingParameterList().setValue("AB", zab_time);
+//			function.getChangingParameterList().setValue("DATA", data);
+			
+			
+//			function.getTableParameterList().getTable(0);
+			try {
+				function.execute(dest);
+			} catch (AbapException e) {
+				e.printStackTrace();
+				throw e;
+			}
+
+//			jcoParameterList = function.getChangingParameterList();
+
+		} catch (JCoException e) {
+			e.printStackTrace();
+			System.out.println("Execution on destination " + destName +", Function: "+functionName+ " failed");
+			throw new RuntimeException(e);
+		}
+		return function;
+	}
+
+	public static Properties getDestinationPropertiesFromUI() {
+		// adapt parameters in order to configure a valid destination
+		Properties connectProperties = new Properties();
+		connectProperties.setProperty(DestinationDataProvider.JCO_ASHOST, "192.168.35.150");
+		connectProperties.setProperty(DestinationDataProvider.JCO_SYSNR, "20");
+		connectProperties.setProperty(DestinationDataProvider.JCO_CLIENT, "160");
+		connectProperties.setProperty(DestinationDataProvider.JCO_USER, "pirfcuser");
+		connectProperties.setProperty(DestinationDataProvider.JCO_PASSWD, "rfcALL01");
+		connectProperties.setProperty(DestinationDataProvider.JCO_LANG, "en");
+		return connectProperties;
+	}
+
+	public static void main(String[] args) {
+
+		String destName = "ABAP_AS";
+//		String destName = "CCS_160_IDOC";
+		HashMap<String, String> importParamMap = new HashMap<String, String>();
+		importParamMap.put("QUERY_TABLE", "EQUI");
+		executeCalls(destName, "IB_CONVERT_FROM_TIMESTAMP", importParamMap);
+	}
+}

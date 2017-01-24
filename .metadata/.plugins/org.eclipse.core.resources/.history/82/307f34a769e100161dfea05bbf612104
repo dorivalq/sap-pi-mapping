@@ -1,0 +1,98 @@
+//
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
+// Gerado em: 2017.01.18 às 03:22:30 PM BRST 
+//
+
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de ReadingTypeList complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="ReadingTypeList">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;choice minOccurs="0">
+ *           &lt;element name="readingTypeId" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
+ *           &lt;element name="ReadingType" type="{http://www.emeter.com/energyip/amiinterface}ReadingType" form="qualified"/>
+ *         &lt;/choice>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ReadingTypeList", propOrder = {
+    "readingTypeId",
+    "readingType"
+})
+public class ReadingTypeList {
+
+    protected String readingTypeId;
+    @XmlElement(name = "ReadingType")
+    protected ReadingType readingType;
+
+    /**
+     * Obtém o valor da propriedade readingTypeId.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getReadingTypeId() {
+        return readingTypeId;
+    }
+
+    /**
+     * Define o valor da propriedade readingTypeId.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setReadingTypeId(String value) {
+        this.readingTypeId = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade readingType.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ReadingType }
+     *     
+     */
+    public ReadingType getReadingType() {
+        return readingType;
+    }
+
+    /**
+     * Define o valor da propriedade readingType.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ReadingType }
+     *     
+     */
+    public void setReadingType(ReadingType value) {
+        this.readingType = value;
+    }
+
+}

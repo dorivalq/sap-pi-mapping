@@ -1,0 +1,26 @@
+package br.com.cpfl.mapping;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="MeterReadsRequestMessage")
+class MyBind {
+	@XmlRootElement(name="ami:header")
+	class header{
+		@javax.xml.bind.annotation.XmlElement(name = "ami:verb" )
+		String test;
+
+		public String getTest() {
+			return test;
+		}
+
+		public void setTest(String test) {
+			this.test = test;
+		}
+
+		@Override
+		public String toString() {
+			return "header [test=" + test + "]";
+		}
+		
+	}
+}

@@ -1,0 +1,220 @@
+
+package br.com.cpfl.mapping.jaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de contactType complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="contactType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;attribute name="last-name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="first-name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="person" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="business" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="address-form" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="title" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="search" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "contactType")
+public class ContactType {
+
+    @XmlAttribute(name = "last-name")
+    protected String lastName;
+    @XmlAttribute(name = "first-name")
+    protected String firstName;
+    @XmlAttribute(name = "person")
+    protected String person;
+    @XmlAttribute(name = "business")
+    protected String business;
+    @XmlAttribute(name = "address-form")
+    protected String addressForm;
+    @XmlAttribute(name = "title")
+    protected String title;
+    @XmlAttribute(name = "search")
+    protected String search;
+
+    /**
+     * Obtém o valor da propriedade lastName.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Define o valor da propriedade lastName.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLastName(String value) {
+        this.lastName = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade firstName.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Define o valor da propriedade firstName.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFirstName(String value) {
+        this.firstName = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade person.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPerson() {
+        return person;
+    }
+
+    /**
+     * Define o valor da propriedade person.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPerson(String value) {
+        this.person = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade business.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBusiness() {
+        return business;
+    }
+
+    /**
+     * Define o valor da propriedade business.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBusiness(String value) {
+        this.business = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade addressForm.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAddressForm() {
+        return addressForm;
+    }
+
+    /**
+     * Define o valor da propriedade addressForm.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAddressForm(String value) {
+        this.addressForm = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade title.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Define o valor da propriedade title.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTitle(String value) {
+        this.title = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade search.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSearch() {
+        return search;
+    }
+
+    /**
+     * Define o valor da propriedade search.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSearch(String value) {
+        this.search = value;
+    }
+
+}

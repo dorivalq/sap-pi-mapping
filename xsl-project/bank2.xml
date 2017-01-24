@@ -1,0 +1,18 @@
+<Bank>
+	<Account type="saving">
+		<teste>-1</teste>
+		<Id>1001</Id>
+		<Name>Jack Robinson</Name>
+		<Amt>10000</Amt>
+		<teste2>-1</teste2>
+	</Account>
+		<teste3>-1</teste3>
+	<Account type="*">
+		<teste4>-1</teste4>
+		<Id>1002</Id>
+		<Name>Sony Corporation</Name>
+		<Amt>-11000000</Amt>
+		<teste5>-1</teste5>
+		<teste6>-1</teste6>
+	</Account>
+</Bank>

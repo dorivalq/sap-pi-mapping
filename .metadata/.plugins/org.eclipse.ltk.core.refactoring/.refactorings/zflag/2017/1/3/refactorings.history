@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;zflag/build-copy.xml&apos; to &apos;build-OLD.xml&apos;" description="Rename resource &apos;build-copy.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="build-copy.xml" name="build-OLD.xml" stamp="1484845466855" updateReferences="true"/>
+</session>
