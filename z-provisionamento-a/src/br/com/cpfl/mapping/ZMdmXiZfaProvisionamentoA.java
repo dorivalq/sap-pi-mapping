@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -244,12 +246,12 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 				if (!"SEM MIDIA".equals(wSemMidia)) {
 					CpflZProvGrupo zProvGrupo = new CpflZProvGrupo();
 					zProvGrupo.setName("GRUPO");
-					zProvGrupo = executarMetodoRemoto(CONSULTAR_Z_PROV_GROUP, zProvGrupo);
+					zProvGrupo = executarMetodoRemoto(CONSULTAR_Z_PROV_GROUP, zProvGrupo.getName());
 					wSequencial = zProvGrupo.getSequencial();
 					wSequencial++;
 					wZProvGroup.sequencial = "Grupo0" + wSequencial;
-					zProvGrupo.setSequencial(wSequencial);
-					executarMetodoRemoto("salvarZProvGroup", zProvGrupo);
+					
+					gravarSequencialZProvGroup(zProvGrupo.getName(), wSequencial);
 
 				} else {
 					wZProvGroup.sequencial = "GrupoDSK";
@@ -441,9 +443,9 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 				if (model.getFlagRegister() == null || "".equals(model.getFlagRegister())) {
 					wIdent1 = wMeterAsset.serialNumber;
 				} else {
-					wIdent1 = model.getId().getObiscode().substring(2);
+					wIdent1 = wObiscode.substring(2, 3);
 				}
-				identification.setAttribute("ident1", wObiscode);
+				identification.setAttribute("ident1", wIdent1);
 				dataChannel.appendChild(identification);
 
 				dataChannelList.appendChild(dataChannel);
@@ -460,8 +462,8 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 			XML.appendChild(importE);
 			ZGLE_MDM.appendChild(XML);
 			Node FILENAME = oDocument.createElement("FILENAME");
-			
-			FILENAME.setTextContent(PIMessages.getString("nome.interface"));//lInterface
+
+			FILENAME.setTextContent(PIMessages.getString("nome.interface"));// lInterface
 			oDocument.getFirstChild().appendChild(FILENAME);
 
 			// cria o path do arquivo de saída
@@ -565,15 +567,15 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 	}
 
 	/**
-	 * Metodo generico para o Ejb MappingPODataAccessImpl com tratativa para o
+	 * Metodo para acessar o Ejb MappingPODataAccessImpl com tratativa para o
 	 * problema de class cast causado por diferença de classLoader
 	 * 
-	 * @param parametro
+	 * @param parametro String
 	 * @return T(s) encontrado(s) no BD
 	 * @throws Exception
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public <T> T executarMetodoRemoto(String metodo, T parametro) throws Exception {
+	public <T> T executarMetodoRemoto(String metodo, String parametro) throws Exception {
 
 		Properties props = getProperties();
 
@@ -583,17 +585,38 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 
 		Method method = remoteInterface.getMethod(metodo, args);
 		Object params[] = { parametro };
-		
-		List<T> lista  = null;
+
+		List<T> lista = null;
 		Object retorno = method.invoke(ejbObj, params);
 		if (retorno == null) {
 			return null;
-		}else{
+		} else {
 			lista = (List<T>) retorno;
-			return lista.size()>0?lista.get(0):null;
+			return lista.size() > 0 ? lista.get(0) : null;
 		}
 	}
 
+	/**
+	 * Metodo o novo sequencial do ZProvGroup atraves do Ejb remoto
+	 * @param parametro String
+	 * @return T(s) encontrado(s) no BD
+	 * @throws Exception
+	 */
+	@SuppressWarnings({"rawtypes" })
+	public void gravarSequencialZProvGroup(String groupName, Short sequencial ) throws Exception {
+		String metodo = "gravarSequencialZProvGroup";
+		Properties props = getProperties();
+
+		Class<?> remoteInterface = getService(props);
+
+		Class args[] = { groupName.getClass(), sequencial.getClass() };
+
+		Method method = remoteInterface.getMethod(metodo, args);
+		Object params[] = { groupName, sequencial };
+
+		method.invoke(ejbObj, params);
+	}
+	
 	/**
 	 * Metodo de chamada remota
 	 * 
@@ -608,8 +631,8 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 
 		Method method = remoteInterface.getMethod(metodo);
 
-		T tipoRetorno = (T) method.invoke(ejbObj) ;
-		
+		T tipoRetorno = (T) method.invoke(ejbObj);
+
 		return tipoRetorno;
 	}
 
@@ -671,12 +694,18 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 	public static void main(String[] args) throws Exception {
 
 		ZMdmXiZfaProvisionamentoA zProv = new ZMdmXiZfaProvisionamentoA();
+		// CpflZProvGrupo zProvGrupo = new CpflZProvGrupo();
+		// zProvGrupo.setName("GRUPO");
+		// zProvGrupo = zProv.executarMetodoRemoto(CONSULTAR_Z_PROV_GROUP,
+		// zProvGrupo);
 
 		System.out.println("Inicio: " + new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()));
 		long timeInMillis = Calendar.getInstance().getTimeInMillis();
 
-		InputStream inputStream = new FileInputStream(new File("C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_entrada2.xml"));
-		OutputStream outputStream = new FileOutputStream(new File("C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_entrada2-OUT.xml"));
+		InputStream inputStream = new FileInputStream(new File(
+				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_entrada2.xml"));
+		OutputStream outputStream = new FileOutputStream(new File(
+				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_entrada2-OUT.xml"));
 
 		zProv.execute(inputStream, outputStream);
 
@@ -684,6 +713,7 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 		long timeInMillis2 = Calendar.getInstance().getTimeInMillis();
 		System.out.println("Tempo gasto = " + (Double.valueOf(timeInMillis2 - timeInMillis) / 1000) + " segundo(s)");
 
-		 Runtime.getRuntime().exec("explorer C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_entrada2-OUT.xml");
+		Runtime.getRuntime().exec(
+				"explorer C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_entrada2-OUT.xml");
 	}
 }

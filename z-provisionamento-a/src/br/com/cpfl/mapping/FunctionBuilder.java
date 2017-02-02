@@ -17,18 +17,118 @@ import com.sap.conn.jco.ext.DestinationDataProvider;
 
 import br.com.cpfl.daoejb.entidades.CpflZCcsXiT001;
 
+/**
+ * Classe responsavel por executar funncoes JCO. Configurar conforme abaixo.
+ * Configurar como no exemplo <code>
+List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
+		wZCcsXit001 = lista.get(0);
+
+		functionBuilder = new FunctionBuilder();
+		functionBuilder.setupDestinationProperties(wZCcsXit001);
+		functionBuilder.setupFunction("RFC_READ_TABLE", importParamMap);
+		Map<String, String> fieldMap = new HashMap<String, String>();
+		fieldMap.put("TEXT", "EQUNR = '" + lEqunr + "'");
+		functionBuilder.addTableValue("OPTIONS", fieldMap);
+
+		fieldMap = new HashMap<String, String>();
+		fieldMap.put("FIELDNAME", "HERST");
+		fieldMap.put("OFFSET", "000202");
+		fieldMap.put("LENGTH", "000030");
+		fieldMap.put("TYPE", "C");
+		functionBuilder.addTableValue("FIELDS", fieldMap);
+
+		fieldMap = new HashMap<String, String>();
+		fieldMap.put("FIELDNAME", "TYPBZ");
+		fieldMap.put("OFFSET", "000295");
+		fieldMap.put("LENGTH", "000020");
+		fieldMap.put("TYPE", "C");
+		functionBuilder.addTableValue("FIELDS", fieldMap);
+
+		function = functionBuilder.executeCalls();
+
+		JCoTable table = function.getTableParameterList().getTable("DATA");
+
+		if (table.getNumRows() > 0) {
+			JCoFieldIterator it = table.getFieldIterator();
+			while (it.hasNextField()) {
+				JCoField field = it.nextField();
+				String fieldValue = (String) field.getValue();
+				lCcsFabricante = fieldValue.length() >= 30 ? fieldValue.substring(0, 30).trim() : "";
+				lCcsModelo = fieldValue.length() >= 50 ? fieldValue.substring(30, 50).trim() : "";
+			}
+		}
+		</code>
+ * 
+ * @param ccsXi
+ * @return FunctionBuilder
+ * @author Dorival Querino da Silva - 1 de fev de 2017 - CSC
+ * 
+ */
 public class FunctionBuilder {
 	private FunctionBuilderInner builder;
 	
 	public FunctionBuilder() {
 		this.builder = new FunctionBuilderInner();
 	}
-
+	
+	/**
+	 * Configurar como no exemplo
+	 * functionBuilder = new FunctionBuilder();
+	 * functionBuilder.setupDestinationProperties(Entidade_wZCcsXit001);
+	 * functionBuilder.setupFunction("NOME_FUNCAO", importParamMap);
+	 * 
+	 * @param ccsXi
+	 * @return FunctionBuilder
+	 */
 	public FunctionBuilder setupDestinationProperties(CpflZCcsXiT001 ccsXi) {
 		builder.setupDestinationProperties(ccsXi);
 		return this;
 	}
 	
+	/**
+	 * Configurar como no exemplo <code>
+	List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
+			wZCcsXit001 = lista.get(0);
+	
+			functionBuilder = new FunctionBuilder();
+			functionBuilder.setupDestinationProperties(wZCcsXit001);
+			functionBuilder.setupFunction("RFC_READ_TABLE", importParamMap);
+			Map<String, String> fieldMap = new HashMap<String, String>();
+			fieldMap.put("TEXT", "EQUNR = '" + lEqunr + "'");
+			functionBuilder.addTableValue("OPTIONS", fieldMap);
+	
+			fieldMap = new HashMap<String, String>();
+			fieldMap.put("FIELDNAME", "HERST");
+			fieldMap.put("OFFSET", "000202");
+			fieldMap.put("LENGTH", "000030");
+			fieldMap.put("TYPE", "C");
+			functionBuilder.addTableValue("FIELDS", fieldMap);
+	
+			fieldMap = new HashMap<String, String>();
+			fieldMap.put("FIELDNAME", "TYPBZ");
+			fieldMap.put("OFFSET", "000295");
+			fieldMap.put("LENGTH", "000020");
+			fieldMap.put("TYPE", "C");
+			functionBuilder.addTableValue("FIELDS", fieldMap);
+	
+			function = functionBuilder.executeCalls();
+	
+			JCoTable table = function.getTableParameterList().getTable("DATA");
+	
+			if (table.getNumRows() > 0) {
+				JCoFieldIterator it = table.getFieldIterator();
+				while (it.hasNextField()) {
+					JCoField field = it.nextField();
+					String fieldValue = (String) field.getValue();
+					lCcsFabricante = fieldValue.length() >= 30 ? fieldValue.substring(0, 30).trim() : "";
+					lCcsModelo = fieldValue.length() >= 50 ? fieldValue.substring(30, 50).trim() : "";
+				}
+			}
+			</code>
+	 * 
+	 * @param ccsXi
+	 * @return FunctionBuilder
+	 */
 	public FunctionBuilder setupFunction(String functionName, Map<String, String> importParamMap){
 		
 		try {
@@ -39,12 +139,49 @@ public class FunctionBuilder {
 		return this;
 	}
 	
+	/**
+	 * Configurar como no exemplo: <code>
+	fieldMap = new HashMap<String, String>();
+			fieldMap.put("FIELDNAME", "HERST");
+			fieldMap.put("OFFSET", "000202");
+			fieldMap.put("LENGTH", "000030");
+			fieldMap.put("TYPE", "C");
+			functionBuilder.addTableValue("FIELDS", fieldMap);
 	
+			fieldMap = new HashMap<String, String>();
+			fieldMap.put("FIELDNAME", "TYPBZ");
+			fieldMap.put("OFFSET", "000295");
+			fieldMap.put("LENGTH", "000020");
+			fieldMap.put("TYPE", "C");
+			functionBuilder.addTableValue("FIELDS", fieldMap);
+	
+			function = functionBuilder.executeCalls();
+			</code>
+	 * 
+	 * @param tableName
+	 * @param fieldMap
+	 * @return
+	 */
 	public FunctionBuilder addTableValue(String tableName, Map fieldMap ){
 		builder.addTableValue(tableName, fieldMap);
 		return this;
 	}
 	
+	/**
+	 * @param <code>ccsXi Entidade CpflZCcsXiT001 com os dados para a
+	 *            conexao Jco Exemplo: wZCcsXit001 =
+	 *            classe.executarMetodoRemoto(CONSULTAR_CCS_XI) Map<String,
+	 *            String> importParamMap = new HashMap<String, String>();
+	 *            importParamMap.put("QUERY_TABLE", "EQUI");
+	 *            FunctionUtil.executeCalls(zProv.wZCcsXit001,
+	 *            "RFC_READ_TABLE", importParamMap); </code>
+	 * @param functionName Nome da função
+	 * @param importParamMap Mapa com todos os import parameters da funcao
+	 *            Exemplo de uso: Map<String, String> importParamMap = new
+	 *            HashMap<String, String>();
+	 *            importParamMap.put("QUERY_TABLE", "EQUI");
+	 * @return JCoFunction com o resultado da execução.
+	 */
 	public JCoFunction executeCalls(){
 		return builder.executeCalls();
 	}
