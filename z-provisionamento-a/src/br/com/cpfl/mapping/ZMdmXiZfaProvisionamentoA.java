@@ -7,8 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -75,8 +73,6 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 
 	private String wInv;
 
-	private String wCodeCcEe;
-
 	private String wType;
 
 	private class ZProvGroup {
@@ -114,7 +110,6 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 
 	private String wCodCcee;
 	private Short wSequencial;
-	private String wsSequencial;
 	private String wPrefix;
 	private String wDsk;
 
@@ -209,7 +204,7 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 			} // dateTimeE != null
 			wModel = wMeterAsset.modelNumber;
 			if (wServiceDeliveryPoint.parameter != null) {
-				wCodeCcEe = wServiceDeliveryPoint.parameter;
+				wCodCcee = wServiceDeliveryPoint.parameter;
 			}
 
 			if ("MeterAdd".equals(wHeader.noun)) {
@@ -248,24 +243,22 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 					zProvGrupo.setName("GRUPO");
 					zProvGrupo = executarMetodoRemoto(CONSULTAR_Z_PROV_GROUP, zProvGrupo.getName());
 					wSequencial = zProvGrupo.getSequencial();
-					wSequencial++;
 					wZProvGroup.sequencial = "Grupo0" + wSequencial;
+					wSequencial++;
 					
 					gravarSequencialZProvGroup(zProvGrupo.getName(), wSequencial);
 
 				} else {
 					wZProvGroup.sequencial = "GrupoDSK";
-					wsSequencial = "GrupoDSK";
 					wPrefix = "DISCO";
 					wDsk = "X";
 				}
 			} else {
 				wZProvGroup.sequencial = "GrupoDSK";
-				wsSequencial = "GrupoDSK";
 				wPrefix = "DISCO";
 			}
 
-			groupE.setAttribute("name", wsSequencial);
+			groupE.setAttribute("name", wZProvGroup.sequencial);
 
 			Element meterPointList = oDocument.createElement("metering-point-list");
 			groupE.appendChild(meterPointList);
@@ -286,7 +279,7 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 
 			Element groupExange = oDocument.createElement("group");
 			groupExange.setAttribute("type", "device");
-			groupExange.setAttribute("name", wsSequencial);
+			groupExange.setAttribute("name", wZProvGroup.sequencial);
 
 			exchange.appendChild(groupExange);
 
@@ -694,10 +687,6 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 	public static void main(String[] args) throws Exception {
 
 		ZMdmXiZfaProvisionamentoA zProv = new ZMdmXiZfaProvisionamentoA();
-		// CpflZProvGrupo zProvGrupo = new CpflZProvGrupo();
-		// zProvGrupo.setName("GRUPO");
-		// zProvGrupo = zProv.executarMetodoRemoto(CONSULTAR_Z_PROV_GROUP,
-		// zProvGrupo);
 
 		System.out.println("Inicio: " + new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()));
 		long timeInMillis = Calendar.getInstance().getTimeInMillis();
