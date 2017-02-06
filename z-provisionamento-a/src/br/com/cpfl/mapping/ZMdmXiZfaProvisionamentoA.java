@@ -86,7 +86,7 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 		String mRid;
 		String modelNumber;
 		String serialNumber;
-		// String parameter/* Model */;
+		String parameter/* Model */;
 	}
 
 	private FsMeterAsset wMeterAsset = new FsMeterAsset();
@@ -413,7 +413,7 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 				communication.appendChild(lParamList);
 			} else {
 				// envia IP:X.X.X.X
-				communication.setAttribute("target-phone-number", wComfunction.mRid);
+				communication.setAttribute("target-phone-number", lIpOrig);
 			}
 			// * PN - 07.05.2015 - Inc.#3659 - Fim
 
@@ -507,6 +507,10 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 		Element wServiceDeliveryPointE = (Element) document.getElementsByTagName("ami:serviceDeliveryPoint").item(0);
 
 		wServiceDeliveryPoint.mRid = getValue(wServiceDeliveryPointE, "ami:mRID");
+		NodeList listParam = wServiceDeliveryPointE.getElementsByTagName("ami:parameter");
+		if (listParam.getLength() > 0) {
+			wServiceDeliveryPoint.parameter = getValue((Element)listParam.item(0), "ami:value");
+		}
 	}
 
 	private void popularAsset() {
