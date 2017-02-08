@@ -22,7 +22,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.sap.aii.mapping.api.StreamTransformation;
@@ -97,27 +96,16 @@ public class BillingDet implements StreamTransformation {
 				}
 			}
 			
-
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			Source source = new DOMSource(document);
 			Result result = new StreamResult(outputStream);
+			
 			transformer.transform(source, result);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new StreamTransformationException("[Java Mapping]: Falha ao efetuar o mapeamento no Java ", e);
 		}
-	}
-
-	private String getValue(Element elementP, String name) {
-		Element e = (Element) elementP.getElementsByTagName(name).item(0);
-		if (e == null) {
-			return "";
-		}
-		if (e.hasChildNodes()) {
-			String retorn = e.getTextContent() == null ? "" : e.getFirstChild().getTextContent();
-			return retorn;
-		}
-		return "";
 	}
 
 	public static void main(String[] args) throws Exception {

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="extracted_jar" name="Create Jar for Project billing-det">
+	<!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+	<!--ANT 1.7 is required-->
+	<!--define folder properties-->
+	<property name="dir.buildfile" value="." />
+	<property name="dir.workspace" value="${dir.buildfile}/.." />
+	<!-- Criar no workspace o diretorio abaixo (/libs-add) e colocar o jar do dao-ejb-3.jar -->
+	<property name="dir.jar.add" value="${dir.workspace}/libs-add"></property>
+
+
+	<target name="extracted_jar" depends="clean">
+		<jar destfile="D:/jar/billing-det.jar" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Main-Class" value="br.com.cpfl.mapping.billing.BillingDet" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="${dir.buildfile}/bin" />
+			<fileset dir="${dir.buildfile}/src" />
+			<zipfileset src="${dir.jar.add}/dao-ejb-3.jar" includes="**/*.class, **/*.java" excludes="**/META-INF/*.MF">
+			</zipfileset>
+			<!-- 
+			<zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/libraries java PI 7.0/sap.com~tc~je~clientlib~impl.jar"/>
+			-->
+		</jar>
+	</target>
+
+	<target name="clean">
+		 <delete includeemptydirs="true">
+		    <fileset dir="D:/jar" includes="**/*billing-det.jar" defaultexcludes="false"/>
+		  </delete>
+	</target>
+
+</project>
