@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -35,6 +36,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.omg.CORBA.WStringSeqHelper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -54,14 +56,9 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 	private static final char SPACE = ' ';
 	private static final String CONSULTAR_CCS_XI = "consultarCcsXi";
 	private Map map;
-	private String wChanel;
-	private String wData;
-	private String wDataC;
-	private CpflZCcsXiT001 wZCcsXit001;
+
 	private Object ejbObj;
-	private String wStartTime;
-	private String endTimeF;
-	private String wValue;
+
 	private OutputStream newOut;
 	private StringBuilder wFileContent;
 
@@ -96,11 +93,10 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 			Document document = documentBuilder.parse(inputStream);
 			String wEqunr = null;
 
-			String wChanel;
-			String wData;
-			String wDataC;
+			String wChanel = null;
+			String wData = null;
+			String wDataC = null;
 			CpflZCcsXiT001 wZCcsXit001;
-			Object ejbObj;
 			String wStartTime;
 			String endTimeF;
 			String wValue;
@@ -108,7 +104,7 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 			TyArqAux wArq = new TyArqAux();
 			TyArqAux wArqAux = new TyArqAux();
 			List<TyArqAux> tArq = new ArrayList<TyArqAux>();
-			List<TyArqAux> tArqAux = new ArrayList<TyArqAux>();
+			Map<String, TyArqAux> tArqAux = new HashMap<String, TyArqAux>();
 
 			// Inicializa configuracao de JcoFunction
 			List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
@@ -122,116 +118,140 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 			Arrays.fill(wFileCharArray, SPACE);
 
 			NodeList meterReadingList = document.getElementsByTagName("MeterReading");
-			for (int i = 0; i < meterReadingList.getLength(); i++) {
-				Element meterReading = (Element) meterReadingList.item(i);
-
+			for (int meterIndex = 0; meterIndex < meterReadingList.getLength(); meterIndex++) {
+				Element meterReading = (Element) meterReadingList.item(meterIndex);
+				
 				Element meter = (Element) meterReading.getElementsByTagName("Meter").item(0);
 				if (meter != null) {
 					wEqunr = meter.getAttribute("MeterNm");
 				}
+				
+				NodeList IntervalReadingList = meterReading.getElementsByTagName("IntervalReading");
+				for (int i = 0; i < IntervalReadingList.getLength(); i++) {
+					Element intervalReading = (Element) IntervalReadingList.item(i);
 
-				Element intervalReading = (Element) meterReading.getElementsByTagName("IntervalReading").item(0);
-				wChanel = intervalReading.getAttribute("Channel");
-
-				wData = intervalReading.getAttribute("BeginTime").substring(0, 10);
-
-				wDataC = wData.replaceAll("-", "");
-
-				// CONVERSION_EXIT_ALPHA_INPUT - trata o campo wEqunr
-				char[] charArray = new char[18];
-				Arrays.fill(charArray, 0, 18, '0');
-				wEqunr = String.valueOf(charArray).substring(wEqunr.length()) + wEqunr;
-
-				Map<String, String> importParamMap = new HashMap<String, String>();
-				importParamMap.put("EQUNR", wEqunr);
-				importParamMap.put("CHANNEL", wChanel);
-				importParamMap.put("DATA", wDataC);
-
-				functionBuilder.setupFunction("ZCCSGLEF0082", importParamMap);
-
-				JCoFunction function = functionBuilder.executeCalls();
-
-				JCoParameterList jcoParamList = function.getChangingParameterList();
-				String wExtUiC = jcoParamList.getString("EXT_UI");
-				String wRefNumberC = jcoParamList.getString(1);
-				String wUnitC = jcoParamList.getString("UNIT");
-				int wTcD = jcoParamList.getInt("TC");
-				int wTpD = jcoParamList.getInt("TP");
-
-				Calendar calEndtime = GregorianCalendar.getInstance();
-				Calendar calStartTime = GregorianCalendar.getInstance();
-
-				NodeList readingList = intervalReading.getElementsByTagName("Reading");
-				// DO w_NumIntrvs_i TIMES.
-				for (int indexReading = 0; indexReading < readingList.getLength(); indexReading++) {
-					Element reading = (Element) readingList.item(indexReading);
-					String endTime = reading.getAttribute("EndTime");
-					Date date = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").parse(endTime);
-					calEndtime.setTime(date);
-
-					calStartTime.setTime(calEndtime.getTime());
-					calStartTime.add(Calendar.SECOND, -300);
-
-					if (calStartTime.compareTo(calEndtime) > 0) {
-						calStartTime.add(Calendar.DAY_OF_MONTH, -1);
+					// Element intervalReading = (Element)
+					// intervalReading.getElementsByTagName("IntervalReading").item(0);
+					if (intervalReading != null) {
+						wChanel = intervalReading.getAttribute("Channel");
 					}
 
-					wStartTime = new SimpleDateFormat("yyyyMMddhhmmss").format(calStartTime.getTime()) + "-"
-							+ endTime.substring(25, 26);
-
-					endTimeF = new SimpleDateFormat("yyyyMMddhhmmss").format(calEndtime.getTime()) + "-"
-							+ endTime.substring(25, 26);
-
-					wValue = reading.getAttribute("Value");
-
-					wValue = onlyNumbers(wValue);
-					// if (wValue != null && !wValue.isEmpty() ) {//TODO:
-					// wValue += "000";
-					// }
-
-					Long wValueD = Long.valueOf(wValue);
-					wValueD = wValueD * 12;
-
-					if (wTpD != 0 && wTcD != 0) {
-						wValueD = wValueD * wTcD * wTpD;
-					} else if (wTpD == 0 && wTcD != 0) {
-						wValueD = wValueD * wTcD;
-					} else if (wTpD != 0 && wTcD == 0) {
-						wValueD = wValueD * wTpD;
+					String beginTime = intervalReading.getAttribute("BeginTime");
+					if (beginTime != null) {
+						wData = beginTime.substring(0, 10);
+					}
+					if (wData != null && !wData.isEmpty()) {
+						wDataC = wData.replaceAll("-", "");
 					}
 
-					wValue = wValueD.toString();
+					// CONVERSION_EXIT_ALPHA_INPUT - trata o campo wEqunr no
+					// java mesmo
+					// ao inves de chamar a funcao CONVERSION_EXIT_ALPHA_INPUT
+					char[] charArray = new char[18];
+					Arrays.fill(charArray, 0, 18, '0');
+					String wEqunrC = String.valueOf(charArray).substring(wEqunr.length()) + wEqunr;
 
-					wArq.pod = wExtUiC;// NPE
-					wArq.ref = wRefNumberC;
-					wArq.st = wStartTime;
-					wArq.et = endTimeF;
-					wArq.vl = wValue;
-					wArq.un = wUnitC;
-					wArq.eq = wEqunr;
-					wArqAux.pod = wExtUiC;
-					wArqAux.st = wStartTime;
-					wArqAux.eq = wEqunr;
+					Map<String, String> importParamMap = new HashMap<String, String>();
+					importParamMap.put("EQUNR", wEqunrC);
+					importParamMap.put("CHANNEL", wChanel);
+					importParamMap.put("DATA", wDataC);
 
-					if (wChanel.matches("[1234]")) {
-						tArq.add(wArq);
-						tArqAux.add(wArqAux);
-					}
+					functionBuilder.setupFunction("ZCCSGLEF0082", importParamMap);
 
-				} // indexReading
+					JCoFunction function = functionBuilder.executeCalls();
 
-				// meterReading.getAttribute("NumIntrvs");//TODO: Só apagar?
+					JCoParameterList jcoParamList = function.getChangingParameterList();
+					String wExtUiC = jcoParamList.getString("EXT_UI");
+					String wRefNumberC = jcoParamList.getString(1);
+					String wUnitC = jcoParamList.getString("UNIT");
+					int wTcD = jcoParamList.getInt("TC");
+					int wTpD = jcoParamList.getInt("TP");
+
+					Calendar calEndtime = Calendar.getInstance();
+					Calendar calStartTime = Calendar.getInstance();
+
+					NodeList readingList = intervalReading.getElementsByTagName("Reading");
+					// DO w_NumIntrvs_i TIMES.
+					for (int indexReading = 0; indexReading < readingList.getLength(); indexReading++) {
+						Element reading = (Element) readingList.item(indexReading);
+						String endTime = null;
+						if (reading != null) {
+							endTime = reading.getAttribute("EndTime");
+						}
+						Date date = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").parse(endTime);
+						calEndtime.setTime(date);
+
+						calStartTime.setTime(calEndtime.getTime());
+						calStartTime.add(Calendar.SECOND, -300);
+
+						if (calStartTime.compareTo(calEndtime) > 0) {
+							calStartTime.add(Calendar.DAY_OF_MONTH, -1);
+						}
+
+						wStartTime = new SimpleDateFormat("yyyyMMddhhmmss").format(calStartTime.getTime()) + "-"
+								+ endTime.substring(25, 26);
+
+						endTimeF = new SimpleDateFormat("yyyyMMddhhmmss").format(calEndtime.getTime()) + "-"
+								+ endTime.substring(25, 26);
+
+						wValue = reading.getAttribute("Value");
+						if (wValue != null && !wValue.isEmpty()) {
+							wValue = onlyNumbers(wValue);
+						}
+						// if (wValue != null && !wValue.isEmpty() ) {
+						// wValue += "000";
+						// }
+
+						Long wValueD = Long.valueOf(wValue);
+						wValueD = wValueD * 12;
+
+						if (wTpD != 0 && wTcD != 0) {
+							wValueD = wValueD * wTcD * wTpD;
+						} else if (wTpD == 0 && wTcD != 0) {
+							wValueD = wValueD * wTcD;
+						} else if (wTpD != 0 && wTcD == 0) {
+							wValueD = wValueD * wTpD;
+						}
+
+						wValue = wValueD.toString();
+
+						wArq.pod = wExtUiC;
+						wArq.ref = wRefNumberC;
+						wArq.st = wStartTime;
+						wArq.et = endTimeF;
+						wArq.vl = wValue;
+						wArq.un = wUnitC;
+						wArq.eq = wEqunr;
+						wArqAux.pod = wExtUiC;
+						wArqAux.st = wStartTime.substring(0, 8);
+						wArqAux.eq = wEqunr;
+
+						// if w_CHANNEL_C co '1234'.
+						// APPEND W_ARQ TO T_ARQ.
+						// COLLECT W_ARQ_AUX INTO T_ARQ_AUX.
+						// endif.
+						// TODO: VALIDAR?? IF ACIMA
+						if (wChanel.matches("[1234]")) {
+							tArq.add(wArq);
+							tArqAux.put(wArqAux.eq, wArqAux);
+						}
+						wArq = new TyArqAux(); 
+						wArqAux = new TyArqAux();
+					} // indexReading
+				} // IntervalReadingList
 
 			} // meterReadingList
 
 			// ordenacao pelo campo 'st'
 			Collections.sort(tArq);
-			Collections.sort(tArqAux);
-			for (int i = 0; i < tArqAux.size(); i++) {/verificar loop aninhado.. ver qtd  linhas bate com o controle
+			List<TyArqAux> tArqAuxList = new ArrayList<TyArqAux>();
+			tArqAuxList.addAll(tArqAux.values());
+			Collections.sort(tArqAuxList);
+			for (int i = 0; i < tArqAuxList.size(); i++) {
 				// TyArqAux tArqAux = tArqAux.get(i);
-				wArqAux = tArqAux.get(i);
+				wArqAux = tArqAuxList.get(i);
 				String vloc;
-				vloc = "/interf/gle/mm/out/UIQ" + wArqAux.pod + "_" + wArqAux.eq + "_" + wArqAux.st + "_" + i + ".tmp";
+				vloc = "/interf/gle/mm/out/UIQ" + wArqAux.pod + "_" + wArqAux.eq + "_" + wArqAux.st + "_" + (i+1) + ".txt";
 
 				// criar o arquivo de saida
 				File arquivoSaida = new File(vloc);
@@ -242,34 +262,42 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 				wFileContent = new StringBuilder();
 				StringBuilder wFile = null;
 
-				List<TyArqAux> listArq = selectTarqComparing(tArq, wArqAux.pod, wArqAux.eq);// arqI.pod,
+				List<TyArqAux> listArq = selectTarqComparing(tArq, wArqAux.pod, wArqAux.eq);
+																							
+																							
 
 				for (TyArqAux wArqItem : listArq) {
-					if (wArqItem.st.equals(wArqAux.st)) {
+					if (wArqItem.st.substring(0,8).equals(wArqAux.st)) {
 						wFile = new StringBuilder(String.valueOf(wFileCharArray));
-						// wFile.append(" ", 0, 153);
-
+						
+						wFile.replace(0, wArqItem.pod.length(), wArqItem.pod);
 						wFile.replace(50, 50 + wArqItem.ref.length(), wArqItem.ref);
-						wFile.replace(82, (82 + wArqItem.st.length()), wArqItem.st);
-						wFile.replace(99, (99 + wArqItem.et.length()), wArqItem.et);
-						wFile.replace(130, (130 + "01".length()), "01");
-						wFile.replace(134, (134 + wArqItem.un.length()), wArqItem.un);
-						wFile.replace(134, (134 + wArqItem.ref.length()), wArqItem.ref);
+						wFile.replace(65, (65 + wArqItem.st.length()), wArqItem.st);
+						wFile.replace(82, (82 + wArqItem.et.length()), wArqItem.et);
+						wFile.replace(99, (99 + wArqItem.vl.length()), wArqItem.vl);
+						wFile.replace(130,(130 + "01".length()), "01");
+						wFile.replace(134,(134 + wArqItem.ref.length()), wArqItem.ref);
 						System.out.println(wFile);// TODO:
 						wFile.append("\n");
 
-						wFileContent.append(wFile);
+						wFileContent.append(wFile.toString());
 					}
+					newOut.write(wFileContent.toString().getBytes());
 				}
+				// rename de .tmp para .txt//TODO:
+//				String wLoc = vloc.replace(".tmp", ".txt");
+//				String wCommand = "mv" + vloc + " " + wLoc;
+//				Runtime.getRuntime().exec(wCommand);
 			}
-			newOut.write(wFileContent.toString().getBytes());
-
-			// TransformerFactory transformerFactory =
-			// TransformerFactory.newInstance();
-			// Transformer transformer = transformerFactory.newTransformer();
-			// Source source = new DOMSource(document);
-			// Result result = new StreamResult(outputStream);
-			// transformer.transform(source , result);
+//			newOut.write(wFileContent.toString().getBytes());
+			System.out.println("--------------------------------------------------------------");// TODO:
+																									// remover
+			System.out.println(wFileContent);
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			Source source = new DOMSource(document);
+			Result result = new StreamResult(outputStream);
+			transformer.transform(source, result);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -317,6 +345,17 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 			String retorn = e.getTextContent() == null ? "" : e.getFirstChild().getTextContent();
 			return retorn;
 		}
+		return "";
+	}
+
+	private String getAttributeValue(Element elementParent, String nodeName, String attributeName) {
+		if (elementParent != null) {
+			Element e = (Element) elementParent.getElementsByTagName(nodeName).item(0);
+			if (e != null) {
+				return e.getAttribute(attributeName) == null ? "" : e.getAttribute(attributeName);
+			}
+		}
+
 		return "";
 	}
 
