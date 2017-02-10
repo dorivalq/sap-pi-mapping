@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -23,12 +23,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -36,10 +36,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.omg.CORBA.WStringSeqHelper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.sap.aii.mapping.api.StreamTransformation;
@@ -55,6 +53,7 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 
 	private static final char SPACE = ' ';
 	private static final String CONSULTAR_CCS_XI = "consultarCcsXi";
+	@SuppressWarnings({ "unused", "rawtypes" })
 	private Map map;
 
 	private Object ejbObj;
@@ -62,7 +61,7 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 	private OutputStream newOut;
 	private StringBuilder wFileContent;
 
-	class TyArqAux implements Comparable<TyArqAux> {
+	class TyArq{
 		String pod;
 		String ref;
 		String st;
@@ -70,15 +69,40 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 		String vl;
 		String un;
 		String eq;
-
+	}
+	
+	class TyArqAux{
+		String pod;
+		String st;
+		String eq;
 		@Override
-		public int compareTo(TyArqAux o) {
-			return this.st.compareTo(o.st);
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+//			result = prime * result + ((eq == null) ? 0 : eq.hashCode());
+//			result = prime * result + ((pod == null) ? 0 : pod.hashCode());
+			result = prime * result + ((st == null) ? 0 : st.hashCode());
+			return result;
 		}
+		@Override
+		public boolean equals(Object obj) {
+			TyArqAux other = (TyArqAux) obj;
+			other.eq = other.eq == null ? "" : other.eq;
+			other.pod = other.pod == null ? "" : other.pod;
+			other.st = other.st == null ? "" : other.st;
+//			if (other.st.equals(this.st) && other.eq.equals(this.eq) && other.pod.equals(this.pod)){
+			if (other.st.equals(this.st) ){
+				return true;
+			}
+			return false;
+		}
+
+
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	public void setParameter(Map map) {
+	public void setParameter( Map map) {
 		this.map = map;
 		if (map == null) {
 			this.map = new HashMap();
@@ -101,14 +125,27 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 			String endTimeF;
 			String wValue;
 
-			TyArqAux wArq = new TyArqAux();
+			TyArq wArq = new TyArq();
 			TyArqAux wArqAux = new TyArqAux();
-			List<TyArqAux> tArq = new ArrayList<TyArqAux>();
-			Map<String, TyArqAux> tArqAux = new HashMap<String, TyArqAux>();
+			List<TyArq> tArq = new ArrayList<TyArq>();
 
+			Set<TyArqAux> tArqAux = //new ArrayList<ZUiqXiPiMemoriaMassa.TyArqAux>();
+					new TreeSet<TyArqAux>(new Comparator<TyArqAux>() {
+				@Override
+				public int compare(TyArqAux o1, TyArqAux o2) {
+					return o1.st.compareTo(o2.st);
+				}
+			});// LinkedHashSet<ZUiqXiPiMemoriaMassa.TyArqAux>();
+			
 			// Inicializa configuracao de JcoFunction
 			List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
 			wZCcsXit001 = lista.get(0);
+			wZCcsXit001.setJcoAshost("192.168.35.153");
+			wZCcsXit001.setJcoClient("350");
+			wZCcsXit001.setJcoSysnr("21");
+//			wZCcsXit001.setDest("CCQ");
+//			[15:09:16] Guilherme Almeida: 21
+//			[15:09:18] Guilherme Almeida: CCQ
 			FunctionBuilder functionBuilder = new FunctionBuilder();
 			functionBuilder = new FunctionBuilder();
 			functionBuilder.setupDestinationProperties(wZCcsXit001);
@@ -129,9 +166,9 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 				NodeList IntervalReadingList = meterReading.getElementsByTagName("IntervalReading");
 				for (int i = 0; i < IntervalReadingList.getLength(); i++) {
 					Element intervalReading = (Element) IntervalReadingList.item(i);
+					
+					int intrvlLength = Integer.parseInt(intervalReading.getAttribute("IntrvlLength"));
 
-					// Element intervalReading = (Element)
-					// intervalReading.getElementsByTagName("IntervalReading").item(0);
 					if (intervalReading != null) {
 						wChanel = intervalReading.getAttribute("Channel");
 					}
@@ -171,7 +208,6 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 					Calendar calStartTime = Calendar.getInstance();
 
 					NodeList readingList = intervalReading.getElementsByTagName("Reading");
-					// DO w_NumIntrvs_i TIMES.
 					for (int indexReading = 0; indexReading < readingList.getLength(); indexReading++) {
 						Element reading = (Element) readingList.item(indexReading);
 						String endTime = null;
@@ -182,7 +218,7 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 						calEndtime.setTime(date);
 
 						calStartTime.setTime(calEndtime.getTime());
-						calStartTime.add(Calendar.SECOND, -300);
+						calStartTime.add(Calendar.MILLISECOND, -300);
 
 						if (calStartTime.compareTo(calEndtime) > 0) {
 							calStartTime.add(Calendar.DAY_OF_MONTH, -1);
@@ -195,14 +231,11 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 								+ endTime.substring(25, 26);
 
 						wValue = reading.getAttribute("Value");
-						if (wValue != null && !wValue.isEmpty()) {
-							wValue = onlyNumbers(wValue);
-						}
-						// if (wValue != null && !wValue.isEmpty() ) {
-						// wValue += "000";
-						// }
+						 if (wValue != null && !wValue.isEmpty() && wValue.matches("[+-]?\\d*(\\.\\d+)?") ) {
+							 wValue += "000";
+						 }
 
-						Long wValueD = Long.valueOf(wValue);
+						Double wValueD = Double.valueOf(wValue);
 						wValueD = wValueD * 12;
 
 						if (wTpD != 0 && wTcD != 0) {
@@ -214,7 +247,7 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 						}
 
 						wValue = wValueD.toString();
-
+						wValue = String.format("%.4f", wValueD);
 						wArq.pod = wExtUiC;
 						wArq.ref = wRefNumberC;
 						wArq.st = wStartTime;
@@ -226,32 +259,36 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 						wArqAux.st = wStartTime.substring(0, 8);
 						wArqAux.eq = wEqunr;
 
-						// if w_CHANNEL_C co '1234'.
-						// APPEND W_ARQ TO T_ARQ.
-						// COLLECT W_ARQ_AUX INTO T_ARQ_AUX.
-						// endif.
-						// TODO: VALIDAR?? IF ACIMA
 						if (wChanel.matches("[1234]")) {
 							tArq.add(wArq);
-							tArqAux.put(wArqAux.eq, wArqAux);
+							//lista com grupos do tamanho do intrvlLength
+//							if ((indexReading>0) && indexReading % intrvlLength == 0) {
+								tArqAux.add(wArqAux);
+//							}
 						}
-						wArq = new TyArqAux(); 
+						wArq = new TyArq(); 
 						wArqAux = new TyArqAux();
 					} // indexReading
 				} // IntervalReadingList
 
 			} // meterReadingList
 
-			// ordenacao pelo campo 'st'
-			Collections.sort(tArq);
-			List<TyArqAux> tArqAuxList = new ArrayList<TyArqAux>();
-			tArqAuxList.addAll(tArqAux.values());
-			Collections.sort(tArqAuxList);
-			for (int i = 0; i < tArqAuxList.size(); i++) {
-				// TyArqAux tArqAux = tArqAux.get(i);
-				wArqAux = tArqAuxList.get(i);
+			
+			int i = 0;
+//			List<TyArqAux> listaArquivos= new ArrayList<>();
+//			//transferimos o valor para uma lista, pos um hashSet
+//			listaArquivos.addAll (tArqAux);
+//			tArqAux.sort(new Comparator<TyArqAux>() {
+//				@Override
+//				public int compare(TyArqAux o1, TyArqAux o2) {
+//					return o1.eq.compareTo(o2.eq);
+//				}
+//			});
+			
+			for (TyArqAux tyArqAux : tArqAux) {
+				wArqAux = tyArqAux;
 				String vloc;
-				vloc = "/interf/gle/mm/out/UIQ" + wArqAux.pod + "_" + wArqAux.eq + "_" + wArqAux.st + "_" + (i+1) + ".txt";
+				vloc = "/interf/gle/mm/out/UIQ" + wArqAux.pod + "_" + wArqAux.eq + "_" + wArqAux.st + "_" + (i++) + ".txt";
 
 				// criar o arquivo de saida
 				File arquivoSaida = new File(vloc);
@@ -262,11 +299,30 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 				wFileContent = new StringBuilder();
 				StringBuilder wFile = null;
 
-				List<TyArqAux> listArq = selectTarqComparing(tArq, wArqAux.pod, wArqAux.eq);
-																							
-																							
+				List<TyArq> listArq = selectTarqComparing(tArq, wArqAux.pod, wArqAux.eq);
+				
+				Collections.sort(listArq, new Comparator<TyArq>() {
+					@Override
+					public int compare(TyArq o1, TyArq o2) {
+						return o1.pod.compareTo(o2.pod);
+					}
+				});																			
 
-				for (TyArqAux wArqItem : listArq) {
+				Collections.sort(listArq, new Comparator<TyArq>() {
+					@Override
+					public int compare(TyArq o1, TyArq o2) {
+						return o1.ref.compareTo(o2.ref);
+					}
+				});	
+				
+				Collections.sort(listArq, new Comparator<TyArq>() {
+					@Override
+					public int compare(TyArq o1, TyArq o2) {
+						return o1.st.compareTo(o2.st);
+					}
+				});	
+				
+				for (TyArq wArqItem : listArq) {
 					if (wArqItem.st.substring(0,8).equals(wArqAux.st)) {
 						wFile = new StringBuilder(String.valueOf(wFileCharArray));
 						
@@ -277,22 +333,14 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 						wFile.replace(99, (99 + wArqItem.vl.length()), wArqItem.vl);
 						wFile.replace(130,(130 + "01".length()), "01");
 						wFile.replace(134,(134 + wArqItem.ref.length()), wArqItem.ref);
-						System.out.println(wFile);// TODO:
 						wFile.append("\n");
 
 						wFileContent.append(wFile.toString());
 					}
-					newOut.write(wFileContent.toString().getBytes());
 				}
-				// rename de .tmp para .txt//TODO:
-//				String wLoc = vloc.replace(".tmp", ".txt");
-//				String wCommand = "mv" + vloc + " " + wLoc;
-//				Runtime.getRuntime().exec(wCommand);
+				newOut.write(wFileContent.toString().getBytes());
 			}
-//			newOut.write(wFileContent.toString().getBytes());
-			System.out.println("--------------------------------------------------------------");// TODO:
-																									// remover
-			System.out.println(wFileContent);
+			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			Source source = new DOMSource(document);
@@ -315,48 +363,17 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 
 	}
 
-	private List<TyArqAux> selectTarqComparing(List<TyArqAux> tbArqFull, String pod, String eq) {
-		List<TyArqAux> tbArqNew = new ArrayList<TyArqAux>();
+	private List<TyArq> selectTarqComparing(List<TyArq> tbArqFull, String pod, String eq) {
+		List<TyArq> tbArqNew = new ArrayList<TyArq>();
 		if (tbArqFull == null || tbArqFull.isEmpty()) {
 			return tbArqNew;
 		}
-		for (TyArqAux arqItem : tbArqFull) {
+		for (TyArq arqItem : tbArqFull) {
 			if (arqItem.pod.equals(pod) && arqItem.eq.equals(eq)) {
 				tbArqNew.add(arqItem);
 			}
 		}
 		return tbArqNew;
-	}
-
-	public String onlyNumbers(String str) {
-		if (str != null) {
-			return str.replaceAll("[^0123456789]", "").trim();
-		} else {
-			return "";
-		}
-	}
-
-	private String getValue(Element elementP, String name) {
-		Element e = (Element) elementP.getElementsByTagName(name).item(0);
-		if (e == null) {
-			return "";
-		}
-		if (e.hasChildNodes()) {
-			String retorn = e.getTextContent() == null ? "" : e.getFirstChild().getTextContent();
-			return retorn;
-		}
-		return "";
-	}
-
-	private String getAttributeValue(Element elementParent, String nodeName, String attributeName) {
-		if (elementParent != null) {
-			Element e = (Element) elementParent.getElementsByTagName(nodeName).item(0);
-			if (e != null) {
-				return e.getAttribute(attributeName) == null ? "" : e.getAttribute(attributeName);
-			}
-		}
-
-		return "";
 	}
 
 	/**
@@ -403,39 +420,11 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 
 		ZUiqXiPiMemoriaMassa zProv = new ZUiqXiPiMemoriaMassa();
 
-		// char wFileCharArray[] = new char[153];
-		// Arrays.fill(wFileCharArray, SPACE);
-
-		// StringBuilder wFile = new
-		// StringBuilder(String.valueOf(wFileCharArray));
-		// List<String> listArq = new
-		// ArrayList<String>();//selectTarqComparing(tbArq, tArqAux.pod,
-		// tArqAux.eq);// arqI.pod,
-		// listArq.add("dorival");
-		// listArq.add("cpfl");
-		// listArq.add("1.001");
-		// for (String wArqItem : listArq) {
-		// //TODO: add formatação ex: w_file+50(07)
-		//// wFile.append(wArqItem.ref, 50, (50+7));
-		// wFile.replace(50, 50+wArqItem.length(), wArqItem);
-		//
-		// wFile.replace(82, (82+wArqItem.length()), wArqItem);
-		// wFile.replace(99, (99+wArqItem.length()), wArqItem);
-		// wFile.replace(130, (130+wArqItem.length()),"01");
-		// wFile.replace(134, (134+wArqItem.length()),wArqItem);
-		// wFile.append("\n");
-		// }
-
-		System.out.println(Double.valueOf("0.1571").intValue());
-		System.out.println(Integer.parseInt(zProv.onlyNumbers("0.1571")));
-
 		System.out.println("Inicio: " + new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()));
 		long timeInMillis = Calendar.getInstance().getTimeInMillis();
 
-		InputStream inputStream = new FileInputStream(new File(
-				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\MEM_MASSA_entrada_java.xml"));
-		OutputStream outputStream = new FileOutputStream(new File(
-				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\billing\\Billing_det_entrada_java-OUT.xml"));
+		InputStream inputStream = new FileInputStream(new File("C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\MEM_MASSA_entrada_java.xml"));
+		OutputStream outputStream = new FileOutputStream(new File("C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\billing\\Billing_det_entrada_java-OUT.xml"));
 
 		zProv.execute(inputStream, outputStream);
 
