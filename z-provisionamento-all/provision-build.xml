@@ -15,7 +15,7 @@
 				<attribute name="Class-Path" value="." />
 			</manifest>
 			<fileset dir="${dir.buildfile}/bin" />
-			<fileset dir="${dir.buildfile}/src" />
+			<fileset dir="${dir.buildfile}/src" excludes="**/*.properties" />
 			<zipfileset src="${dir.jar.add}/dao-ejb-3.jar" includes="**/*.class, **/*.java" excludes="**/META-INF/*.MF">
 			</zipfileset>
 			<!-- 
