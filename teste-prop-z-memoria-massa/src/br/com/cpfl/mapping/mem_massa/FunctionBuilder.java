@@ -295,6 +295,8 @@ public class FunctionBuilder {
 		private void setupDestinationProperties(CpflZCcsXiT001 ccsXi) {
 			this.ccsXi = ccsXi;
 			MyDestinationDataProvider myProvider = new MyDestinationDataProvider();
+			
+			System.out.println(PIMessages.getString("pi.destination.name"));
 			try {
 				//Dentro do PI, este if nao sera executado, irá cais na clausula else.
 				if (!com.sap.conn.jco.ext.Environment.isDestinationDataProviderRegistered()) {

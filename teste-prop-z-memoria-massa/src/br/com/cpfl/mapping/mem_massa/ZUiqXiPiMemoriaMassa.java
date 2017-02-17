@@ -259,63 +259,63 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 				}
 			});
 			
-			for (TyArqAux tyArqAux1 : listaArquivos) {
-				TyArqAux tyArqAux = tyArqAux1;
-				String vloc;
-				vloc = "/interf/gle/mm/out/UIQ_" + tyArqAux.pod + "_" + tyArqAux.eq + "_" + tyArqAux.st + "_" + String.format("%03d", numArq++) + ".txt";
-
-				// criar o arquivo de saida
-				File arquivoSaida = new File(vloc);
-				arquivoSaida.getParentFile().mkdirs();
-				arquivoSaida.createNewFile();
-
-				newOut = new FileOutputStream(new File(vloc));
-				wFileContent = new StringBuilder();
-				StringBuilder wFile = null;
-
-				List<TyArq> listArq = selectTarqComparing(tArq, tyArqAux.pod, tyArqAux.eq, tyArqAux.st);
-				
-				Collections.sort(listArq, new Comparator<TyArq>() {
-					@Override
-					public int compare(TyArq o1, TyArq o2) {
-						return o1.st.compareTo(o2.st);
-					}
-				});
-				
-				Collections.sort(listArq, new Comparator<TyArq>() {
-					@Override
-					public int compare(TyArq o1, TyArq o2) {
-						return o1.ref.compareTo(o2.ref);
-					}
-				});
-				
-				Collections.sort(listArq, new Comparator<TyArq>() {
-					@Override
-					public int compare(TyArq o1, TyArq o2) {
-						return o1.pod.compareTo(o2.pod);
-					}
-				});
-				
-				for (TyArq wArqItem : listArq) {
-					if (wArqItem.st.substring(0,8).equals(tyArqAux.st)) {
-						wFile = new StringBuilder(String.valueOf(wFileCharArray));
-						
-						wFile.replace(0, wArqItem.pod.length(), wArqItem.pod);
-						wFile.replace(50, 50 + wArqItem.ref.length(), wArqItem.ref);
-						wFile.replace(65, (65 + wArqItem.st.length()), wArqItem.st);
-						wFile.replace(82, (82 + wArqItem.et.length()), wArqItem.et);
-						wFile.replace(99, (99 + wArqItem.vl.length()), wArqItem.vl);
-						wFile.replace(130,(130 + "01".length()), "01");
-						wFile.replace(134,(134 + wArqItem.un.length()), wArqItem.un);
-						//remove espacos no final
-						wFile.replace((134 + wArqItem.un.length()),wFile.toString().length(),"");
-						wFile.append("\n");
-
-						wFileContent.append(wFile.toString());
-					}
-				}
-				newOut.write(wFileContent.toString().getBytes());
-			}
+//			for (TyArqAux tyArqAux1 : listaArquivos) {
+//				TyArqAux tyArqAux = tyArqAux1;
+//				String vloc;
+//				vloc = "/interf/gle/mm/out/UIQ_" + tyArqAux.pod + "_" + tyArqAux.eq + "_" + tyArqAux.st + "_" + String.format("%03d", numArq++) + ".txt";
+//
+//				// criar o arquivo de saida
+//				File arquivoSaida = new File(vloc);
+//				arquivoSaida.getParentFile().mkdirs();
+//				arquivoSaida.createNewFile();
+//
+//				newOut = new FileOutputStream(new File(vloc));
+//				wFileContent = new StringBuilder();
+//				StringBuilder wFile = null;
+//
+//				List<TyArq> listArq = selectTarqComparing(tArq, tyArqAux.pod, tyArqAux.eq, tyArqAux.st);
+//				
+//				Collections.sort(listArq, new Comparator<TyArq>() {
+//					@Override
+//					public int compare(TyArq o1, TyArq o2) {
+//						return o1.st.compareTo(o2.st);
+//					}
+//				});
+//				
+//				Collections.sort(listArq, new Comparator<TyArq>() {
+//					@Override
+//					public int compare(TyArq o1, TyArq o2) {
+//						return o1.ref.compareTo(o2.ref);
+//					}
+//				});
+//				
+//				Collections.sort(listArq, new Comparator<TyArq>() {
+//					@Override
+//					public int compare(TyArq o1, TyArq o2) {
+//						return o1.pod.compareTo(o2.pod);
+//					}
+//				});
+//				
+//				for (TyArq wArqItem : listArq) {
+//					if (wArqItem.st.substring(0,8).equals(tyArqAux.st)) {
+//						wFile = new StringBuilder(String.valueOf(wFileCharArray));
+//						
+//						wFile.replace(0, wArqItem.pod.length(), wArqItem.pod);
+//						wFile.replace(50, 50 + wArqItem.ref.length(), wArqItem.ref);
+//						wFile.replace(65, (65 + wArqItem.st.length()), wArqItem.st);
+//						wFile.replace(82, (82 + wArqItem.et.length()), wArqItem.et);
+//						wFile.replace(99, (99 + wArqItem.vl.length()), wArqItem.vl);
+//						wFile.replace(130,(130 + "01".length()), "01");
+//						wFile.replace(134,(134 + wArqItem.un.length()), wArqItem.un);
+//						//remove espacos no final
+//						wFile.replace((134 + wArqItem.un.length()),wFile.toString().length(),"");
+//						wFile.append("\n");
+//
+//						wFileContent.append(wFile.toString());
+//					}
+//				}
+//				newOut.write(wFileContent.toString().getBytes());
+//			}
 			
 			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();

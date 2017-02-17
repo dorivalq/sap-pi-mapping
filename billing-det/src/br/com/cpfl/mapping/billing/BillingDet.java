@@ -65,7 +65,6 @@ public class BillingDet implements StreamTransformation {
 									&& nodeMudar.getFirstChild().getNodeValue().equals("ABAP_MAPPING")) {
 
 								nodeMudar.getFirstChild().setNodeValue(startTimeValue);
-								System.out.println(nodeMudar.getTextContent());
 							}
 						}
 						startTime.getFirstChild().setNodeValue(startTimeValue);

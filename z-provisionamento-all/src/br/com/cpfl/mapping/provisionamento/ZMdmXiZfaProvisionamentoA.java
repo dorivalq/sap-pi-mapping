@@ -445,6 +445,35 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 				dataChannelList.appendChild(dataChannel);
 			}
 
+			oDocument.appendChild(importE);
+			// cria o path do arquivo de saída
+			String local = PIMessages.getString("output_file.path") + "PROV_" + wServiceDeliveryPoint.mRid + "_"
+					+ new SimpleDateFormat("yyyy-MM-dd'_'hhmmss").format(new Date()) + "_"
+					+ System.getProperty("user.name") + ".xml";
+
+			// criar o arquivo de saida
+			File arquivoSaida = new File(local);
+			arquivoSaida.getParentFile().mkdirs();
+			arquivoSaida.createNewFile();
+			
+			// gera o stream de saída
+			OutputStream localOutputStream = new FileOutputStream(arquivoSaida, false);
+			DOMSource domSource = new DOMSource(oDocument);
+			StreamResult streamResult = new StreamResult(localOutputStream);
+			
+			// gerar o conteudo do arquivo de saida
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer newTransformer = transformerFactory.newTransformer();
+
+			newTransformer.transform(domSource, streamResult);
+			
+			//limpa o conteudo que foi gerado no arquivo, para gerar o output padrao
+			Node importRemove = oDocument.getElementsByTagName("import").item(0);
+			if(importRemove != null){
+				oDocument.removeChild(importRemove);				
+			}
+			
+			//gera a saida padrao
 			Element ZGLE_MDM = oDocument.createElementNS("urn:sap-com:document:sap:rfc:functions",
 					"rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO");
 			ZGLE_MDM = (Element) oDocument.appendChild(ZGLE_MDM);
@@ -459,25 +488,6 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 
 			FILENAME.setTextContent(PIMessages.getString("nome.interface"));// lInterface
 			oDocument.getFirstChild().appendChild(FILENAME);
-
-			// cria o path do arquivo de saída
-			String local = PIMessages.getString("output_file.path") + "PROV_" + wServiceDeliveryPoint.mRid + "_"
-					+ new SimpleDateFormat("yyyy-MM-dd'_'hhmmss").format(new Date()) + "_"
-					+ System.getProperty("user.name") + ".xml";
-
-			// criar o arquivo de saida
-			File arquivoSaida = new File(local);
-			arquivoSaida.getParentFile().mkdirs();
-			arquivoSaida.createNewFile();
-			// gera o stream de saída
-			OutputStream localOutputStream = new FileOutputStream(arquivoSaida, false);
-			DOMSource domSource = new DOMSource(oDocument);
-			StreamResult streamResult = new StreamResult(localOutputStream);
-			// gerar o conteudo do arquivo de saida
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer newTransformer = transformerFactory.newTransformer();
-			newTransformer.setOutputProperty(OutputKeys.METHOD, "html");
-			newTransformer.transform(domSource, streamResult);
 
 			// // * PN - 07.05.2015 - Inc.#3659 - Inicio
 			if (lModeloEloAbnt) {
