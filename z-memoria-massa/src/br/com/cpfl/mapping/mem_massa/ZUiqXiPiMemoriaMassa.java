@@ -342,7 +342,7 @@ public class ZUiqXiPiMemoriaMassa implements StreamTransformation {
 
 	private CpflZCcsXiT001 popularCcsXi() {
 		CpflZCcsXiT001 wZCcsXit001 = new CpflZCcsXiT001();
-		//TODO: Valores usados somente para testes locais 
+		//TODO: Valores usados somente adequar à classe utilitaria de Jco e para testes locais 
 		// Dentro do PI, a classe FunctionBuilder busca a destination 'pi.destination.name' que esta no PIMessage.properties
 		
 		wZCcsXit001.setDest("CCS_160_IDOC");

@@ -200,8 +200,10 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 			lEqunr = String.valueOf(leqArray).substring(lEqunr.length()) + lEqunr;
 			
 			//Inicializa configuracao de JcoFunction
-			List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
-			wZCcsXit001 = lista.get(0);
+//			List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
+//			wZCcsXit001 = lista.get(0);
+			wZCcsXit001 = popularCcsXi();
+			
 			functionBuilder = new FunctionBuilder();
 			functionBuilder.setupDestinationProperties(wZCcsXit001);
 			//Fim Inicializa configuracao de JcoFunction
@@ -217,7 +219,7 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 			JCoFunction function = functionBuilder.executeCalls();
 
 			JCoParameterList jcoParamList = function.getChangingParameterList();
-//			Date wTimeZBisTime = jcoParamList.getTime(0);
+
 			Date wDateZBisTime = jcoParamList.getTime(1);
 			
 			if (wDateZBisTime != null) {
@@ -226,7 +228,6 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 				wDateTime = wData + "T00:00:00-03:00";
 			}
 			
-			//////////////
 			if (!isNullEmpty(wDateTime)) {
 				// posicao da segunda casa dos minutos
 				int index = wDateTime.indexOf(':') + 2;
@@ -726,6 +727,22 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 		return (List) result;
 	}
 
+	private CpflZCcsXiT001 popularCcsXi() {
+		CpflZCcsXiT001 wZCcsXit001 = new CpflZCcsXiT001();
+		//TODO: Valores usados somente adequar à classe utilitaria de Jco e para testes locais 
+		// Dentro do PI, a classe FunctionBuilder busca a destination 'pi.destination.name' que esta no PIMessage.properties
+		
+		wZCcsXit001.setDest("CCS_160_IDOC");
+		wZCcsXit001.setJcoAshost("192.168.35.150");
+		wZCcsXit001.setJcoClient("160");
+		wZCcsXit001.setJcoLang("en");
+		wZCcsXit001.setJcoPasswd("rfcALL01");
+		wZCcsXit001.setJcoSysnr("20");
+		wZCcsXit001.setJcoUser("pirfcuser");
+
+		
+		return wZCcsXit001;
+	}
 	public static void main(String[] args) throws Exception {
 
 		ZMdmXiZfaProvisionamentoD zProv = new ZMdmXiZfaProvisionamentoD();

@@ -190,11 +190,13 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 			if (invMeterE != null) {
 				wInv = getValue((Element) invMeterE.getParentNode(), "ami:value");
 			}
-			List<CpflZCcsXiT001> listaCcs =  executarMetodoRemoto(CONSULTAR_CCS_XI);
-			if (listaCcs == null || listaCcs.size() == 0) {
-				throw new RuntimeException("Consuta a tablela da entidade CpflZCcsXiT001 nao retornou dados. Favor verificar.");
-			}
-			wZCcsXit001 = listaCcs.get(0);
+//			List<CpflZCcsXiT001> listaCcs =  executarMetodoRemoto(CONSULTAR_CCS_XI);
+//			if (listaCcs == null || listaCcs.size() == 0) {
+//				throw new RuntimeException("Consuta a tablela da entidade CpflZCcsXiT001 nao retornou dados. Favor verificar.");
+//			}
+//			wZCcsXit001 = listaCcs.get(0);
+			
+			wZCcsXit001 = popularCcsXi();
 
 			importParamMap = new HashMap<String, String>();
 			functionBuilder = new FunctionBuilder();
@@ -729,7 +731,23 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 
 		return (List) result;
 	}
+	
+	private CpflZCcsXiT001 popularCcsXi() {
+		CpflZCcsXiT001 wZCcsXit001 = new CpflZCcsXiT001();
+		//TODO: Valores usados somente adequar à classe utilitaria de Jco e para testes locais 
+		// Dentro do PI, a classe FunctionBuilder busca a destination 'pi.destination.name' que esta no PIMessage.properties
+		
+		wZCcsXit001.setDest("CCS_160_IDOC");
+		wZCcsXit001.setJcoAshost("192.168.35.150");
+		wZCcsXit001.setJcoClient("160");
+		wZCcsXit001.setJcoLang("en");
+		wZCcsXit001.setJcoPasswd("rfcALL01");
+		wZCcsXit001.setJcoSysnr("20");
+		wZCcsXit001.setJcoUser("pirfcuser");
 
+		
+		return wZCcsXit001;
+	}
 	public static void main(String[] args) throws Exception {
 
 		ZMdmXiZfaProvisionamentoU zProv = new ZMdmXiZfaProvisionamentoU();

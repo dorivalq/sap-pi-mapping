@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="Executar todos os builds">
+	<!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+	<!--ANT 1.7 is required-->
+	<!--define folder properties-->
+	<property name="dir.workspace" value=".." />
+
+
+	<ant antfile="${dir.workspace}/billing-det/build.xml" />
+	<ant antfile="${dir.workspace}/load-data-po/build.xml" />
+	<ant antfile="${dir.workspace}/provisionamento-r-prj/build.xml" />
+	<ant antfile="${dir.workspace}/trata-falha-de-para/build.xml" />
+	<ant antfile="${dir.workspace}/trata-falha-de-para-itens/build.xml" />
+	<ant antfile="${dir.workspace}/trata-falha-reg-fat/build.xml" />
+	<ant antfile="${dir.workspace}/trata-falha-reg-fat-o/build.xml" />
+	<ant antfile="${dir.workspace}/z-mdm-zfa-odr/build.xml" />
+	<ant antfile="${dir.workspace}/z-memoria-massa/build.xml" />
+	<ant antfile="${dir.workspace}/z-provisionamento-all/build.xml" />
+	<ant antfile="${dir.workspace}/zflag/build.xml" />
+	
+</project>

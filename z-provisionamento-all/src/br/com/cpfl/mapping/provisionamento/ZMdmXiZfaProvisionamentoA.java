@@ -334,8 +334,9 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 
 			Map<String, String> importParamMap = new HashMap<String, String>();
 			importParamMap.put("QUERY_TABLE", "EQUI");
-			List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
-			wZCcsXit001 = lista.get(0);
+//			List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
+//			wZCcsXit001 = lista.get(0);
+			wZCcsXit001 = popularCcsXi();
 
 			FunctionBuilder functionBuilder = new FunctionBuilder();
 			functionBuilder.setupDestinationProperties(wZCcsXit001);
@@ -697,6 +698,22 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 		return (List) result;
 	}
 
+	private CpflZCcsXiT001 popularCcsXi() {
+		CpflZCcsXiT001 wZCcsXit001 = new CpflZCcsXiT001();
+		//TODO: Valores usados somente adequar à classe utilitaria de Jco e para testes locais 
+		// Dentro do PI, a classe FunctionBuilder busca a destination 'pi.destination.name' que esta no PIMessage.properties
+		
+		wZCcsXit001.setDest("CCS_160_IDOC");
+		wZCcsXit001.setJcoAshost("192.168.35.150");
+		wZCcsXit001.setJcoClient("160");
+		wZCcsXit001.setJcoLang("en");
+		wZCcsXit001.setJcoPasswd("rfcALL01");
+		wZCcsXit001.setJcoSysnr("20");
+		wZCcsXit001.setJcoUser("pirfcuser");
+
+		
+		return wZCcsXit001;
+	}
 	public static void main(String[] args) throws Exception {
 
 		ZMdmXiZfaProvisionamentoA zProv = new ZMdmXiZfaProvisionamentoA();
