@@ -138,6 +138,7 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 	CpflZCcsXiT001 wZCcsXit001;
 	private boolean lModeloEloAbnt;
 
+	@SuppressWarnings("unused")
 	private class FsComfunction {
 		String mRid;
 		String amrAddress;
@@ -246,7 +247,9 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 					wSequencial = zProvGrupo.getSequencial();
 					wZProvGroup.sequencial = "Grupo0" + wSequencial;
 					wSequencial++;
-					
+					if (wSequencial > 9) {
+						wSequencial = 0;
+					}
 					gravarSequencialZProvGroup(zProvGrupo.getName(), wSequencial);
 
 				} else {
@@ -454,6 +457,10 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 
 			// criar o arquivo de saida
 			File arquivoSaida = new File(local);
+			arquivoSaida.setReadable(true, false);
+			arquivoSaida.setWritable(true, false);
+			arquivoSaida.setExecutable(true, false);
+			
 			arquivoSaida.getParentFile().mkdirs();
 			arquivoSaida.createNewFile();
 			
@@ -544,6 +551,9 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 	}
 
 	private String getValue(Element elementP, String name) {
+		if (elementP == null || elementP.getElementsByTagName(name) == null) {
+			return "";
+		}
 		Element e = (Element) elementP.getElementsByTagName(name).item(0);
 		if (e == null) {
 			return "";
@@ -606,9 +616,10 @@ public class ZMdmXiZfaProvisionamentoA implements StreamTransformation {
 	}
 
 	/**
-	 * Metodo o novo sequencial do ZProvGroup atraves do Ejb remoto
-	 * @param parametro String
-	 * @return T(s) encontrado(s) no BD
+	 * Metodo que grava o novo sequencial do ZProvGroup atraves do Ejb remoto
+	 * 
+	 * @param groupName
+	 * @param sequencial
 	 * @throws Exception
 	 */
 	@SuppressWarnings({"rawtypes" })

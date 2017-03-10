@@ -8,3 +8,99 @@ Error:  >Wed Jan 25 17:56:13,733<    >RfcGetException rc (7) message: Invalid su
 Error:  >Wed Jan 25 18:22:24,210<    >RfcGetException rc (7) message: Invalid subfield access: Offset too large
 <RfcGetException
 
+
+**** Error file opened at 20170306 103711 Brasilia Time Rel. 3.0.15 (2016-07-26) [721.713]
+Error:  >Mon Mar 06 10:37:11,565<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=CCQ_350_IDOC ASHOST=192.168.35.153 SYSNR=20 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.35.153:3320' not reached
+TIME        Mon Mar 06 10:37:11 2017
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 192.168.35.153:3320
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20170306 103932 Brasilia Time Rel. 3.0.15 (2016-07-26) [721.713]
+Error:  >Mon Mar 06 10:39:32,407<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=CCQ_350_IDOC ASHOST=192.168.35.153 SYSNR=20 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.35.153:3320' not reached
+TIME        Mon Mar 06 10:39:32 2017
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 192.168.35.153:3320
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20170306 104141 Brasilia Time Rel. 3.0.15 (2016-07-26) [721.713]
+Error:  >Mon Mar 06 10:41:41,027<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=CCQ_350_IDOC ASHOST=192.168.35.153 SYSNR=20 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.35.153:3320' not reached
+TIME        Mon Mar 06 10:41:41 2017
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 192.168.35.153:3320
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20170306 104321 Brasilia Time Rel. 3.0.15 (2016-07-26) [721.713]
+Error:  >Mon Mar 06 10:43:21,234<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=CCQ_350_IDOC ASHOST=192.168.35.153 SYSNR=20 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.35.153:3320' not reached
+TIME        Mon Mar 06 10:43:21 2017
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 192.168.35.153:3320
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION

@@ -210,7 +210,7 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 			Date wDateCcs = jcoParamList.getDate(1);
 			
 			if (wDateCcs != null) {
-				wDateTime = new SimpleDateFormat("yyyy-mm-dd").format(wDateCcs);
+				wDateTime = new SimpleDateFormat("yyyy-MM-dd").format(wDateCcs);
 				wDateTime = wDateTime + "T" + new SimpleDateFormat("hh:mm:ss").format(wTimeCcs) + "-03:00";
 			} else {
 				wDateTime = wData + "T00:00:00-03:00";
@@ -253,6 +253,9 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 					wSequencial = zProvGrupo.getSequencial(); 
 					wZProvGroup.sequencial = "Grupo0" + wSequencial;
 					wSequencial++;
+					if (wSequencial > 9) {
+						wSequencial = 0;
+					}
 					zProvGrupo.setSequencial(wSequencial);
 					gravarSequencialZProvGroup(zProvGrupo.getName(), wSequencial);
 
@@ -459,21 +462,6 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 			
 			oDocument.appendChild(importE);
 
-//			Element ZGLE_MDM = oDocument.createElementNS("urn:sap-com:document:sap:rfc:functions",
-//					"rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO");
-//			ZGLE_MDM = (Element) oDocument.appendChild(ZGLE_MDM);
-//			Node ID = oDocument.createElement("ID");
-//			ID.setTextContent(wHeader.messageId);
-//			ZGLE_MDM.appendChild(ID);
-//			Element XML = oDocument.createElement("XML");
-//
-//			XML.appendChild(importE);
-//			ZGLE_MDM.appendChild(XML);
-//			Node FILENAME = oDocument.createElement("FILENAME");
-//			
-//			FILENAME.setTextContent(PIMessages.getString("nome.interface"));//lInterface
-//			oDocument.getFirstChild().appendChild(FILENAME);
-
 			// cria o path do arquivo de saída
 			String local = PIMessages.getString("output_file.path") + "PROV_" + wServiceDeliveryPoint.mRid + "_"
 					+ new SimpleDateFormat("yyyy-MM-dd'_'hhmmss").format(new Date()) + "_"
@@ -481,6 +469,10 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 
 			// criar o arquivo de saida
 			File arquivoSaida = new File(local);
+			arquivoSaida.setReadable(true, false);
+			arquivoSaida.setWritable(true, false);
+			arquivoSaida.setExecutable(true, false);
+			
 			arquivoSaida.getParentFile().mkdirs();
 			arquivoSaida.createNewFile();
 			// gera o stream de saída
@@ -493,6 +485,26 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 			newTransformer.setOutputProperty(OutputKeys.METHOD, "html");
 			newTransformer.transform(domSource, streamResult);
 
+			//limpa o conteudo que foi gerado no arquivo, para gerar o output padrao
+			Node importRemove = oDocument.getElementsByTagName("import").item(0);
+			if(importRemove != null){
+				oDocument.removeChild(importRemove);				
+			}
+			
+			Element ZGLE_MDM = oDocument.createElementNS("urn:sap-com:document:sap:rfc:functions",
+					"rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO");
+			ZGLE_MDM = (Element) oDocument.appendChild(ZGLE_MDM);
+			Node ID = oDocument.createElement("ID");
+			ID.setTextContent(wHeader.messageId);
+			ZGLE_MDM.appendChild(ID);
+			Element XML = oDocument.createElement("XML");
+
+			XML.appendChild(importE);
+			ZGLE_MDM.appendChild(XML);
+			Node FILENAME = oDocument.createElement("FILENAME");
+
+			FILENAME.setTextContent(PIMessages.getString("nome.interface"));// lInterface
+			oDocument.getFirstChild().appendChild(FILENAME);
 			// // * PN - 07.05.2015 - Inc.#3659 - Inicio
 			if (lModeloEloAbnt) {
 				Node oldChild = oDocument.getElementsByTagName("param-list").item(0);
@@ -547,6 +559,9 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 	}
 
 	private String getValue(Element elementP, String name) {
+		if (elementP == null || elementP.getElementsByTagName(name) == null) {
+			return "";
+		}
 		Element e = (Element) elementP.getElementsByTagName(name).item(0);
 		if (e == null) {
 			return "";
@@ -639,9 +654,10 @@ public class ZMdmXiZfaProvisionamentoU implements StreamTransformation {
 	}
 
 	/**
-	 * Metodo o novo sequencial do ZProvGroup atraves do Ejb remoto
-	 * @param parametro String
-	 * @return T(s) encontrado(s) no BD
+	 * Metodo que grava o novo sequencial do ZProvGroup atraves do Ejb remoto
+	 *
+	 * @param groupName
+	 * @param sequencial
 	 * @throws Exception
 	 */
 	@SuppressWarnings({"rawtypes" })

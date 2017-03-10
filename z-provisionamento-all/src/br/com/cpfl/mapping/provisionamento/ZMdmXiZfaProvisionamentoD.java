@@ -5,6 +5,7 @@ import static javax.naming.Context.URL_PKG_PREFIXES;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
@@ -20,6 +21,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -157,7 +161,10 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 	private String lCcsFabricante;
 	private String lCcsModelo;
 	private FunctionBuilder functionBuilder;
-
+	
+	private Logger logger = Logger.getLogger("ProvisionamentoDelete");
+	private FileHandler fileHandler;
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void setParameter(Map map) {
@@ -171,6 +178,20 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 	public void execute(InputStream inputStream, OutputStream outputStream) throws StreamTransformationException {
 		try {
 
+			try {
+				fileHandler = new FileHandler("/interf/temp/ProvisionamentoDelete.log", 0, 1);
+				logger.addHandler(fileHandler);
+				fileHandler.setFormatter(new SimpleFormatter());
+			} catch (SecurityException e) {
+				e.printStackTrace();
+				logger.warning("Erro ao gerar o arquivo de log em /interf/temp/ProvisionamentoDelete.log  "
+						+ "\n"+e.getCause()+e.getMessage()+e.getLocalizedMessage());
+			} catch (IOException e) {
+				e.printStackTrace();
+				logger.warning("Erro ao gerar o arquivo de log em /interf/temp/ProvisionamentoDelete.log  "
+						+ "\n"+e.getCause()+e.getMessage()+e.getLocalizedMessage());
+			}
+			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			document = builder.parse(inputStream);
@@ -203,7 +224,7 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 //			List<CpflZCcsXiT001> lista = executarMetodoRemoto(CONSULTAR_CCS_XI);
 //			wZCcsXit001 = lista.get(0);
 			wZCcsXit001 = popularCcsXi();
-			
+			logger.info("------------------------- Chamada da funcao ZCCSGLEF0083 -----------------------------------");
 			functionBuilder = new FunctionBuilder();
 			functionBuilder.setupDestinationProperties(wZCcsXit001);
 			//Fim Inicializa configuracao de JcoFunction
@@ -213,17 +234,42 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 			
 			Map<String, String> importParamMap = new HashMap<String, String>();
 			importParamMap.put("EQUNR", lEqunr);
+			logger.info("EQUNR: "+ lEqunr);
 			importParamMap.put("DEVLOC", wSdpC);
+			logger.info("DEVLOC: "+wSdpC);
 			functionBuilder.setupFunction("ZCCSGLEF0083", importParamMap);
 
 			JCoFunction function = functionBuilder.executeCalls();
 
 			JCoParameterList jcoParamList = function.getChangingParameterList();
 
-			Date wDateZBisTime = jcoParamList.getTime(1);
-			
+			Date wDateZBisTime = jcoParamList.getTime("ZBIS_TIME");
+			logger.info("jcoParamList.getTime(\"ZBIS_TIME\"): "+wDateZBisTime);
+
+			Calendar calDateTime = null;
 			if (wDateZBisTime != null) {
-				wDateTime = new SimpleDateFormat("yyyy-mm-dd'T'hh:mm:ss").format(wDateZBisTime) + "-03:00";
+				calDateTime = Calendar.getInstance();
+				calDateTime.setTime(wDateZBisTime);
+				logger.info("calDateTime : "+calDateTime.getTime());
+			}
+			
+			Date wDateZBis = jcoParamList.getDate("ZBIS");
+			logger.info("jcoParamList.getTime(\"ZBIS\"): "+wDateZBis);
+			Calendar calDate = null;
+			if (wDateZBis != null) {
+				calDate = Calendar.getInstance();
+				calDate.setTime(wDateZBis);
+				logger.info("calDate : "+calDate.getTime());
+				logger.info("calDateTime ANTES DE SETAR A DATA: "+calDateTime.getTime());
+				//se retornou uma data, ajusta a variavel que contem o time com a data correta
+				calDateTime.set(Calendar.YEAR, calDate.get(Calendar.YEAR));
+				calDateTime.set(Calendar.MONTH, calDate.get(Calendar.MONTH));
+				calDateTime.set(Calendar.DAY_OF_MONTH, calDate.get(Calendar.DAY_OF_MONTH));
+				logger.info("calDateTime DEPOIS DE SETAR A DATA: "+calDateTime.getTime());
+			}
+			//verifica se a data nao esta zerada - calDateTime.get(Calendar.YEAR) > 1970
+			if (calDateTime != null && calDateTime.get(Calendar.YEAR) > 1970) {
+				wDateTime = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").format(calDateTime.getTime()) + "-03:00";
 			} else {
 				wDateTime = wData + "T00:00:00-03:00";
 			}
@@ -238,7 +284,7 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 				} else {
 					wDateTimeAux[index] = '5';
 				}
-				wDateTime = String.valueOf(wDateTimeAux) + "-03:00";
+				
 			} // wDateTime notNull
 			
 			wModel = wMeterAsset.modelNumber;
@@ -284,7 +330,9 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 					wSequencial = zProvGrupo.getSequencial();
 					wZProvGroup.sequencial = "Grupo0" + wSequencial;
 					wSequencial++;
-					
+					if (wSequencial > 9) {
+						wSequencial = 0;
+					}
 					gravarSequencialZProvGroup(zProvGrupo.getName(), wSequencial);
 
 				} else {
@@ -483,21 +531,7 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 			}
 			
 
-			Element ZGLE_MDM = oDocument.createElementNS("urn:sap-com:document:sap:rfc:functions",
-					"rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO");
-			ZGLE_MDM = (Element) oDocument.appendChild(ZGLE_MDM);
-			Node ID = oDocument.createElement("ID");
-			ID.setTextContent(wHeader.messageId);
-			ZGLE_MDM.appendChild(ID);
-			Element XML = oDocument.createElement("XML");
-
-			XML.appendChild(importE);
-			ZGLE_MDM.appendChild(XML);
-			Node FILENAME = oDocument.createElement("FILENAME");
-
-			FILENAME.setTextContent(PIMessages.getString("nome.interface"));// lInterface
-			oDocument.getFirstChild().appendChild(FILENAME);
-
+			oDocument.appendChild(importE);
 			// cria o path do arquivo de saída
 			String local = PIMessages.getString("output_file.path") + "PROV_" + wServiceDeliveryPoint.mRid + "_"
 					+ new SimpleDateFormat("yyyy-MM-dd'_'hhmmss").format(new Date()) + "_"
@@ -505,6 +539,10 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 
 			// criar o arquivo de saida
 			File arquivoSaida = new File(local);
+			arquivoSaida.setReadable(true, false);
+			arquivoSaida.setWritable(true, false);
+			arquivoSaida.setExecutable(true, false);
+			
 			arquivoSaida.getParentFile().mkdirs();
 			arquivoSaida.createNewFile();
 			// gera o stream de saída
@@ -514,14 +552,35 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 			// gerar o conteudo do arquivo de saida
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer newTransformer = transformerFactory.newTransformer();
-			newTransformer.setOutputProperty(OutputKeys.METHOD, "html");
+
 			newTransformer.transform(domSource, streamResult);
 
+			//limpa o conteudo que foi gerado no arquivo, para gerar o output padrao
+			Node importRemove = oDocument.getElementsByTagName("import").item(0);
+			if(importRemove != null){
+				oDocument.removeChild(importRemove);				
+			}
+			
 			// // * PN - 07.05.2015 - Inc.#3659 - Inicio
 			if (lModeloEloAbnt) {
 				Node oldChild = oDocument.getElementsByTagName("param-list").item(0);
 				oDocument.getParentNode().removeChild(oldChild);
 			}
+			
+			Element ZGLE_MDM = oDocument.createElementNS("urn:sap-com:document:sap:rfc:functions","rfc:ZGLE_MDM_XI_PI_PROVISIONAMENTO");
+			ZGLE_MDM = (Element) oDocument.appendChild(ZGLE_MDM);
+			Node ID = oDocument.createElement("ID");
+			ID.setTextContent(wHeader.messageId);
+			ZGLE_MDM.appendChild(ID);
+			Element XML = oDocument.createElement("XML");
+		
+			XML.appendChild(importE);
+			ZGLE_MDM.appendChild(XML);
+			Node FILENAME = oDocument.createElement("FILENAME");
+		
+			FILENAME.setTextContent(PIMessages.getString("nome.interface"));// lInterface
+			oDocument.getFirstChild().appendChild(FILENAME);
+			
 			// * PN - 07.05.2015 - Inc.#3659 - Fim
 			Transformer transformer = transformerFactory.newTransformer();
 			Source sourceNew = new DOMSource(oDocument);
@@ -530,6 +589,12 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new StreamTransformationException("Falha ao processar o mapping ", e);
+		}finally {
+			try {
+				fileHandler.close();				
+			} catch (Exception e2) {
+				//nothing to do here
+			}
 		}
 	}
 
@@ -571,6 +636,9 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 	}
 
 	private String getValue(Element elementP, String name) {
+		if (elementP == null || elementP.getElementsByTagName(name) == null) {
+			return "";
+		}
 		Element e = (Element) elementP.getElementsByTagName(name).item(0);
 		if (e == null) {
 			return "";
@@ -633,9 +701,10 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 	}
 
 	/**
-	 * Metodo o novo sequencial do ZProvGroup atraves do Ejb remoto
-	 * @param parametro String
-	 * @return T(s) encontrado(s) no BD
+	 * Metodo que grava o novo sequencial do ZProvGroup atraves do Ejb remoto
+	 * 
+	 * @param groupName
+	 * @param sequencial
 	 * @throws Exception
 	 */
 	@SuppressWarnings({"rawtypes" })
@@ -730,11 +799,15 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 	private CpflZCcsXiT001 popularCcsXi() {
 		CpflZCcsXiT001 wZCcsXit001 = new CpflZCcsXiT001();
 		//TODO: Valores usados somente adequar à classe utilitaria de Jco e para testes locais 
-		// Dentro do PI, a classe FunctionBuilder busca a destination 'pi.destination.name' que esta no PIMessage.properties
+		// Dentro do PO, a classe FunctionBuilder busca a destination 'pi.destination.name' que 
+		//esta no PIMessage.properties
 		
-		wZCcsXit001.setDest("CCS_160_IDOC");
+//		wZCcsXit001.setDest("CCS_160_IDOC");
+		wZCcsXit001.setDest("CCQ_350_IDOC");
 		wZCcsXit001.setJcoAshost("192.168.35.150");
+//		wZCcsXit001.setJcoAshost("192.168.35.153");
 		wZCcsXit001.setJcoClient("160");
+//		wZCcsXit001.setJcoClient("350");
 		wZCcsXit001.setJcoLang("en");
 		wZCcsXit001.setJcoPasswd("rfcALL01");
 		wZCcsXit001.setJcoSysnr("20");
@@ -751,7 +824,7 @@ public class ZMdmXiZfaProvisionamentoD implements StreamTransformation {
 		long timeInMillis = Calendar.getInstance().getTimeInMillis();
 
 		InputStream inputStream = new FileInputStream(new File(
-				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_entrada2.xml"));
+				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_entrada2-del.xml"));
 		OutputStream outputStream = new FileOutputStream(new File(
 				"C:\\Users\\dorival1\\AppData\\Roaming\\Skype\\My Skype Received Files\\add-group\\novo\\prov_add_del_entrada2-OUT.xml"));
 
